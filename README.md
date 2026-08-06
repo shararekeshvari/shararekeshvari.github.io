@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sharare Keshvari Portfolio
 
-## Getting Started
+A responsive, dark-first personal portfolio built with Next.js, TypeScript, Tailwind CSS, Framer Motion, Radix UI, and Shadcn-style components.
 
-First, run the development server:
+Production domain: `https://shararekeshvari.ir`
+
+## Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Production checks
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npx tsc --noEmit
+npm run build
+```
 
-## Learn More
+## Static deployment
 
-To learn more about Next.js, take a look at the following resources:
+The portfolio is exported to `out/` by `npm run build`. Upload the contents of
+`out/` to the web root of any static host, such as `public_html` on cPanel or
+DirectAdmin. No Node.js server is required.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+For `shararekeshvari.ir`, configure the domain provider's DNS records or
+nameservers to point to the selected host before enabling HTTPS.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Updating content
 
-## Deploy on Vercel
+Verified skills, project content, and contact placeholders live in `src/data/portfolio.ts`. Experience, education, and certificate placeholders live in `src/components/portfolio.tsx`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Replace placeholder copy only with verified information. Project and profile buttons should remain disabled until real URLs are available.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`NEXT_PUBLIC_SITE_URL` defaults to `https://shararekeshvari.ir` so canonical and social metadata resolve to the production domain. Override it only for a different deployment origin.
