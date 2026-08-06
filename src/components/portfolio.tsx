@@ -194,8 +194,8 @@ export function Portfolio() {
 
             <div className="mt-14 grid border-l border-t border-border sm:grid-cols-2 lg:grid-cols-4">
               {skillGroups.map((group, index) => (
-                <Reveal key={group.title} delay={index * 0.04}>
-                  <div className="min-h-52 border-b border-r border-border p-5 sm:p-6">
+                <Reveal key={group.title} className="h-full" delay={index * 0.04}>
+                  <div className="h-full min-h-52 border-b border-r border-border p-5 sm:p-6">
                     <div className="mb-8 flex items-center gap-3">
                       <span className={`skill-dot skill-dot-${group.tone}`} aria-hidden="true" />
                       <h3 className="text-sm font-semibold">{group.title}</h3>
