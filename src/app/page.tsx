@@ -1,12 +1,14 @@
 import { Portfolio } from "@/components/portfolio";
+import { SITE_URL } from "@/lib/site";
 
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Sharare Keshvari",
   jobTitle: "Frontend Developer and Information Technology Student",
-  url: "https://shararekeshvari.ir",
+  url: SITE_URL,
   email: "mailto:shararekeshvari77@gmail.com",
+  sameAs: ["https://github.com/shararekeshvari"],
   address: {
     "@type": "PostalAddress",
     addressCountry: "Iran",
@@ -25,6 +27,7 @@ const structuredData = {
     "Figma",
   ],
   knowsLanguage: ["Persian", "English", "German"],
+  mainEntityOfPage: SITE_URL,
 };
 
 export default function Home() {

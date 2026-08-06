@@ -1,18 +1,21 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, Search, X } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 
-import { CommandMenu } from "@/components/command-menu";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { navigation } from "@/data/portfolio";
 
+const LazyCommandMenu = lazy(async () => ({
+  default: (await import("@/components/command-menu")).CommandMenu,
+}));
+
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [commandMenuRequested, setCommandMenuRequested] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -21,13 +24,29 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [menuOpen]);
+
+  useEffect(() => {
+    if (commandMenuRequested) return;
+    const loadCommandMenu = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        setCommandMenuRequested(true);
+      }
+    };
+    document.addEventListener("keydown", loadCommandMenu);
+    return () => document.removeEventListener("keydown", loadCommandMenu);
+  }, [commandMenuRequested]);
+
   return (
-    <motion.header
-      initial={{ y: -18, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed inset-x-0 top-0 z-40 px-4 pt-4 sm:px-6"
-    >
+    <header className="navbar-enter fixed inset-x-0 top-0 z-40 px-4 pt-4 sm:px-6">
       <nav
         aria-label="Main navigation"
         className={`mx-auto flex h-14 max-w-7xl items-center justify-between rounded-lg border px-3 transition-all duration-300 sm:px-4 ${
@@ -60,13 +79,31 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-2">
-          <CommandMenu />
+          {commandMenuRequested ? (
+            <Suspense fallback={<span className="hidden h-10 min-w-36 lg:block" aria-hidden="true" />}>
+              <LazyCommandMenu defaultOpen />
+            </Suspense>
+          ) : (
+            <Button
+              variant="secondary"
+              className="hidden h-10 min-w-36 justify-between px-3 text-muted lg:inline-flex"
+              aria-label="Open command menu"
+              onClick={() => setCommandMenuRequested(true)}
+            >
+              <span className="flex items-center gap-2">
+                <Search aria-hidden="true" size={15} />
+                Navigate
+              </span>
+              <kbd className="font-mono text-[11px] text-muted">Ctrl K</kbd>
+            </Button>
+          )}
           <ThemeToggle />
           <Button
             variant="icon"
             className="md:hidden"
             aria-label={menuOpen ? "Close navigation" : "Open navigation"}
             aria-expanded={menuOpen}
+            aria-controls="mobile-navigation"
             onClick={() => setMenuOpen((current) => !current)}
           >
             {menuOpen ? <X aria-hidden="true" size={18} /> : <Menu aria-hidden="true" size={18} />}
@@ -74,13 +111,10 @@ export function Navbar() {
         </div>
       </nav>
 
-      <AnimatePresence>
-        {menuOpen ? (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            className="mx-auto mt-2 max-w-7xl overflow-hidden rounded-lg border border-border bg-background p-2 shadow-xl md:hidden"
+      {menuOpen ? (
+          <div
+            id="mobile-navigation"
+            className="mobile-menu-enter mx-auto mt-2 max-w-7xl overflow-hidden rounded-lg border border-border bg-background p-2 shadow-xl md:hidden"
           >
             {navigation.map((item) => (
               <Link
@@ -92,9 +126,8 @@ export function Navbar() {
                 {item.label}
               </Link>
             ))}
-          </motion.div>
+          </div>
         ) : null}
-      </AnimatePresence>
-    </motion.header>
+    </header>
   );
 }

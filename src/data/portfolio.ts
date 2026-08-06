@@ -8,44 +8,34 @@ export const navigation = [
 
 export const skillGroups = [
   {
-    title: "Frontend Fundamentals",
+    title: "Core Frontend",
     skills: ["JavaScript", "TypeScript", "HTML5", "CSS3"],
     tone: "blue",
   },
   {
-    title: "Frameworks",
-    skills: ["React", "Next.js"],
+    title: "React Ecosystem",
+    skills: ["React", "Next.js", "React Query"],
     tone: "mint",
   },
   {
-    title: "Styling",
-    skills: ["Tailwind CSS", "Responsive Design"],
+    title: "UI Engineering",
+    skills: ["Tailwind CSS", "Responsive Design", "Radix UI", "Shadcn UI"],
     tone: "amber",
   },
   {
     title: "Data & APIs",
-    skills: ["React Query", "Axios", "REST APIs"],
+    skills: ["REST APIs", "Axios", "WebSocket"],
     tone: "coral",
   },
   {
-    title: "Backend & Auth Basics",
-    skills: ["Clerk", "Convex"],
+    title: "Localization & Services",
+    skills: ["next-intl", "RTL/LTR interfaces", "Clerk", "Convex"],
     tone: "violet",
   },
   {
-    title: "Tools",
-    skills: ["Git"],
+    title: "Tools & Design",
+    skills: ["Git", "GitHub", "Figma", "AI-assisted workflows"],
     tone: "blue",
-  },
-  {
-    title: "UI & Design",
-    skills: ["Figma", "Shadcn UI", "Radix UI", "UI/UX principles"],
-    tone: "mint",
-  },
-  {
-    title: "AI Workflows",
-    skills: ["AI design tools", "Image generation tools", "AI-assisted workflows"],
-    tone: "amber",
   },
 ] as const;
 
@@ -53,94 +43,93 @@ export const languageItems = [
   { language: "Persian", level: "Native" },
   { language: "English", level: "Intermediate · Preparing for IELTS" },
   { language: "German", level: "A2.1" },
-  { language: "French", level: "Future learning goal" },
-] as const;
-
-export const careerGoals = [
-  "Strengthen my frontend engineering skills",
-  "Contribute to international remote teams",
-  "Build reliable, high-quality web applications",
-  "Gain experience in global technology environments",
-  "Continue learning modern web and AI-assisted workflows",
 ] as const;
 
 export const experience = {
   role: "Junior Frontend Developer",
   company: "pt-ecommerce",
   employmentType: "Remote",
-  startDate: "2025/14/2",
-  endDate: "End date to be added",
+  period: "2025",
   description:
-    "Contributed to frontend development work for pt-ecommerce using React-based technologies, with a focus on responsive interfaces, reusable components, and TypeScript.",
+    "Contributed to frontend implementation for pt-ecommerce using React-based technologies, with a focus on responsive interfaces, reusable components, and TypeScript.",
   responsibilities: [
-    "Building responsive interfaces",
-    "Developing reusable React components",
-    "Using TypeScript in frontend implementation",
-    "Implementing UI designs",
-    "Collaborating with a remote development team",
+    "Built responsive interfaces",
+    "Developed reusable React components",
+    "Used TypeScript in frontend implementation",
+    "Implemented supplied UI designs",
+    "Collaborated with a remote development team",
   ],
   tech: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
 } as const;
-
-export const educationItems = [
-  {
-    degree: "Bachelor of Information Technology Engineering",
-    status: "In progress",
-    institution: "University name to be added",
-    date: "Expected graduation: 2027/1/9",
-  },
-  {
-    degree: "Associate Degree in Software Engineering",
-    status: "Previous degree",
-    institution: "Institution name to be added",
-    date: "Graduation date to be added",
-  },
-] as const;
 
 export const projects = [
   {
     slot: "01",
     category: "Business platform",
     title: "Rekar",
-    description:
-      "A Persian RTL interface for a multi-tenant accounting and business management platform. It includes workflows for accounting, sales, inventory, treasury, payroll, and related operations.",
-    tech: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
-    highlights: [
-      "Multi-tenant application structure",
-      "RTL interface and role-based access flows",
+    summary:
+      "A Persian RTL frontend for a multi-tenant accounting and business operations platform.",
+    problem:
+      "Business users need one coherent interface for financial and operational work across companies, roles, and Persian-language workflows.",
+    solution:
+      "The frontend uses tenant-aware navigation, permission checks, server-side session handling, and reusable modules for connected business workflows.",
+    features: [
+      "Accounting, sales, purchasing, inventory, treasury, payroll, and manufacturing workflows",
+      "Multi-tenant navigation with role- and permission-aware access",
+      "Persian RTL interfaces, reports, imports, and print views",
+      "Offline-aware customer and field-visit workflows with queued synchronization",
     ],
-    image: "/images/projects/rekar.png",
+    tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Zod", "Dexie"],
+    image: "/images/projects/rekar.webp",
     imageAlt: "Rekar Persian accounting platform landing page",
+    liveUrl: "https://rekar.ir",
+    liveLabel: "Visit rekar.ir",
   },
   {
     slot: "02",
     category: "Learning platform",
     title: "Leksuu",
-    description:
-      "A multilingual language-learning interface with localized RTL and LTR experiences, interactive lessons, practice flows, tutoring, gamification, and content administration.",
-    tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "next-intl"],
-    highlights: [
-      "Persian, Kurdish, and English locales",
-      "Interactive learning and admin workflows",
+    summary:
+      "A multilingual language-learning interface designed for Persian, Kurdish Sorani, and English experiences.",
+    problem:
+      "Persian and Kurdish learners need localized, direction-aware learning flows while studying English across different devices.",
+    solution:
+      "The frontend centralizes locale routing, translations, design tokens, and reusable learning components across RTL and LTR layouts.",
+    features: [
+      "Persian, Kurdish Sorani, and English locale routing",
+      "Interactive lessons, exercises, spaced review, and gamification",
+      "Tutoring, group classes, homework, and learner progress flows",
+      "Content administration and an installable PWA shell with an offline fallback",
     ],
-    image: "/images/projects/leksuu.png",
+    tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "next-intl"],
+    image: "/images/projects/leksuu.webp",
     imageAlt: "Leksuu Persian language-learning platform landing page",
+    liveUrl: "https://leksuu.ir",
+    liveLabel: "Visit leksuu.ir",
   },
   {
     slot: "03",
     category: "Clinic operations",
     title: "Dentia",
-    description:
-      "A Persian RTL dental clinic interface combining public appointment booking with staff workflows for patients, billing, inventory, and a live clinic queue.",
-    tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "WebSocket"],
-    highlights: [
-      "Public clinic site and online booking",
-      "Role-aware dashboard and live queue updates",
+    summary:
+      "A Persian RTL dental-clinic interface connecting public booking, patient services, and staff operations.",
+    problem:
+      "Clinic staff and patients need connected workflows from public appointment requests through clinical care, billing, and follow-up.",
+    solution:
+      "The Next.js interface combines a public clinic site and patient portal with a role-aware staff application backed by typed API clients.",
+    features: [
+      "Public clinic content, appointment requests, and online booking",
+      "Patient records, appointments, treatment workflows, and portal access",
+      "Live clinic queue updates through a reconnecting WebSocket flow",
+      "Billing, inventory, laboratory, reporting, and Persian date and currency handling",
     ],
-    image: "/images/projects/dentia.png",
+    tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "WebSocket"],
+    image: "/images/projects/dentia.webp",
     imageAlt: "Dentia Persian dental clinic platform landing page",
   },
 ] as const;
+
+export type PortfolioProject = (typeof projects)[number];
 
 export const contactItems = [
   {
@@ -149,10 +138,8 @@ export const contactItems = [
     href: "mailto:shararekeshvari77@gmail.com",
   },
   {
-    label: "Website",
-    value: "shararekeshvari.ir",
-    href: "https://shararekeshvari.ir",
+    label: "GitHub",
+    value: "github.com/shararekeshvari",
+    href: "https://github.com/shararekeshvari",
   },
-  { label: "LinkedIn", value: "Profile link to be added", href: "" },
-  { label: "GitHub", value: "Profile link to be added", href: "" },
 ] as const;

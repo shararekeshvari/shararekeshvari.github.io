@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import { ThemeProvider } from "@/components/theme-provider";
+import { SITE_DESCRIPTION, SITE_URL } from "@/lib/site";
 
 import "./globals.css";
 
@@ -17,16 +18,13 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://shararekeshvari.ir";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Sharare Keshvari · Frontend Developer & IT Student",
+    default: "Sharare Keshvari · Frontend Developer",
     template: "%s · Sharare Keshvari",
   },
-  description:
-    "Frontend Developer and Information Technology student focused on responsive web interfaces built with React, Next.js, and TypeScript.",
+  description: SITE_DESCRIPTION,
   keywords: [
     "Sharare Keshvari",
     "Frontend Developer",
@@ -43,13 +41,12 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "/",
-    title: "Sharare Keshvari · Frontend Developer & IT Student",
-    description:
-      "Frontend Developer and Information Technology student focused on responsive web interfaces built with React, Next.js, and TypeScript.",
+    title: "Sharare Keshvari · Frontend Developer",
+    description: SITE_DESCRIPTION,
     siteName: "Sharare Keshvari Portfolio",
     images: [
       {
-        url: "/images/hero-frontend-workspace.png",
+        url: "/images/hero-frontend-workspace.webp",
         width: 1536,
         height: 1024,
         alt: "Frontend development workspace for Sharare Keshvari's portfolio",
@@ -58,10 +55,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sharare Keshvari · Frontend Developer & IT Student",
-    description:
-      "Frontend Developer and IT student focused on responsive interfaces built with React, Next.js, and TypeScript.",
-    images: ["/images/hero-frontend-workspace.png"],
+    title: "Sharare Keshvari · Frontend Developer",
+    description: SITE_DESCRIPTION,
+    images: ["/images/hero-frontend-workspace.webp"],
   },
   robots: {
     index: true,

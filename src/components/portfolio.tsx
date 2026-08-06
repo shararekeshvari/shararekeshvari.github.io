@@ -1,13 +1,9 @@
 import {
   ArrowDown,
   ArrowUpRight,
-  Award,
   CalendarDays,
   Check,
   CodeXml,
-  ContactRound,
-  GraduationCap,
-  Globe2,
   Languages,
   Mail,
   MapPin,
@@ -15,7 +11,6 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 
-import { InitialLoader } from "@/components/initial-loader";
 import { Navbar } from "@/components/navbar";
 import { ProjectCard } from "@/components/project-card";
 import { Reveal } from "@/components/reveal";
@@ -23,9 +18,7 @@ import { ScrollProgress } from "@/components/scroll-progress";
 import { SectionHeading } from "@/components/section-heading";
 import { buttonVariants } from "@/components/ui/button";
 import {
-  careerGoals,
   contactItems,
-  educationItems,
   experience,
   languageItems,
   projects,
@@ -33,12 +26,14 @@ import {
 } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 
-const contactIcons = [Mail, Globe2, ContactRound, CodeXml];
+const contactIcons = {
+  Email: Mail,
+  GitHub: CodeXml,
+} as const;
 
 export function Portfolio() {
   return (
     <>
-      <InitialLoader />
       <Navbar />
       <ScrollProgress />
 
@@ -49,12 +44,12 @@ export function Portfolio() {
           className="relative flex min-h-[92svh] items-end overflow-hidden bg-[#080808] text-white"
         >
           <Image
-            src="/images/hero-frontend-workspace.png"
-            alt="Dark frontend development workspace with code and a responsive interface on screen"
+            src="/images/hero-frontend-workspace.webp"
+            alt=""
             fill
             priority
-            quality={80}
             sizes="100vw"
+            aria-hidden="true"
             className="object-cover object-[74%_center] opacity-65 sm:object-center sm:opacity-90"
           />
           <div
@@ -67,23 +62,23 @@ export function Portfolio() {
               <Reveal>
                 <p className="mb-6 flex items-center gap-3 font-mono text-xs uppercase text-white/65">
                   <span className="h-px w-8 bg-accent" aria-hidden="true" />
-                  Frontend Developer · IT Student
+                  Sharare Keshvari · IT Student
                 </p>
                 <h1
                   id="hero-heading"
-                  className="text-[3.25rem] font-semibold leading-[0.9] text-balance sm:text-[5.5rem] lg:text-[7.5rem]"
+                  className="max-w-4xl text-[clamp(3.1rem,12vw,7.5rem)] font-semibold leading-[0.88] tracking-[-0.055em] text-balance"
                 >
-                  Sharare
+                  Frontend
                   <br />
-                  Keshvari
+                  Developer.
                 </h1>
               </Reveal>
 
               <Reveal delay={0.12}>
                 <p className="mt-7 max-w-xl text-base leading-7 text-white/68 sm:text-lg sm:leading-8">
-                  I build responsive, user-friendly web interfaces with React, Next.js, and
-                  TypeScript, with a focus on clean implementation and thoughtful user
-                  experience.
+                  I build responsive, accessible web interfaces with React, Next.js, and
+                  TypeScript, with an emphasis on reusable components and clear user
+                  experiences.
                 </p>
               </Reveal>
 
@@ -135,18 +130,13 @@ export function Portfolio() {
               <Reveal delay={0.08}>
                 <div className="max-w-2xl space-y-6 text-lg leading-8 text-foreground/82 sm:text-xl sm:leading-9">
                   <p>
-                    I am a Frontend Developer and Information Technology student focused on
-                    building modern, responsive, and user-friendly web applications.
+                    I am a Frontend Developer and Information Technology student building
+                    responsive interfaces for business, learning, and service products.
                   </p>
                   <p className="text-muted">
-                    I work primarily with React, Next.js, TypeScript, and modern UI tools. I
-                    value clear code, reusable components, thoughtful user experience, and
-                    interfaces that adapt across screen sizes.
-                  </p>
-                  <p className="text-muted">
-                    I am seeking remote internships and junior frontend roles where I can
-                    contribute to real-world products, continue developing my skills, and
-                    collaborate with international teams.
+                    My work centers on React, Next.js, TypeScript, reusable component systems,
+                    and interfaces that support both RTL and LTR experiences. I am open to
+                    remote internships and junior frontend roles.
                   </p>
                 </div>
               </Reveal>
@@ -163,22 +153,6 @@ export function Portfolio() {
               </div>
             </Reveal>
 
-            <Reveal className="mt-14">
-              <div className="grid gap-8 border-t border-border pt-8 md:grid-cols-[1fr_1.4fr] md:gap-12">
-                <div>
-                  <p className="font-mono text-xs text-accent">CAREER GOALS</p>
-                  <h3 className="mt-3 text-2xl font-semibold">Growing with purpose.</h3>
-                </div>
-                <ul className="grid gap-x-8 gap-y-4 sm:grid-cols-2">
-                  {careerGoals.map((goal) => (
-                    <li key={goal} className="flex items-start gap-3 text-sm leading-6 text-muted">
-                      <Check aria-hidden="true" className="mt-1 shrink-0 text-accent" size={15} />
-                      {goal}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
           </div>
         </section>
 
@@ -192,7 +166,7 @@ export function Portfolio() {
               />
             </Reveal>
 
-            <div className="mt-14 grid border-l border-t border-border sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-14 grid border-l border-t border-border sm:grid-cols-2 lg:grid-cols-3">
               {skillGroups.map((group, index) => (
                 <Reveal key={group.title} className="h-full" delay={index * 0.04}>
                   <div className="h-full min-h-52 border-b border-r border-border p-5 sm:p-6">
@@ -202,13 +176,7 @@ export function Portfolio() {
                     </div>
                     <ul className="space-y-3">
                       {group.skills.map((skill) => (
-                        <li
-                          key={skill}
-                          className={cn(
-                            "text-sm text-muted",
-                            skill.includes("to be added") && "italic text-muted/65",
-                          )}
-                        >
+                        <li key={skill} className="text-sm text-muted">
                           {skill}
                         </li>
                       ))}
@@ -230,10 +198,10 @@ export function Portfolio() {
               />
             </Reveal>
 
-            <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-14 space-y-6">
               {projects.map((project, index) => (
                 <Reveal key={project.slot} delay={index * 0.08}>
-                  <ProjectCard {...project} />
+                  <ProjectCard project={project} reverse={index % 2 === 1} />
                 </Reveal>
               ))}
             </div>
@@ -263,7 +231,7 @@ export function Portfolio() {
                 <div>
                   <p className="mb-5 flex items-center gap-2 font-mono text-xs text-muted">
                     <CalendarDays aria-hidden="true" size={14} />
-                    Start: {experience.startDate} · End: {experience.endDate}
+                    <time dateTime={experience.period}>{experience.period}</time>
                   </p>
                   <p className="max-w-2xl text-base leading-7 text-muted">
                     {experience.description}
@@ -290,55 +258,10 @@ export function Portfolio() {
           </div>
         </section>
 
-        <section className="border-y border-border bg-surface py-24 sm:py-32">
-          <div className="mx-auto grid max-w-7xl gap-16 px-5 sm:px-8 md:grid-cols-2 md:gap-12 lg:px-10">
-            <Reveal>
-              <div id="education" className="scroll-mt-24">
-                <div className="mb-10 flex items-center gap-3">
-                  <GraduationCap aria-hidden="true" className="text-accent" size={20} />
-                  <p className="font-mono text-xs text-muted">05 / EDUCATION</p>
-                </div>
-                <h2 className="text-3xl font-semibold">Education</h2>
-                <div className="mt-8 divide-y divide-border border-y border-border">
-                  {educationItems.map((item) => (
-                    <div key={item.degree} className="py-6">
-                      <p className="mb-2 font-mono text-[11px] uppercase text-accent">{item.status}</p>
-                      <h3 className="font-semibold leading-6">{item.degree}</h3>
-                      <p className={cn("mt-2 text-sm text-muted", item.institution.includes("to be added") && "italic")}>
-                        {item.institution}
-                      </p>
-                      <p className={cn("mt-1 text-xs text-muted", item.date.includes("to be added") && "italic")}>
-                        {item.date}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
-
-            <Reveal delay={0.08}>
-              <div id="certificates" className="scroll-mt-24">
-                <div className="mb-10 flex items-center gap-3">
-                  <Award aria-hidden="true" className="text-signal-amber" size={20} />
-                  <p className="font-mono text-xs text-muted">06 / CERTIFICATES</p>
-                </div>
-                <h2 className="text-3xl font-semibold">Certificates</h2>
-                <div className="mt-8 border-y border-border py-6">
-                  <p className="mb-2 font-mono text-[11px] uppercase text-muted">Placeholder</p>
-                  <h3 className="font-semibold">Certificate details to be added</h3>
-                  <p className="mt-2 text-sm text-muted">
-                    No certificate information has been provided yet.
-                  </p>
-                </div>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-
         <section id="contact" className="scroll-mt-24 py-24 sm:py-32">
           <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
             <Reveal>
-              <p className="mb-6 font-mono text-xs text-accent">07 / CONTACT</p>
+              <p className="mb-6 font-mono text-xs text-accent">05 / CONTACT</p>
               <div className="grid gap-10 md:grid-cols-[1.2fr_1fr] md:gap-16">
                 <div>
                   <h2 className="max-w-3xl text-4xl font-semibold leading-tight text-balance sm:text-6xl">
@@ -351,35 +274,26 @@ export function Portfolio() {
                 </div>
 
                 <div className="border-t border-border">
-                  {contactItems.map((item, index) => {
-                    const Icon = contactIcons[index];
-                    const content = (
-                      <>
+                  {contactItems.map((item) => {
+                    const Icon = contactIcons[item.label];
+                    const external = item.href.startsWith("https://");
+
+                    return (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        target={external ? "_blank" : undefined}
+                        rel={external ? "noopener noreferrer" : undefined}
+                        aria-label={external ? `${item.label}: ${item.value} (opens in a new tab)` : `${item.label}: ${item.value}`}
+                        className="flex items-center gap-4 border-b border-border py-5 transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-background"
+                      >
                         <Icon aria-hidden="true" className="text-muted" size={18} />
                         <div className="min-w-0 flex-1">
                           <p className="text-xs text-muted">{item.label}</p>
                           <p className="mt-1 break-words text-sm font-medium">{item.value}</p>
                         </div>
-                        {item.href ? (
-                          <ArrowUpRight aria-hidden="true" className="text-muted/50" size={17} />
-                        ) : (
-                          <span className="font-mono text-[10px] uppercase text-muted/60">Pending</span>
-                        )}
-                      </>
-                    );
-
-                    return item.href ? (
-                      <a
-                        key={item.label}
-                        href={item.href}
-                        className="flex items-center gap-4 border-b border-border py-5 transition-colors hover:text-accent"
-                      >
-                        {content}
+                        <ArrowUpRight aria-hidden="true" className="text-muted/50" size={17} />
                       </a>
-                    ) : (
-                      <div key={item.label} className="flex items-center gap-4 border-b border-border py-5">
-                        {content}
-                      </div>
                     );
                   })}
                 </div>

@@ -2,6 +2,7 @@
 
 import * as Dialog from "@radix-ui/react-dialog";
 import { Command } from "cmdk";
+import { motion } from "framer-motion";
 import {
   ArrowRight,
   BriefcaseBusiness,
@@ -24,8 +25,8 @@ const destinations = [
   { label: "Contact", href: "#contact", icon: Mail },
 ] as const;
 
-export function CommandMenu() {
-  const [open, setOpen] = useState(false);
+export function CommandMenu({ defaultOpen = false }: { defaultOpen?: boolean }) {
+  const [open, setOpen] = useState(defaultOpen);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -42,7 +43,10 @@ export function CommandMenu() {
   const goTo = useCallback((href: string) => {
     setOpen(false);
     window.setTimeout(() => {
-      document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      document.querySelector(href)?.scrollIntoView({
+        behavior: reduceMotion ? "auto" : "smooth",
+      });
       window.history.replaceState(null, "", href);
     }, 80);
   }, []);
@@ -59,15 +63,25 @@ export function CommandMenu() {
             <Search aria-hidden="true" size={15} />
             Navigate
           </span>
-          <kbd className="font-mono text-[11px] text-muted">⌘K</kbd>
+          <kbd className="font-mono text-[11px] text-muted">Ctrl K</kbd>
         </Button>
       </Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-50 bg-black/65 backdrop-blur-sm data-[state=closed]:animate-out data-[state=open]:animate-in" />
-        <Dialog.Content
-          className="fixed left-1/2 top-[18vh] z-50 w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 overflow-hidden rounded-lg border border-border bg-surface shadow-2xl"
-          aria-describedby="command-description"
-        >
+        <Dialog.Overlay asChild>
+          <motion.div
+            className="fixed inset-0 z-50 bg-black/65 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.16 }}
+          />
+        </Dialog.Overlay>
+        <Dialog.Content asChild aria-describedby="command-description">
+          <motion.div
+            className="fixed left-1/2 top-[18vh] z-50 w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 overflow-hidden rounded-lg border border-border bg-surface shadow-2xl"
+            initial={{ opacity: 0, y: -8, scale: 0.985 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          >
           <Dialog.Title className="sr-only">Navigate this portfolio</Dialog.Title>
           <Dialog.Description id="command-description" className="sr-only">
             Choose a section to navigate to.
@@ -106,6 +120,7 @@ export function CommandMenu() {
               </Command.Group>
             </Command.List>
           </Command>
+          </motion.div>
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>
