@@ -49,15 +49,16 @@ export const experience = {
   role: "Junior Frontend Developer",
   company: "pt-ecommerce",
   employmentType: "Remote",
-  period: "2025",
+  period: "2025 — Present",
+  startDate: "2025",
   description:
-    "Contributed to frontend implementation for pt-ecommerce using React-based technologies, with a focus on responsive interfaces, reusable components, and TypeScript.",
+    "Currently contributing to frontend implementation at pt-ecommerce using React-based technologies, with a focus on responsive interfaces, reusable components, and TypeScript.",
   responsibilities: [
-    "Built responsive interfaces",
-    "Developed reusable React components",
-    "Used TypeScript in frontend implementation",
-    "Implemented supplied UI designs",
-    "Collaborated with a remote development team",
+    "Build responsive interfaces",
+    "Develop reusable React components",
+    "Use TypeScript in frontend implementation",
+    "Implement supplied UI designs",
+    "Collaborate with a remote development team",
   ],
   tech: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
 } as const;

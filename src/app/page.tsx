@@ -9,6 +9,10 @@ const structuredData = {
   url: SITE_URL,
   email: "mailto:shararekeshvari77@gmail.com",
   sameAs: ["https://github.com/shararekeshvari"],
+  worksFor: {
+    "@type": "Organization",
+    name: "pt-ecommerce",
+  },
   address: {
     "@type": "PostalAddress",
     addressCountry: "Iran",

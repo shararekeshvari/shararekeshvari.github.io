@@ -101,7 +101,7 @@ export function Portfolio() {
             </div>
 
             <div className="mt-14 flex items-center justify-between border-t border-white/14 pt-4 text-[11px] uppercase text-white/45 sm:mt-20">
-              <span>Iran · Open to remote junior roles</span>
+              <span>Iran · Remote frontend developer</span>
               <span className="hidden sm:inline">Persian · English · German</span>
               <span>Scroll to explore</span>
             </div>
@@ -119,7 +119,7 @@ export function Portfolio() {
                 <div className="space-y-4 text-sm text-muted">
                   <div className="flex items-center gap-3">
                     <MapPin aria-hidden="true" size={16} />
-                    <span>Iran · Open to internships and junior roles</span>
+                    <span>Iran · Remote frontend developer</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Languages aria-hidden="true" size={16} />
@@ -130,20 +130,21 @@ export function Portfolio() {
               <Reveal delay={0.08}>
                 <div className="max-w-2xl space-y-6 text-lg leading-8 text-foreground/82 sm:text-xl sm:leading-9">
                   <p>
-                    I am a Frontend Developer and Information Technology student building
-                    responsive interfaces for business, learning, and service products.
+                    I am a Frontend Developer and Information Technology student, currently
+                    working remotely at pt-ecommerce. I build responsive interfaces for
+                    business, learning, and service products.
                   </p>
                   <p className="text-muted">
                     My work centers on React, Next.js, TypeScript, reusable component systems,
-                    and interfaces that support both RTL and LTR experiences. I am open to
-                    remote internships and junior frontend roles.
+                    and interfaces that support both RTL and LTR experiences, with an emphasis
+                    on clear implementation and thoughtful user experience.
                   </p>
                 </div>
               </Reveal>
             </div>
 
             <Reveal className="mt-16">
-              <div className="grid border-l border-t border-border sm:grid-cols-2 lg:grid-cols-4">
+              <div className="grid border-l border-t border-border sm:grid-cols-3">
                 {languageItems.map((item) => (
                   <div key={item.language} className="border-b border-r border-border p-5">
                     <p className="font-medium">{item.language}</p>
@@ -214,7 +215,7 @@ export function Portfolio() {
               <SectionHeading
                 index="04 / EXPERIENCE"
                 title="Professional experience."
-                description="Remote frontend work focused on responsive interfaces, reusable React components, and TypeScript implementation."
+                description="Current remote frontend work focused on responsive interfaces, reusable React components, and TypeScript implementation."
               />
             </Reveal>
 
@@ -231,7 +232,7 @@ export function Portfolio() {
                 <div>
                   <p className="mb-5 flex items-center gap-2 font-mono text-xs text-muted">
                     <CalendarDays aria-hidden="true" size={14} />
-                    <time dateTime={experience.period}>{experience.period}</time>
+                    <time dateTime={experience.startDate}>{experience.period}</time>
                   </p>
                   <p className="max-w-2xl text-base leading-7 text-muted">
                     {experience.description}
@@ -268,8 +269,9 @@ export function Portfolio() {
                     Let&apos;s build something clear and useful.
                   </h2>
                   <p className="mt-6 max-w-xl text-base leading-7 text-muted sm:text-lg">
-                    I am open to remote internships, junior frontend roles, and opportunities
-                    to collaborate with international teams. Email is the best way to reach me.
+                    I currently work remotely as a Junior Frontend Developer and am open to
+                    international frontend opportunities and collaboration. Email is the best
+                    way to reach me.
                   </p>
                 </div>
 
