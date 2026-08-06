@@ -17,17 +17,29 @@ export function ProjectCard({
       <div className="grid lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
         <div
           className={cn(
-            "relative min-h-64 overflow-hidden border-b border-border bg-project sm:min-h-80 lg:min-h-full lg:border-b-0 lg:border-r",
+            "flex items-center border-b border-border bg-project p-4 sm:p-6 lg:border-b-0 lg:border-r lg:p-8",
             reverse && "lg:order-2 lg:border-l lg:border-r-0",
           )}
         >
-          <Image
-            src={project.image}
-            alt={project.imageAlt}
-            fill
-            sizes="(min-width: 1024px) 44vw, 100vw"
-            className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.015]"
-          />
+          <div className="w-full overflow-hidden rounded-lg border border-black/10 bg-white shadow-[0_24px_70px_-36px_rgba(0,0,0,0.65)] dark:border-white/10">
+            <div className="flex h-8 items-center gap-1.5 border-b border-black/10 bg-neutral-100 px-3 dark:border-white/10 dark:bg-neutral-900">
+              <span className="size-2 rounded-full bg-[#ff6b64]" aria-hidden="true" />
+              <span className="size-2 rounded-full bg-[#f6bd4f]" aria-hidden="true" />
+              <span className="size-2 rounded-full bg-[#62c554]" aria-hidden="true" />
+              <span className="ml-2 font-mono text-[9px] uppercase tracking-[0.12em] text-neutral-500">
+                Project preview
+              </span>
+            </div>
+            <div className="relative aspect-[8/5] overflow-hidden bg-white">
+              <Image
+                src={project.image}
+                alt={project.imageAlt}
+                fill
+                sizes="(min-width: 1024px) 42vw, 100vw"
+                className="object-contain transition-transform duration-500 group-hover:scale-[1.01]"
+              />
+            </div>
+          </div>
         </div>
 
         <div className="flex flex-col p-6 sm:p-8 lg:p-10">
