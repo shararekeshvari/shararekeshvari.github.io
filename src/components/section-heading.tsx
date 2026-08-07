@@ -1,11 +1,13 @@
 import { cn } from "@/lib/utils";
 
 export function SectionHeading({
+  id,
   index,
   title,
   description,
   className,
 }: {
+  id?: string;
   index: string;
   title: string;
   description?: string;
@@ -15,7 +17,12 @@ export function SectionHeading({
     <div className={cn("grid gap-5 md:grid-cols-[1fr_1.4fr] md:gap-12", className)}>
       <div>
         <p className="mb-3 font-mono text-xs text-accent">{index}</p>
-        <h2 className="text-3xl font-semibold text-balance sm:text-4xl">{title}</h2>
+        <h2
+          id={id}
+          className="text-3xl font-semibold tracking-[-0.035em] text-balance sm:text-5xl"
+        >
+          {title}
+        </h2>
       </div>
       {description ? (
         <p className="max-w-2xl self-end text-base leading-7 text-muted sm:text-lg">

@@ -1,4 +1,6 @@
-import type { CSSProperties } from "react";
+"use client";
+
+import * as m from "framer-motion/m";
 
 import { cn } from "@/lib/utils";
 
@@ -12,11 +14,18 @@ export function Reveal({
   delay?: number;
 }) {
   return (
-    <div
+    <m.div
       className={cn("reveal", className)}
-      style={{ "--reveal-delay": `${delay}s` } as CSSProperties}
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-72px 0px" }}
+      transition={{
+        duration: 0.52,
+        delay,
+        ease: [0.22, 1, 0.36, 1],
+      }}
     >
       {children}
-    </div>
+    </m.div>
   );
 }

@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import { ThemeProvider } from "@/components/theme-provider";
-import { SITE_DESCRIPTION, SITE_URL } from "@/lib/site";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 
 import "./globals.css";
 
@@ -21,10 +21,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Sharare Keshvari · Frontend Developer",
-    template: "%s · Sharare Keshvari",
+    default: "Sharare Keshvari | Frontend Developer",
+    template: "%s | Sharare Keshvari",
   },
   description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
   keywords: [
     "Sharare Keshvari",
     "Frontend Developer",
@@ -36,32 +37,47 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Sharare Keshvari" }],
   creator: "Sharare Keshvari",
+  category: "technology",
+  manifest: "/manifest.webmanifest",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "/",
-    title: "Sharare Keshvari · Frontend Developer",
+    title: "Sharare Keshvari | Frontend Developer",
     description: SITE_DESCRIPTION,
-    siteName: "Sharare Keshvari Portfolio",
+    siteName: SITE_NAME,
     images: [
       {
         url: "/images/hero-frontend-workspace.webp",
         width: 1536,
         height: 1024,
+        type: "image/webp",
         alt: "Frontend development workspace for Sharare Keshvari's portfolio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sharare Keshvari · Frontend Developer",
+    title: "Sharare Keshvari | Frontend Developer",
     description: SITE_DESCRIPTION,
     images: ["/images/hero-frontend-workspace.webp"],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
 };
 

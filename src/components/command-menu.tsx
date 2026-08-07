@@ -2,7 +2,7 @@
 
 import * as Dialog from "@radix-ui/react-dialog";
 import { Command } from "cmdk";
-import { motion } from "framer-motion";
+import * as m from "framer-motion/m";
 import {
   ArrowRight,
   BriefcaseBusiness,
@@ -57,18 +57,18 @@ export function CommandMenu({ defaultOpen = false }: { defaultOpen?: boolean }) 
         <Button
           variant="secondary"
           className="hidden h-10 min-w-36 justify-between px-3 text-muted lg:inline-flex"
-          aria-label="Open command menu"
+          aria-label="Open quick navigation"
         >
           <span className="flex items-center gap-2">
             <Search aria-hidden="true" size={15} />
-            Navigate
+            Quick find
           </span>
           <kbd className="font-mono text-[11px] text-muted">Ctrl K</kbd>
         </Button>
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay asChild>
-          <motion.div
+          <m.div
             className="fixed inset-0 z-50 bg-black/65 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -76,22 +76,22 @@ export function CommandMenu({ defaultOpen = false }: { defaultOpen?: boolean }) 
           />
         </Dialog.Overlay>
         <Dialog.Content asChild aria-describedby="command-description">
-          <motion.div
+          <m.div
             className="fixed left-1/2 top-[18vh] z-50 w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 overflow-hidden rounded-lg border border-border bg-surface shadow-2xl"
             initial={{ opacity: 0, y: -8, scale: 0.985 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
-          <Dialog.Title className="sr-only">Navigate this portfolio</Dialog.Title>
+          <Dialog.Title className="sr-only">Quick portfolio navigation</Dialog.Title>
           <Dialog.Description id="command-description" className="sr-only">
-            Choose a section to navigate to.
+            Search for and choose a portfolio section.
           </Dialog.Description>
           <Command label="Portfolio navigation">
             <div className="flex h-14 items-center gap-3 border-b border-border px-4">
               <Search aria-hidden="true" className="text-muted" size={18} />
               <Command.Input
                 autoFocus
-                placeholder="Go to a section..."
+                placeholder="Find a section..."
                 className="h-full flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted"
               />
               <Dialog.Close asChild>
@@ -102,7 +102,7 @@ export function CommandMenu({ defaultOpen = false }: { defaultOpen?: boolean }) 
             </div>
             <Command.List className="max-h-80 overflow-y-auto p-2">
               <Command.Empty className="px-3 py-8 text-center text-sm text-muted">
-                No section found.
+                No matching section.
               </Command.Empty>
               <Command.Group heading="Sections" className="command-group">
                 {destinations.map((item) => (
@@ -120,7 +120,7 @@ export function CommandMenu({ defaultOpen = false }: { defaultOpen?: boolean }) 
               </Command.Group>
             </Command.List>
           </Command>
-          </motion.div>
+          </m.div>
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>

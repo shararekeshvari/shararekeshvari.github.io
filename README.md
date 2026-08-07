@@ -1,11 +1,12 @@
-# Sharare Keshvari Portfolio
+# Sharare Keshvari — Frontend Developer Portfolio
 
-A responsive personal portfolio built with Next.js, TypeScript, Tailwind CSS,
-Framer Motion, Radix UI, and reusable UI components.
+A responsive, accessible portfolio presenting verified frontend experience and
+product work. Built with Next.js, React, TypeScript, Tailwind CSS, Framer Motion,
+Radix UI, and a small set of reusable components.
 
 Production site: `https://shararekeshvari.github.io`
 
-## Development
+## Local development
 
 ```bash
 npm install
@@ -14,7 +15,7 @@ npm run dev
 
 Open `http://localhost:3000`.
 
-## Production checks
+## Quality checks
 
 ```bash
 npm run lint
@@ -22,17 +23,23 @@ npx tsc --noEmit
 npm run build
 ```
 
-## Static deployment
+The production build generates a fully static export in `out/`.
 
-`npm run build` exports the portfolio to `out/`. The included GitHub Actions
-workflow publishes that directory to GitHub Pages. No Node.js server is required
-at runtime.
+## Project structure
 
-## Updating verified content
+- `src/app/` contains the App Router entry points and metadata routes.
+- `src/components/sections/` contains the portfolio’s major page sections.
+- `src/components/` contains shared interactive and presentation components.
+- `src/data/portfolio.ts` is the source of verified skills, experience, projects,
+  languages, and contact details.
+- `src/lib/site.ts` centralizes the production URL and site description.
 
-Skills, project case studies, experience, and contact links live in
-`src/data/portfolio.ts`. Keep unavailable personal details and links omitted
-instead of adding disabled controls or placeholder copy.
+## Content and deployment
+
+Keep unavailable personal details, metrics, and links omitted or clearly marked
+as unavailable. Do not add placeholders that could be mistaken for verified
+experience.
 
 `NEXT_PUBLIC_SITE_URL` controls canonical, Open Graph, sitemap, robots, and
-structured-data URLs. It defaults to the GitHub Pages production origin.
+structured-data URLs. It defaults to the GitHub Pages production origin. The
+included GitHub Actions workflow publishes the static `out/` directory.

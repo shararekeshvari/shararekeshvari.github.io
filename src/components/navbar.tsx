@@ -16,6 +16,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [commandMenuRequested, setCommandMenuRequested] = useState(false);
+  const [activeHref, setActiveHref] = useState<string>();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -45,6 +46,26 @@ export function Navbar() {
     return () => document.removeEventListener("keydown", loadCommandMenu);
   }, [commandMenuRequested]);
 
+  useEffect(() => {
+    const sections = navigation
+      .map((item) => document.querySelector<HTMLElement>(item.href))
+      .filter((section): section is HTMLElement => section !== null);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleSection = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (visibleSection) setActiveHref(`#${visibleSection.target.id}`);
+      },
+      { rootMargin: "-28% 0px -62%", threshold: [0, 0.25, 0.6] },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <header className="navbar-enter fixed inset-x-0 top-0 z-40 px-4 pt-4 sm:px-6">
       <nav
@@ -71,7 +92,9 @@ export function Navbar() {
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-md px-3 py-2 text-sm text-current/65 transition-colors hover:bg-current/5 hover:text-current focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              aria-current={activeHref === item.href ? "location" : undefined}
+              data-active={activeHref === item.href}
+              className="nav-link rounded-md px-3 py-2 text-sm text-current/65 transition-colors hover:bg-current/5 hover:text-current focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             >
               {item.label}
             </Link>
@@ -86,15 +109,15 @@ export function Navbar() {
           ) : (
             <Button
               variant="secondary"
-              className="hidden h-10 min-w-36 justify-between px-3 text-muted lg:inline-flex"
-              aria-label="Open command menu"
+              className="hidden h-10 min-w-36 justify-between border-current/20 bg-current/5 px-3 text-current lg:inline-flex"
+              aria-label="Open quick navigation"
               onClick={() => setCommandMenuRequested(true)}
             >
               <span className="flex items-center gap-2">
                 <Search aria-hidden="true" size={15} />
-                Navigate
+                Quick find
               </span>
-              <kbd className="font-mono text-[11px] text-muted">Ctrl K</kbd>
+              <kbd className="font-mono text-[11px] text-current/55">Ctrl K</kbd>
             </Button>
           )}
           <ThemeToggle />
@@ -112,21 +135,24 @@ export function Navbar() {
       </nav>
 
       {menuOpen ? (
-          <div
+          <nav
             id="mobile-navigation"
+            aria-label="Mobile navigation"
             className="mobile-menu-enter mx-auto mt-2 max-w-7xl overflow-hidden rounded-lg border border-border bg-background p-2 shadow-xl md:hidden"
           >
             {navigation.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
+                aria-current={activeHref === item.href ? "location" : undefined}
+                data-active={activeHref === item.href}
                 onClick={() => setMenuOpen(false)}
-                className="block rounded-md px-4 py-3 text-sm text-muted transition-colors hover:bg-surface-raised hover:text-foreground"
+                className="nav-link block rounded-md px-4 py-3 text-sm text-muted transition-colors hover:bg-surface-raised hover:text-foreground"
               >
                 {item.label}
               </Link>
             ))}
-          </div>
+          </nav>
         ) : null}
     </header>
   );

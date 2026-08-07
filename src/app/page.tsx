@@ -1,11 +1,12 @@
 import { Portfolio } from "@/components/portfolio";
-import { SITE_URL } from "@/lib/site";
+import { SITE_DESCRIPTION, SITE_URL } from "@/lib/site";
 
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Sharare Keshvari",
   jobTitle: "Frontend Developer and Information Technology Student",
+  description: SITE_DESCRIPTION,
   url: SITE_URL,
   email: "mailto:shararekeshvari77@gmail.com",
   sameAs: ["https://github.com/shararekeshvari"],
@@ -35,11 +36,13 @@ const structuredData = {
 };
 
 export default function Home() {
+  const safeStructuredData = JSON.stringify(structuredData).replace(/</g, "\\u003c");
+
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        dangerouslySetInnerHTML={{ __html: safeStructuredData }}
       />
       <Portfolio />
     </>

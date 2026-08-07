@@ -3,14 +3,14 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #f6f6f3;
-  --foreground: #111211;
-  --surface: #eeefeb;
+  --background: #f7f7f4;
+  --foreground: #101110;
+  --surface: #eff0ec;
   --surface-raised: #ffffff;
-  --border: #d8d9d4;
-  --muted: #676b67;
-  --accent: #087f62;
-  --project: #e2e5df;
+  --border: #d9dad5;
+  --muted: #626762;
+  --accent: #08785d;
+  --project: #e5e8e2;
   --signal-blue: #3478f6;
   --signal-mint: #087f62;
   --signal-amber: #b56b05;
@@ -20,12 +20,12 @@
 }
 
 .dark {
-  --background: #090909;
+  --background: #090a09;
   --foreground: #f3f4f1;
-  --surface: #0e0f0f;
-  --surface-raised: #171818;
-  --border: #292a29;
-  --muted: #9a9d99;
+  --surface: #0f100f;
+  --surface-raised: #171918;
+  --border: #2a2c2a;
+  --muted: #a0a39f;
   --accent: #86e4bf;
   --project: #131716;
   --signal-blue: #6ba3ff;
@@ -71,6 +71,13 @@ body {
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   letter-spacing: 0;
   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
 }
 
 button,
@@ -82,6 +89,20 @@ input {
 ::selection {
   background: var(--accent);
   color: var(--background);
+}
+
+::-webkit-scrollbar {
+  width: 0.75rem;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  border: 0.2rem solid var(--background);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--muted) 55%, transparent);
 }
 
 :where(a, button, input, select, textarea, [tabindex]):focus-visible {
@@ -136,21 +157,67 @@ input {
   background: var(--signal-violet);
 }
 
+.hero-glow {
+  background:
+    radial-gradient(circle at 12% 55%, rgb(134 228 191 / 8%), transparent 30%),
+    linear-gradient(180deg, transparent 74%, rgb(134 228 191 / 3%));
+}
+
+.section-shell {
+  position: relative;
+}
+
+.section-shell::before {
+  position: absolute;
+  inset: 0 auto auto 50%;
+  width: min(26rem, 70vw);
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  content: "";
+  opacity: 0.2;
+}
+
+.skill-card,
+.experience-row,
+.contact-link {
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease;
+}
+
+.nav-link[data-active="true"] {
+  background: color-mix(in srgb, currentColor 8%, transparent);
+  color: currentColor;
+}
+
+.theme-icon {
+  display: grid;
+  place-items: center;
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.contact-section {
+  background:
+    radial-gradient(circle at 12% 35%, color-mix(in srgb, var(--accent) 8%, transparent), transparent 35%),
+    var(--surface);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .skill-card:hover,
+  .experience-row:hover {
+    background: color-mix(in srgb, var(--surface-raised) 78%, transparent);
+  }
+
+  .theme-icon:hover {
+    transform: rotate(12deg);
+  }
+}
+
 @keyframes enter-from-top {
   from {
     opacity: 0;
     transform: translateY(-1rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes reveal-content {
-  from {
-    opacity: 0;
-    transform: translateY(1rem);
   }
   to {
     opacity: 1;
@@ -165,10 +232,6 @@ input {
 
   .mobile-menu-enter {
     animation: enter-from-top 180ms ease-out both;
-  }
-
-  #top .reveal {
-    animation: reveal-content 650ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay) both;
   }
 
 }
@@ -210,5 +273,9 @@ input {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .project-card:hover {
+    transform: none;
   }
 }

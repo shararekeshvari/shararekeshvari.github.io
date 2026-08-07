@@ -13,7 +13,7 @@ export function ScrollProgress() {
       const scrollable = document.documentElement.scrollHeight - window.innerHeight;
       const progress = scrollable > 0 ? window.scrollY / scrollable : 0;
       if (progressRef.current) {
-        progressRef.current.style.transform = `scaleY(${Math.min(1, Math.max(0, progress))})`;
+        progressRef.current.style.transform = `scaleX(${Math.min(1, Math.max(0, progress))})`;
       }
     };
 
@@ -35,11 +35,11 @@ export function ScrollProgress() {
   return (
     <div
       aria-hidden="true"
-      className="fixed right-4 top-1/2 z-40 hidden h-24 w-px -translate-y-1/2 overflow-hidden bg-border lg:block"
+      className="fixed inset-x-0 top-0 z-[70] h-0.5 overflow-hidden bg-transparent"
     >
       <div
         ref={progressRef}
-        className="h-full w-full origin-top scale-y-0 bg-accent will-change-transform"
+        className="h-full w-full origin-left scale-x-0 bg-accent will-change-transform"
       />
     </div>
   );

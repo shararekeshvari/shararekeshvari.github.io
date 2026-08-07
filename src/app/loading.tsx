@@ -8,7 +8,7 @@ export default function Loading() {
         <div className="h-px w-24 overflow-hidden bg-white/15">
           <div className="route-loading-bar h-full bg-white" />
         </div>
-        <span className="sr-only">Loading portfolio</span>
+        <span className="sr-only">Preparing portfolio</span>
       </div>
     </div>
   );
