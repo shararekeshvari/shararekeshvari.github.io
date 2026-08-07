@@ -1,38 +1,62 @@
 import { Portfolio } from "@/components/portfolio";
-import { SITE_DESCRIPTION, SITE_URL } from "@/lib/site";
+import {
+  GITHUB_URL,
+  PERSON_EMAIL,
+  PERSON_NAME,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/site";
 
 const structuredData = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Sharare Keshvari",
-  jobTitle: "Frontend Developer and Information Technology Student",
-  description: SITE_DESCRIPTION,
-  url: SITE_URL,
-  email: "mailto:shararekeshvari77@gmail.com",
-  sameAs: ["https://github.com/shararekeshvari"],
-  worksFor: {
-    "@type": "Organization",
-    name: "Rekar",
-  },
-  address: {
-    "@type": "PostalAddress",
-    addressCountry: "Iran",
-  },
-  knowsAbout: [
-    "React",
-    "Next.js",
-    "TypeScript",
-    "JavaScript",
-    "Tailwind CSS",
-    "HTML",
-    "CSS",
-    "Git",
-    "Responsive Design",
-    "REST APIs",
-    "Figma",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${SITE_URL}/#person`,
+      name: PERSON_NAME,
+      jobTitle: "Frontend Developer",
+      description: SITE_DESCRIPTION,
+      url: SITE_URL,
+      email: PERSON_EMAIL,
+      sameAs: [GITHUB_URL],
+      worksFor: {
+        "@type": "Organization",
+        name: "Rekar",
+      },
+      address: {
+        "@type": "PostalAddress",
+        addressCountry: "Iran",
+      },
+      knowsAbout: [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "JavaScript",
+        "Tailwind CSS",
+        "Responsive Design",
+        "RTL and LTR Interfaces",
+        "REST APIs",
+        "WebSocket",
+        "Figma",
+      ],
+      knowsLanguage: ["Persian", "English", "German"],
+      mainEntityOfPage: {
+        "@id": `${SITE_URL}/#website`,
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      name: SITE_NAME,
+      url: SITE_URL,
+      description: SITE_DESCRIPTION,
+      inLanguage: "en",
+      author: {
+        "@id": `${SITE_URL}/#person`,
+      },
+    },
   ],
-  knowsLanguage: ["Persian", "English", "German"],
-  mainEntityOfPage: SITE_URL,
 };
 
 export default function Home() {

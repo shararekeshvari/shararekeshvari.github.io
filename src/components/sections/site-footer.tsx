@@ -1,9 +1,11 @@
 import { ArrowUpRight } from "lucide-react";
 
+import { Container } from "@/components/ui/container";
+
 export function SiteFooter() {
   return (
     <footer className="border-t border-border py-7">
-      <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 text-xs text-muted sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-10">
+      <Container className="flex flex-col gap-3 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
         <p>Sharare Keshvari · Frontend Developer · Information Technology Student</p>
         <a
           href="#top"
@@ -12,7 +14,7 @@ export function SiteFooter() {
           Back to top
           <ArrowUpRight aria-hidden="true" size={14} />
         </a>
-      </div>
+      </Container>
     </footer>
   );
 }

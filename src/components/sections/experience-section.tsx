@@ -2,6 +2,7 @@ import { CalendarDays, Check } from "lucide-react";
 
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
+import { Container } from "@/components/ui/container";
 import { experiences } from "@/data/portfolio";
 
 export function ExperienceSection() {
@@ -9,21 +10,21 @@ export function ExperienceSection() {
     <section
       id="experience"
       aria-labelledby="experience-heading"
-      className="section-shell scroll-mt-24 py-24 sm:py-32"
+      className="section-shell scroll-mt-24 border-b border-border py-24 sm:py-32"
     >
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+      <Container>
         <Reveal>
           <SectionHeading
             id="experience-heading"
-            index="04 / EXPERIENCE"
-            title="Where I’ve worked."
-            description="My frontend experience, from internship to ongoing product development."
+            index="02 / EXPERIENCE"
+            title="The work behind the portfolio."
+            description="My path from a frontend internship into ongoing product development, plus part-time and project-based work."
           />
         </Reveal>
 
         <div className="mt-14 border-t border-border">
           {experiences.map((item, index) => (
-            <Reveal key={`${item.company}-${item.startDate}`} delay={index * 0.05}>
+            <Reveal key={`${item.company}-${item.startDate}`} delay={index * 0.04}>
               <article className="experience-row grid gap-7 border-b border-border py-8 md:grid-cols-[0.8fr_1.4fr] md:gap-12 md:py-10">
                 <div className="flex gap-4">
                   <span
@@ -48,14 +49,10 @@ export function ExperienceSection() {
                     {item.responsibilities.map((responsibility) => (
                       <li
                         key={responsibility}
-                        className="flex items-start gap-2 text-sm leading-6 text-foreground/78"
+                        className="flex items-start gap-2.5 text-sm leading-6 text-foreground/78"
                       >
-                        <Check
-                          aria-hidden="true"
-                          className="mt-1 shrink-0 text-accent"
-                          size={14}
-                        />
-                        {responsibility}
+                        <Check aria-hidden="true" className="mt-1 shrink-0 text-accent" size={14} />
+                        <span>{responsibility}</span>
                       </li>
                     ))}
                   </ul>
@@ -64,7 +61,7 @@ export function ExperienceSection() {
             </Reveal>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

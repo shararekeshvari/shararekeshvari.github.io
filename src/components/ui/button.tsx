@@ -15,7 +15,7 @@ const buttonVariants = cva(
         ghost:
           "border-transparent bg-transparent px-3 text-muted hover:bg-surface-raised hover:text-foreground",
         icon:
-          "size-10 border-border bg-background/70 p-0 text-muted backdrop-blur-md hover:border-foreground/30 hover:text-foreground",
+          "size-11 border-border bg-background/70 p-0 text-muted backdrop-blur-md hover:border-foreground/30 hover:text-foreground",
       },
     },
     defaultVariants: {

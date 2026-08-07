@@ -5,6 +5,40 @@ import { buttonVariants } from "@/components/ui/button";
 import type { PortfolioProject } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 
+function CaseStudySection({
+  id,
+  label,
+  children,
+  className,
+}: {
+  id: string;
+  label: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <section aria-labelledby={id} className={className}>
+      <h4 id={id} className="case-study-label">
+        {label}
+      </h4>
+      {children}
+    </section>
+  );
+}
+
+function DetailList({ items }: { items: readonly string[] }) {
+  return (
+    <ul className="mt-4 space-y-3">
+      {items.map((item) => (
+        <li key={item} className="flex items-start gap-2.5 text-sm leading-6 text-foreground/78">
+          <Check aria-hidden="true" className="mt-1 shrink-0 text-accent" size={14} />
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export function ProjectCard({
   project,
   reverse = false,
@@ -17,9 +51,9 @@ export function ProjectCard({
   return (
     <article
       aria-labelledby={headingId}
-      className="project-card group overflow-hidden rounded-2xl border border-border bg-surface-raised shadow-[0_24px_80px_-58px_rgba(0,0,0,0.85)] transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:border-foreground/20 hover:shadow-[0_30px_90px_-56px_rgba(0,0,0,0.85)]"
+      className="project-card group overflow-hidden rounded-2xl border border-border bg-surface-raised shadow-[0_24px_80px_-58px_rgba(0,0,0,0.85)] transition-[border-color,box-shadow,transform] duration-300 motion-safe:hover:-translate-y-0.5 hover:border-foreground/20 hover:shadow-[0_30px_90px_-56px_rgba(0,0,0,0.85)]"
     >
-      <div className="grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+      <div className="grid lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
         <div
           className={cn(
             "flex items-start border-b border-border bg-project p-4 sm:p-6 lg:border-b-0 lg:border-r lg:p-8",
@@ -41,7 +75,7 @@ export function ProjectCard({
                 alt={project.imageAlt}
                 fill
                 sizes="(min-width: 1280px) 540px, (min-width: 1024px) 44vw, calc(100vw - 3rem)"
-                className="object-contain transition-transform duration-700 ease-out group-hover:scale-[1.015]"
+                className="object-contain transition-transform duration-700 ease-out motion-safe:group-hover:scale-[1.012]"
               />
             </div>
           </div>
@@ -65,78 +99,73 @@ export function ProjectCard({
             </span>
           </header>
 
-          <p className="mt-5 max-w-2xl text-base leading-7 text-muted">{project.summary}</p>
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-foreground/82">{project.summary}</p>
 
-          <div className="mt-8 space-y-6 border-y border-border py-7">
-            <section aria-labelledby={`${project.id}-context`}>
-              <h4
-                id={`${project.id}-context`}
-                className="font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/60"
-              >
-                About the product
-              </h4>
-              <p className="mt-3 max-w-2xl text-sm leading-6 text-muted">{project.context}</p>
-            </section>
-            <section
-              aria-labelledby={`${project.id}-contribution`}
-              className="rounded-xl border border-accent/20 bg-accent/[0.04] p-4"
-            >
-              <h4
-                id={`${project.id}-contribution`}
-                className="font-mono text-[10px] uppercase tracking-[0.14em] text-accent"
-              >
-                My contribution
-              </h4>
-              <p className="mt-2 text-sm leading-6 text-foreground/82">
-                {project.contribution}
-              </p>
-            </section>
+          <CaseStudySection id={`${project.id}-overview`} label="Overview" className="mt-8 border-t border-border pt-7">
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-muted">{project.overview}</p>
+          </CaseStudySection>
+
+          <div className="mt-7 grid gap-6 rounded-xl border border-border bg-background/42 p-5 sm:grid-cols-2 sm:p-6">
+            <CaseStudySection id={`${project.id}-problem`} label="Problem">
+              <p className="mt-3 text-sm leading-6 text-muted">{project.problem}</p>
+            </CaseStudySection>
+            <CaseStudySection id={`${project.id}-solution`} label="Solution">
+              <p className="mt-3 text-sm leading-6 text-muted">{project.solution}</p>
+            </CaseStudySection>
           </div>
 
-          <section className="mt-7" aria-labelledby={`${project.id}-features`}>
-            <h4
-              id={`${project.id}-features`}
-              className="font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/60"
-            >
-              Selected work
-            </h4>
-            <ul className="mt-4 grid gap-x-6 gap-y-3 sm:grid-cols-2">
-              {project.features.map((feature) => (
-                <li
-                  key={feature}
-                  className="flex items-start gap-2.5 text-sm leading-6 text-foreground/78"
-                >
-                  <Check aria-hidden="true" className="mt-1 shrink-0 text-accent" size={15} />
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
-          </section>
+          <CaseStudySection
+            id={`${project.id}-responsibilities`}
+            label="Responsibilities"
+            className="mt-7 rounded-xl border border-accent/20 bg-accent/[0.04] p-5"
+          >
+            <DetailList items={project.responsibilities} />
+          </CaseStudySection>
+        </div>
+      </div>
 
-          <div className="mt-7">
-            <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/60">
-              Built with
-            </p>
+      <div className="border-t border-border p-6 sm:p-8 lg:p-10">
+        <div className="grid gap-9 lg:grid-cols-2 lg:gap-14">
+          <CaseStudySection id={`${project.id}-features`} label="Key features">
+            <DetailList items={project.features} />
+          </CaseStudySection>
+          <CaseStudySection id={`${project.id}-technical-highlights`} label="Technical highlights">
+            <DetailList items={project.technicalHighlights} />
+          </CaseStudySection>
+        </div>
+
+        <div className="mt-9 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2">
+          <CaseStudySection
+            id={`${project.id}-challenge`}
+            label="Challenges"
+            className="bg-surface-raised p-5 sm:p-6"
+          >
+            <p className="mt-3 text-sm leading-6 text-muted">{project.challenge}</p>
+          </CaseStudySection>
+          <CaseStudySection
+            id={`${project.id}-lesson`}
+            label="Lessons learned"
+            className="bg-surface-raised p-5 sm:p-6"
+          >
+            <p className="mt-3 text-sm leading-6 text-muted">{project.lesson}</p>
+          </CaseStudySection>
+        </div>
+
+        <div className="mt-8 flex flex-col gap-6 border-t border-border pt-7 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p className="case-study-label">Stack</p>
             <ul className="mt-3 flex flex-wrap gap-2" aria-label={`${project.title} technologies`}>
               {project.tech.map((item) => (
-                <li
-                  key={item}
-                  className="rounded-md border border-border bg-background/45 px-2.5 py-1 font-mono text-[11px] text-muted"
-                >
+                <li key={item} className="rounded-md border border-border bg-background/45 px-2.5 py-1 font-mono text-[11px] text-muted">
                   {item}
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-3 border-t border-border pt-6">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
             {project.liveUrl && project.liveLabel ? (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={buttonVariants({ variant: "secondary" })}
-              >
+              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className={buttonVariants({ variant: "secondary" })}>
                 {project.liveLabel}
                 <ArrowUpRight aria-hidden="true" size={16} />
                 <span className="sr-only"> (opens in a new tab)</span>
@@ -149,12 +178,7 @@ export function ProjectCard({
             )}
 
             {project.sourceUrl ? (
-              <a
-                href={project.sourceUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={buttonVariants({ variant: "ghost" })}
-              >
+              <a href={project.sourceUrl} target="_blank" rel="noopener noreferrer" className={buttonVariants({ variant: "ghost" })}>
                 <Code2 aria-hidden="true" size={16} />
                 View source
                 <span className="sr-only"> (opens in a new tab)</span>

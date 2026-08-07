@@ -1,16 +1,22 @@
 "use client";
 
-import { Menu, X } from "lucide-react";
+import { Menu, Search, X } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { navigation } from "@/data/portfolio";
+import { cn } from "@/lib/utils";
+
+const LazyCommandMenu = lazy(async () => ({
+  default: (await import("@/components/command-menu")).CommandMenu,
+}));
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [commandMenuRequested, setCommandMenuRequested] = useState(false);
   const [activeHref, setActiveHref] = useState<string>();
 
   useEffect(() => {
@@ -22,12 +28,28 @@ export function Navbar() {
 
   useEffect(() => {
     if (!menuOpen) return;
+
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") setMenuOpen(false);
     };
+
     document.addEventListener("keydown", closeOnEscape);
     return () => document.removeEventListener("keydown", closeOnEscape);
   }, [menuOpen]);
+
+  useEffect(() => {
+    if (commandMenuRequested) return;
+
+    const loadCommandMenu = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        setCommandMenuRequested(true);
+      }
+    };
+
+    document.addEventListener("keydown", loadCommandMenu);
+    return () => document.removeEventListener("keydown", loadCommandMenu);
+  }, [commandMenuRequested]);
 
   useEffect(() => {
     const sections = navigation
@@ -55,14 +77,14 @@ export function Navbar() {
         aria-label="Main navigation"
         className={`mx-auto flex h-14 max-w-7xl items-center justify-between rounded-lg border px-3 transition-all duration-300 sm:px-4 ${
           scrolled
-            ? "border-border bg-background/82 shadow-lg backdrop-blur-xl"
-            : "border-white/10 bg-black/20 text-white backdrop-blur-md"
+            ? "border-border bg-background/88 shadow-lg backdrop-blur-xl"
+            : "border-white/10 bg-black/25 text-white backdrop-blur-md"
         }`}
       >
         <Link
           href="#top"
           className="flex items-center gap-3 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-          aria-label="SK, Sharare Keshvari, back to top"
+          aria-label="Sharare Keshvari, back to top"
         >
           <span className="grid size-8 place-items-center rounded-md border border-current/20 bg-current/5 font-mono text-xs font-semibold">
             SK
@@ -85,10 +107,41 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-2">
-          <ThemeToggle />
+          {commandMenuRequested ? (
+            <Suspense fallback={<span className="hidden h-11 min-w-36 lg:block" aria-hidden="true" />}>
+              <LazyCommandMenu defaultOpen onDarkSurface={!scrolled} />
+            </Suspense>
+          ) : (
+            <Button
+              variant="secondary"
+              className={cn(
+                "hidden h-11 min-w-36 justify-between px-3 lg:inline-flex",
+                !scrolled &&
+                  "border-white/20 bg-black/40 text-white hover:border-white/40 hover:bg-black/60",
+              )}
+              aria-label="Open quick navigation"
+              onClick={() => setCommandMenuRequested(true)}
+            >
+              <span className="flex items-center gap-2">
+                <Search aria-hidden="true" size={15} />
+                Quick find
+              </span>
+              <kbd className="font-mono text-[11px] text-current/55">Ctrl K</kbd>
+            </Button>
+          )}
+          <ThemeToggle
+            className={cn(
+              !scrolled &&
+                "border-white/20 bg-black/40 text-white hover:border-white/40 hover:bg-black/60 hover:text-white",
+            )}
+          />
           <Button
             variant="icon"
-            className="md:hidden"
+            className={cn(
+              "md:hidden",
+              !scrolled &&
+                "border-white/20 bg-black/40 text-white hover:border-white/40 hover:bg-black/60 hover:text-white",
+            )}
             aria-label={menuOpen ? "Close navigation" : "Open navigation"}
             aria-expanded={menuOpen}
             aria-controls="mobile-navigation"

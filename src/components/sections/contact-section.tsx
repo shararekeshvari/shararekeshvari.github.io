@@ -2,7 +2,9 @@ import { ArrowUpRight, CodeXml, Mail, MoveRight } from "lucide-react";
 
 import { Reveal } from "@/components/reveal";
 import { buttonVariants } from "@/components/ui/button";
+import { Container } from "@/components/ui/container";
 import { contactItems } from "@/data/portfolio";
+import { PERSON_EMAIL } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 const contactIcons = {
@@ -17,7 +19,7 @@ export function ContactSection() {
       aria-labelledby="contact-heading"
       className="contact-section scroll-mt-24 border-t border-border py-24 sm:py-32"
     >
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+      <Container>
         <Reveal>
           <p className="mb-6 font-mono text-xs text-accent">05 / CONTACT</p>
           <div className="grid gap-12 md:grid-cols-[1.2fr_1fr] md:gap-16">
@@ -26,15 +28,15 @@ export function ContactSection() {
                 id="contact-heading"
                 className="max-w-3xl text-4xl font-semibold leading-[1.05] tracking-[-0.045em] text-balance sm:text-6xl"
               >
-                Want to work together?
+                Let’s talk about the work.
               </h2>
               <p className="mt-6 max-w-xl text-base leading-7 text-muted sm:text-lg">
-                I’m open to junior frontend roles, remote internships, and product work
-                where I can keep learning. If my experience looks relevant, send me an
-                email.
+                I’m interested in frontend roles and remote product teams where I can
+                contribute, learn from experienced engineers, and keep improving the
+                work. If my background seems useful to your team, send me an email.
               </p>
               <a
-                href="mailto:shararekeshvari77@gmail.com"
+                href={`mailto:${PERSON_EMAIL}`}
                 className={cn(buttonVariants({ variant: "primary" }), "mt-8")}
               >
                 Send an email
@@ -76,7 +78,7 @@ export function ContactSection() {
             </div>
           </div>
         </Reveal>
-      </div>
+      </Container>
     </section>
   );
 }

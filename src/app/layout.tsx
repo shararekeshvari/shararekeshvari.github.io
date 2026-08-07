@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import { ThemeProvider } from "@/components/theme-provider";
-import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
+import { GITHUB_URL, PERSON_NAME, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 
 import "./globals.css";
 
@@ -21,8 +21,8 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Sharare Keshvari | Frontend Developer",
-    template: "%s | Sharare Keshvari",
+    default: `${PERSON_NAME} — Frontend Developer`,
+    template: `%s — ${PERSON_NAME}`,
   },
   description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
@@ -30,13 +30,14 @@ export const metadata: Metadata = {
     "Sharare Keshvari",
     "Frontend Developer",
     "Information Technology Student",
-    "Junior Frontend Developer",
     "React Developer",
     "Next.js Developer",
     "TypeScript",
+    "RTL Frontend Developer",
+    "Persian RTL Interfaces",
   ],
-  authors: [{ name: "Sharare Keshvari" }],
-  creator: "Sharare Keshvari",
+  authors: [{ name: PERSON_NAME, url: GITHUB_URL }],
+  creator: PERSON_NAME,
   category: "technology",
   manifest: "/manifest.webmanifest",
   formatDetection: {
@@ -44,29 +45,19 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  alternates: { canonical: "/" },
+  alternates: { canonical: SITE_URL },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "/",
-    title: "Sharare Keshvari | Frontend Developer",
+    url: SITE_URL,
+    title: `${PERSON_NAME} — Frontend Developer`,
     description: SITE_DESCRIPTION,
     siteName: SITE_NAME,
-    images: [
-      {
-        url: "/images/hero-frontend-workspace.webp",
-        width: 1536,
-        height: 1024,
-        type: "image/webp",
-        alt: "Frontend development workspace for Sharare Keshvari's portfolio",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sharare Keshvari | Frontend Developer",
+    title: `${PERSON_NAME} — Frontend Developer`,
     description: SITE_DESCRIPTION,
-    images: ["/images/hero-frontend-workspace.webp"],
   },
   robots: {
     index: true,

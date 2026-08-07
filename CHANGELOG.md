@@ -1,5 +1,124 @@
 # Changelog
 
+## Premium portfolio refinement — 2026-08-07
+
+### Audit and information architecture
+
+- Audited the existing App Router implementation, content model, build output,
+  design at desktop and mobile sizes, keyboard interactions, light and dark
+  themes, reduced motion, metadata output, and production performance behavior.
+- Reordered the page and every navigation surface to: Hero, Featured Projects,
+  Experience, Skills, About, Contact.
+- Kept the one-page architecture and data-driven section components intact.
+- Restored the previously implemented command menu from repository history and
+  kept it behind an on-demand import.
+
+### Positioning and copy
+
+- Replaced the template-like hero statement with a direct explanation of who
+  Sharare is, the product areas she has worked in, and her RTL frontend focus.
+- Rebalanced the hero CTA hierarchy around featured work first and contact
+  second, with a concise technology strip for fast recruiter scanning.
+- Rewrote the About section around product-team experience, problem-solving
+  habits, preferred work, and the kind of team Sharare wants to join.
+- Reorganized skills into six working areas and added a short explanation of
+  what each group contributes to frontend work.
+- Removed “Approx.” from every experience date and rewrote responsibilities
+  with direct verbs while preserving the existing roles, companies, dates,
+  durations, and responsibilities.
+- Reworked contact copy to invite relevant frontend and remote product-team
+  conversations without overstating seniority or experience.
+
+### Project case studies
+
+- Restored verified project context from the repository’s earlier case-study
+  data instead of creating new claims.
+- Added the requested Overview, Problem, Solution, Responsibilities, Key
+  Features, Technical Highlights, Challenges, and Lessons Learned sections to
+  Rekar, Leksuu, and Dentia.
+- Kept public demo and source-code availability explicit; no placeholder links
+  or private repositories are presented as public.
+- Preserved all existing project names, product areas, technologies, images,
+  and live URLs.
+
+### Visual design and motion
+
+- Preserved the dark editorial direction while replacing the generic workspace
+  hero image with a verified Rekar product preview.
+- Added a restrained grid background, clearer type scale, improved section
+  rhythm, calmer borders and surfaces, and a consistent green signal accent.
+- Refined project cards into readable editorial case studies with sticky product
+  previews, paired narrative blocks, honest availability states, and restrained
+  hover movement.
+- Improved skill, experience, About, and contact layouts for faster scanning and
+  more consistent spacing across breakpoints.
+- Kept Framer Motion reveals short and subtle, with no looping decoration or
+  exaggerated scroll effects.
+
+### Accessibility and interaction
+
+- Preserved one H1, logical heading levels, semantic sections and articles,
+  labelled landmarks, definition-like case-study structure, lists, time
+  elements, descriptive images, and a skip link.
+- Restored the accessible Radix/cmdk quick-navigation dialog with keyboard
+  search, automatic input focus, Escape dismissal, and `Ctrl+K`/`Command+K`.
+- Increased icon controls to 44 × 44 CSS pixels and retained visible focus rings.
+- Verified mobile navigation opens and closes from the keyboard, reflects its
+  expanded state, and follows the requested section order.
+- Ensured reduced-motion users receive no hidden reveal content, no smooth
+  scrolling, and effectively disabled CSS transition and animation durations.
+- Added an accessible route error fallback with a clear retry action.
+- Verified no unnamed controls, missing image alternative text, duplicate IDs,
+  horizontal mobile overflow, or unsafe new-tab links.
+
+### SEO and sharing
+
+- Centralized the person name, email, GitHub URL, site name, production URL, and
+  description to prevent metadata and page-copy drift.
+- Refined the title, description, author, keywords, canonical, Open Graph,
+  Twitter card, robots, and manifest metadata.
+- Added dedicated, statically generated 1200 × 630 Open Graph and Twitter images
+  with accurate portfolio positioning and alternative text.
+- Reworked JSON-LD into linked Person and WebSite entities while preserving only
+  verified employer, location, language, contact, and technology information.
+
+### Performance and code quality
+
+- Removed the route-level loading fallback from the fully static homepage so the
+  hero now appears directly in the initial HTML instead of waiting for a client
+  transition.
+- Kept the LCP project image as a small local WebP with explicit responsive
+  sizing, high fetch priority, and a stable aspect ratio.
+- Preserved self-hosted Next.js fonts, static export, lazy project images, the
+  LazyMotion feature bundle, and small client-only interaction boundaries.
+- Confirmed the command menu remains absent from the initial asset graph and is
+  loaded as one deferred chunk only after it is requested.
+- Added a shared Container component, reusable project detail renderers, and
+  centralized site constants to reduce repeated layout and identity strings.
+- Added `typecheck` and combined `check` package scripts for repeatable project
+  validation.
+
+### Verification
+
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- Next.js static-export inspection for canonical, Open Graph, Twitter, JSON-LD,
+  initial hero HTML, and command-menu code splitting
+- Desktop and 390 px mobile browser inspection with no horizontal overflow
+- Dark and light theme inspection
+- Command-menu focus/Escape test and mobile-menu open/Escape test
+- Reduced-motion inspection with zero hidden reveal elements
+- Simulated 4G and 4× CPU production check: LCP 2.0–2.2 s, CLS 0 on
+  mobile and 0.04 on desktop in the local test environment
+
+### Truthfulness safeguards
+
+- Added no projects, companies, roles, dates, metrics, testimonials,
+  certifications, achievements, or technologies beyond information already
+  present in the repository and its history.
+- Where a demo or repository is unavailable, the interface says so plainly.
+
 ## Humanization pass — 2026-08-07
 
 - Replaced the agency-style hero with a direct first-person introduction and

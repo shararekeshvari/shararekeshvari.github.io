@@ -1,6 +1,7 @@
 import { ProjectCard } from "@/components/project-card";
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
+import { Container } from "@/components/ui/container";
 import { projects } from "@/data/portfolio";
 
 export function ProjectsSection() {
@@ -8,15 +9,15 @@ export function ProjectsSection() {
     <section
       id="projects"
       aria-labelledby="projects-heading"
-      className="section-shell scroll-mt-24 border-y border-border py-24 sm:py-32"
+      className="section-shell scroll-mt-24 border-b border-border py-24 sm:py-32"
     >
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+      <Container>
         <Reveal>
           <SectionHeading
             id="projects-heading"
-            index="03 / PROJECTS"
-            title="A few products I’ve worked on."
-            description="My frontend work has included accounting, language learning, and clinic operations."
+            index="01 / FEATURED PROJECTS ★"
+            title="Product work, with the details included."
+            description="Three frontend projects across accounting, language learning, and clinic operations—what each product needed, what I worked on, and what I learned."
           />
         </Reveal>
 
@@ -27,7 +28,7 @@ export function ProjectsSection() {
             </Reveal>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

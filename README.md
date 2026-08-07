@@ -1,8 +1,8 @@
 # Sharare Keshvari — Frontend Developer Portfolio
 
 A responsive, accessible portfolio presenting verified frontend experience and
-product work. Built with Next.js, React, TypeScript, Tailwind CSS, Framer Motion,
-and a small set of reusable components.
+product case studies. Built with Next.js, React, TypeScript, Tailwind CSS,
+Framer Motion, and a small set of reusable components.
 
 Production site: `https://shararekeshvari.github.io`
 
@@ -19,9 +19,11 @@ Open `http://localhost:3000`.
 
 ```bash
 npm run lint
-npx tsc --noEmit
+npm run typecheck
 npm run build
 ```
+
+Run all three with `npm run check`.
 
 The production build generates a fully static export in `out/`.
 
@@ -33,6 +35,9 @@ The production build generates a fully static export in `out/`.
 - `src/data/portfolio.ts` is the source of verified skills, experience, projects,
   languages, and contact details.
 - `src/lib/site.ts` centralizes the production URL and site description.
+
+The main navigation follows the page order, and the quick-navigation menu opens
+with `Ctrl+K` or `Command+K`.
 
 ## Content and deployment
 

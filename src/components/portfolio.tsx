@@ -15,10 +15,10 @@ export function Portfolio() {
       <ScrollProgress />
       <main id="main-content">
         <HeroSection />
-        <AboutSection />
-        <SkillsSection />
         <ProjectsSection />
         <ExperienceSection />
+        <SkillsSection />
+        <AboutSection />
         <ContactSection />
       </main>
       <SiteFooter />
