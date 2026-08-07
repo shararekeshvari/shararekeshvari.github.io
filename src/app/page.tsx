@@ -11,7 +11,7 @@ const structuredData = {
   sameAs: ["https://github.com/shararekeshvari"],
   worksFor: {
     "@type": "Organization",
-    name: "pt-ecommerce",
+    name: "Rekar",
   },
   address: {
     "@type": "PostalAddress",

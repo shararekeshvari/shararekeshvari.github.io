@@ -19,7 +19,7 @@ import { SectionHeading } from "@/components/section-heading";
 import { buttonVariants } from "@/components/ui/button";
 import {
   contactItems,
-  experience,
+  experiences,
   languageItems,
   projects,
   skillGroups,
@@ -130,9 +130,9 @@ export function Portfolio() {
               <Reveal delay={0.08}>
                 <div className="max-w-2xl space-y-6 text-lg leading-8 text-foreground/82 sm:text-xl sm:leading-9">
                   <p>
-                    I am a Frontend Developer and Information Technology student, currently
-                    working remotely at pt-ecommerce. I build responsive interfaces for
-                    business, learning, and service products.
+                    I am a Frontend Developer and Information Technology student. I began my
+                    professional journey with a frontend development internship at Rekar and
+                    transitioned into its software development team.
                   </p>
                   <p className="text-muted">
                     My work centers on React, Next.js, TypeScript, reusable component systems,
@@ -215,47 +215,55 @@ export function Portfolio() {
               <SectionHeading
                 index="04 / EXPERIENCE"
                 title="Professional experience."
-                description="Current remote frontend work focused on responsive interfaces, reusable React components, and TypeScript implementation."
+                description="A continuous frontend journey from internship to product development across accounting, learning, and clinic management software."
               />
             </Reveal>
 
-            <Reveal className="mt-14">
-              <div className="grid gap-5 border-t border-border py-8 md:grid-cols-[1fr_1.4fr] md:gap-12 md:py-10">
-                <div className="flex gap-4">
-                  <span className="mt-2 size-2 shrink-0 rounded-full bg-accent ring-4 ring-accent/12" aria-hidden="true" />
-                  <div>
-                    <p className="mb-2 font-mono text-[11px] uppercase text-accent">{experience.employmentType}</p>
-                    <h3 className="text-xl font-semibold">{experience.role}</h3>
-                    <p className="mt-1 text-sm text-muted">{experience.company}</p>
-                  </div>
-                </div>
-                <div>
-                  <p className="mb-5 flex items-center gap-2 font-mono text-xs text-muted">
-                    <CalendarDays aria-hidden="true" size={14} />
-                    <time dateTime={experience.startDate}>{experience.period}</time>
-                  </p>
-                  <p className="max-w-2xl text-base leading-7 text-muted">
-                    {experience.description}
-                  </p>
-                  <ul className="mt-6 grid gap-x-8 gap-y-3 sm:grid-cols-2">
-                    {experience.responsibilities.map((responsibility) => (
-                      <li key={responsibility} className="flex items-start gap-2 text-sm leading-6 text-foreground/78">
-                        <Check aria-hidden="true" className="mt-1 shrink-0 text-accent" size={14} />
-                        {responsibility}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-6 flex flex-wrap gap-2">
-                    {experience.tech.map((item) => (
-                      <span key={item} className="rounded-md border border-border px-2.5 py-1 font-mono text-[11px] text-muted">
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <div className="border-t border-border" />
-            </Reveal>
+            <div className="mt-14 border-t border-border">
+              {experiences.map((item, index) => (
+                <Reveal key={`${item.company}-${item.startDate}`} delay={index * 0.05}>
+                  <article className="grid gap-6 border-b border-border py-8 md:grid-cols-[1fr_1.4fr] md:gap-12 md:py-10">
+                    <div className="flex gap-4">
+                      <span
+                        className="mt-2 size-2 shrink-0 rounded-full bg-accent ring-4 ring-accent/12"
+                        aria-hidden="true"
+                      />
+                      <div>
+                        <p className="mb-2 font-mono text-[11px] uppercase text-accent">
+                          {item.employmentType}
+                        </p>
+                        <h3 className="text-xl font-semibold">{item.role}</h3>
+                        <p className="mt-1 text-sm text-muted">{item.company}</p>
+                      </div>
+                    </div>
+                    <div>
+                      <p className="mb-5 flex items-center gap-2 font-mono text-xs text-muted">
+                        <CalendarDays aria-hidden="true" size={14} />
+                        <time dateTime={item.startDate}>{item.period}</time>
+                      </p>
+                      <p className="max-w-2xl text-base leading-7 text-muted">
+                        {item.description}
+                      </p>
+                      <ul className="mt-6 grid gap-x-8 gap-y-3 sm:grid-cols-2">
+                        {item.responsibilities.map((responsibility) => (
+                          <li
+                            key={responsibility}
+                            className="flex items-start gap-2 text-sm leading-6 text-foreground/78"
+                          >
+                            <Check
+                              aria-hidden="true"
+                              className="mt-1 shrink-0 text-accent"
+                              size={14}
+                            />
+                            {responsibility}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -269,9 +277,8 @@ export function Portfolio() {
                     Let&apos;s build something clear and useful.
                   </h2>
                   <p className="mt-6 max-w-xl text-base leading-7 text-muted sm:text-lg">
-                    I currently work remotely as a Junior Frontend Developer and am open to
-                    international frontend opportunities and collaboration. Email is the best
-                    way to reach me.
+                    I am open to international junior frontend opportunities, remote
+                    internships, and collaboration. Email is the best way to reach me.
                   </p>
                 </div>
 

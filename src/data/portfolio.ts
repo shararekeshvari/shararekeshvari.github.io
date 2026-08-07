@@ -45,23 +45,61 @@ export const languageItems = [
   { language: "German", level: "A2.1" },
 ] as const;
 
-export const experience = {
-  role: "Junior Frontend Developer",
-  company: "pt-ecommerce",
-  employmentType: "Remote",
-  period: "2025 — Present",
-  startDate: "2025",
-  description:
-    "Currently contributing to frontend implementation at pt-ecommerce using React-based technologies, with a focus on responsive interfaces, reusable components, and TypeScript.",
-  responsibilities: [
-    "Build responsive interfaces",
-    "Develop reusable React components",
-    "Use TypeScript in frontend implementation",
-    "Implement supplied UI designs",
-    "Collaborate with a remote development team",
-  ],
-  tech: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
-} as const;
+export const experiences = [
+  {
+    role: "Frontend Developer",
+    company: "Rekar",
+    employmentType: "Internship → Development team",
+    period: "Approx. 2022 — Present",
+    startDate: "2022",
+    description:
+      "Joined Rekar as a Frontend Development Intern and transitioned into the software development team after approximately four months.",
+    responsibilities: [
+      "Contribute to the frontend development and ongoing maintenance of Rekar, the company's accounting application",
+      "Support an accounting product originally developed as a desktop and offline application",
+      "Collaborate with the development team on software maintenance, development, and product support",
+    ],
+  },
+  {
+    role: "Frontend Developer",
+    company: "Leksuu",
+    employmentType: "Part-time",
+    period: "Approx. 2026 — Present",
+    startDate: "2026",
+    description:
+      "Currently contributing to Leksuu as an active member of the core development team.",
+    responsibilities: [
+      "Contribute to the product's ongoing frontend development",
+      "Support the continued improvement and expansion of the product",
+    ],
+  },
+  {
+    role: "Frontend Developer",
+    company: "Dental Clinic Management System",
+    employmentType: "Project-based",
+    period: "Approx. 2025 — 2026 · 8 months",
+    startDate: "2025",
+    description:
+      "Participated in the frontend development of a dental clinic management system for approximately eight months.",
+    responsibilities: [
+      "Worked with the Rekar development team throughout the project",
+      "Contributed to frontend tasks for the duration of the engagement",
+    ],
+  },
+  {
+    role: "Frontend Developer",
+    company: "Narkhin",
+    employmentType: "Part-time",
+    period: "Approx. 2024 — 2025 · 1 year",
+    startDate: "2024",
+    description:
+      "Contributed to Narkhin as a part-time Frontend Developer for approximately one year.",
+    responsibilities: [
+      "Contributed to the frontend development of the product",
+      "Collaborated with members of the Rekar development team throughout the engagement",
+    ],
+  },
+] as const;
 
 export const projects = [
   {
