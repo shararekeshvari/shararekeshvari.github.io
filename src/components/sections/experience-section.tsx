@@ -16,8 +16,8 @@ export function ExperienceSection() {
           <SectionHeading
             id="experience-heading"
             index="04 / EXPERIENCE"
-            title="Progress through product work."
-            description="Frontend experience that began with an internship and grew through ongoing work on accounting, learning, and clinic software."
+            title="Where I’ve worked."
+            description="My frontend experience, from internship to ongoing product development."
           />
         </Reveal>
 

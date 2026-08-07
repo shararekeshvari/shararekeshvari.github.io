@@ -236,14 +236,6 @@ input {
 
 }
 
-[cmdk-group-heading] {
-  padding: 0.625rem 0.75rem 0.5rem;
-  color: var(--muted);
-  font-family: var(--font-geist-mono), monospace;
-  font-size: 0.6875rem;
-  text-transform: uppercase;
-}
-
 .route-loading-bar {
   animation: loading-progress 1.1s cubic-bezier(0.22, 1, 0.36, 1) infinite;
   transform-origin: left;

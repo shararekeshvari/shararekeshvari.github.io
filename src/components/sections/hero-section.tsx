@@ -33,23 +33,23 @@ export function HeroSection() {
           <Reveal>
             <p className="mb-6 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.14em] text-white/65">
               <span className="h-px w-8 bg-[#86e4bf]" aria-hidden="true" />
-              Sharare Keshvari · Frontend Developer
+              Frontend Developer · IT Student
             </p>
             <h1
               id="hero-heading"
               className="max-w-4xl text-[clamp(3.5rem,10vw,8rem)] font-semibold leading-[0.9] tracking-[-0.06em] text-balance"
             >
-              Clear interfaces.
+              Hi, I’m Sharare.
               <br />
-              Complex products.
+              I build frontend products.
             </h1>
           </Reveal>
 
           <Reveal delay={0.12}>
             <p className="mt-7 max-w-2xl text-base leading-7 text-white/70 sm:text-lg sm:leading-8">
-              I build responsive web interfaces with React, Next.js, and TypeScript,
-              with experience across reusable components, RTL and LTR workflows, and
-              operational software.
+              I work with React, Next.js, and TypeScript on accounting,
+              language-learning, and clinic products—including RTL interfaces for
+              Persian users.
             </p>
           </Reveal>
 
@@ -61,7 +61,7 @@ export function HeroSection() {
                 "border-white bg-white text-black hover:bg-white/88",
               )}
             >
-              Explore selected work
+              See what I’ve worked on
               <ArrowDown aria-hidden="true" size={16} />
             </Link>
             <Link
@@ -71,33 +71,24 @@ export function HeroSection() {
                 "border-white/20 bg-black/25 text-white hover:border-white/45 hover:bg-black/45",
               )}
             >
-              Start a conversation
+              Email me
               <ArrowUpRight aria-hidden="true" size={16} />
             </Link>
           </Reveal>
         </div>
 
         <Reveal delay={0.28} className="mt-14 sm:mt-20">
-          <dl className="grid border-l border-t border-white/14 text-white sm:grid-cols-3">
-            <div className="border-b border-r border-white/14 px-4 py-4 sm:px-5">
-              <dt className="font-mono text-[9px] uppercase tracking-[0.14em] text-white/55">
-                Core stack
-              </dt>
-              <dd className="mt-2 text-xs text-white/75">React · Next.js · TypeScript</dd>
-            </div>
-            <div className="border-b border-r border-white/14 px-4 py-4 sm:px-5">
-              <dt className="font-mono text-[9px] uppercase tracking-[0.14em] text-white/55">
-                Interface focus
-              </dt>
-              <dd className="mt-2 text-xs text-white/75">Responsive · RTL/LTR · Product UI</dd>
-            </div>
-            <div className="border-b border-r border-white/14 px-4 py-4 sm:px-5">
-              <dt className="font-mono text-[9px] uppercase tracking-[0.14em] text-white/55">
-                Based in
-              </dt>
-              <dd className="mt-2 text-xs text-white/75">Iran · Open to remote roles</dd>
-            </div>
-          </dl>
+          <ul className="flex flex-col border-t border-white/14 text-xs text-white/70 sm:flex-row sm:divide-x sm:divide-white/14">
+            <li className="border-b border-white/14 py-4 sm:flex-1 sm:px-5 sm:first:pl-0">
+              React · Next.js · TypeScript
+            </li>
+            <li className="border-b border-white/14 py-4 sm:flex-1 sm:px-5">
+              Responsive · RTL/LTR
+            </li>
+            <li className="border-b border-white/14 py-4 sm:flex-1 sm:px-5">
+              Iran · Open to remote roles
+            </li>
+          </ul>
         </Reveal>
       </div>
     </section>

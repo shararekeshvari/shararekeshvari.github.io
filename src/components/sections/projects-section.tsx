@@ -15,8 +15,8 @@ export function ProjectsSection() {
           <SectionHeading
             id="projects-heading"
             index="03 / PROJECTS"
-            title="Product work, explained."
-            description="Selected frontend projects across accounting, language learning, and clinic operations. Every detail shown here is grounded in the available project and experience information."
+            title="A few products I’ve worked on."
+            description="My frontend work has included accounting, language learning, and clinic operations."
           />
         </Reveal>
 

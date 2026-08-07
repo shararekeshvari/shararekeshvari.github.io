@@ -2,7 +2,7 @@
 
 A responsive, accessible portfolio presenting verified frontend experience and
 product work. Built with Next.js, React, TypeScript, Tailwind CSS, Framer Motion,
-Radix UI, and a small set of reusable components.
+and a small set of reusable components.
 
 Production site: `https://shararekeshvari.github.io`
 

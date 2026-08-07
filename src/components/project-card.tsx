@@ -1,11 +1,4 @@
-import {
-  ArrowUpRight,
-  Check,
-  CircleSlash2,
-  Code2,
-  Lightbulb,
-  Wrench,
-} from "lucide-react";
+import { ArrowUpRight, Check, CircleSlash2, Code2 } from "lucide-react";
 import Image from "next/image";
 
 import { buttonVariants } from "@/components/ui/button";
@@ -39,7 +32,7 @@ export function ProjectCard({
               <span className="size-2 rounded-full bg-[#f6bd4f]" aria-hidden="true" />
               <span className="size-2 rounded-full bg-[#62c554]" aria-hidden="true" />
               <span className="ml-2 font-mono text-[9px] uppercase tracking-[0.14em] text-neutral-600 dark:text-neutral-400">
-                Live product preview
+                Product preview
               </span>
             </div>
             <div className="relative aspect-[8/5] overflow-hidden bg-white">
@@ -74,33 +67,38 @@ export function ProjectCard({
 
           <p className="mt-5 max-w-2xl text-base leading-7 text-muted">{project.summary}</p>
 
-          <dl className="mt-7 grid gap-5 rounded-xl border border-border bg-background/45 p-5 sm:grid-cols-2">
-            <div className="sm:col-span-2">
-              <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/60">
-                My role
-              </dt>
-              <dd className="mt-2 text-sm leading-6 text-foreground/80">{project.role}</dd>
-            </div>
-            <div>
-              <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/60">
-                Problem
-              </dt>
-              <dd className="mt-2 text-sm leading-6 text-muted">{project.problem}</dd>
-            </div>
-            <div>
-              <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/60">
-                Solution
-              </dt>
-              <dd className="mt-2 text-sm leading-6 text-muted">{project.solution}</dd>
-            </div>
-          </dl>
+          <div className="mt-8 space-y-6 border-y border-border py-7">
+            <section aria-labelledby={`${project.id}-context`}>
+              <h4
+                id={`${project.id}-context`}
+                className="font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/60"
+              >
+                About the product
+              </h4>
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-muted">{project.context}</p>
+            </section>
+            <section
+              aria-labelledby={`${project.id}-contribution`}
+              className="rounded-xl border border-accent/20 bg-accent/[0.04] p-4"
+            >
+              <h4
+                id={`${project.id}-contribution`}
+                className="font-mono text-[10px] uppercase tracking-[0.14em] text-accent"
+              >
+                My contribution
+              </h4>
+              <p className="mt-2 text-sm leading-6 text-foreground/82">
+                {project.contribution}
+              </p>
+            </section>
+          </div>
 
           <section className="mt-7" aria-labelledby={`${project.id}-features`}>
             <h4
               id={`${project.id}-features`}
               className="font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/60"
             >
-              Key features
+              Selected work
             </h4>
             <ul className="mt-4 grid gap-x-6 gap-y-3 sm:grid-cols-2">
               {project.features.map((feature) => (
@@ -115,26 +113,9 @@ export function ProjectCard({
             </ul>
           </section>
 
-          <div className="mt-7 grid gap-4 border-y border-border py-6 sm:grid-cols-2">
-            <div className="flex items-start gap-3">
-              <Wrench aria-hidden="true" className="mt-0.5 shrink-0 text-accent" size={16} />
-              <div>
-                <h4 className="text-xs font-semibold">Engineering challenge</h4>
-                <p className="mt-2 text-sm leading-6 text-muted">{project.challenge}</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <Lightbulb aria-hidden="true" className="mt-0.5 shrink-0 text-accent" size={16} />
-              <div>
-                <h4 className="text-xs font-semibold">Lesson learned</h4>
-                <p className="mt-2 text-sm leading-6 text-muted">{project.lesson}</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-6">
+          <div className="mt-7">
             <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/60">
-              Technologies
+              Built with
             </p>
             <ul className="mt-3 flex flex-wrap gap-2" aria-label={`${project.title} technologies`}>
               {project.tech.map((item) => (
@@ -148,7 +129,7 @@ export function ProjectCard({
             </ul>
           </div>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3 border-t border-border pt-6">
+          <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-3 border-t border-border pt-6">
             {project.liveUrl && project.liveLabel ? (
               <a
                 href={project.liveUrl}
@@ -161,8 +142,8 @@ export function ProjectCard({
                 <span className="sr-only"> (opens in a new tab)</span>
               </a>
             ) : (
-              <span className="inline-flex h-11 items-center gap-2 rounded-md border border-border px-4 text-sm text-muted">
-                <CircleSlash2 aria-hidden="true" size={15} />
+              <span className="inline-flex items-center gap-2 text-xs text-muted">
+                <CircleSlash2 aria-hidden="true" size={14} />
                 {project.liveNote}
               </span>
             )}
@@ -179,9 +160,9 @@ export function ProjectCard({
                 <span className="sr-only"> (opens in a new tab)</span>
               </a>
             ) : (
-              <span className="inline-flex items-center gap-2 px-2 text-xs text-muted">
-                <Code2 aria-hidden="true" size={15} />
-                GitHub: {project.sourceNote}
+              <span className="inline-flex items-center gap-2 text-xs text-muted">
+                <Code2 aria-hidden="true" size={14} />
+                {project.sourceNote}
               </span>
             )}
           </div>

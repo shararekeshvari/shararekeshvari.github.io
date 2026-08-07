@@ -26,12 +26,12 @@ export function ContactSection() {
                 id="contact-heading"
                 className="max-w-3xl text-4xl font-semibold leading-[1.05] tracking-[-0.045em] text-balance sm:text-6xl"
               >
-                Have a frontend role in mind?
+                Want to work together?
               </h2>
               <p className="mt-6 max-w-xl text-base leading-7 text-muted sm:text-lg">
-                I’m open to international junior frontend opportunities, remote
-                internships, and thoughtful product collaborations. Email is the most
-                direct way to reach me.
+                I’m open to junior frontend roles, remote internships, and product work
+                where I can keep learning. If my experience looks relevant, send me an
+                email.
               </p>
               <a
                 href="mailto:shararekeshvari77@gmail.com"

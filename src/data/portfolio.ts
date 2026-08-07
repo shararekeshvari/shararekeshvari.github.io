@@ -8,43 +8,28 @@ export const navigation = [
 
 export const skillGroups = [
   {
-    title: "Languages",
+    title: "Core",
     skills: ["JavaScript", "TypeScript", "HTML5", "CSS3"],
     tone: "blue",
   },
   {
-    title: "Frontend",
-    skills: ["React", "Responsive Design", "Reusable Components"],
+    title: "React",
+    skills: ["React", "Next.js", "React Query", "Reusable Components"],
     tone: "mint",
   },
   {
-    title: "Frameworks & Libraries",
-    skills: ["Next.js", "React Query", "Zod"],
-    tone: "violet",
-  },
-  {
-    title: "Styling & UI",
-    skills: ["Tailwind CSS", "Radix UI", "Shadcn UI"],
+    title: "Interface",
+    skills: ["Tailwind CSS", "Responsive Design", "Radix UI", "Shadcn UI", "RTL/LTR Interfaces"],
     tone: "amber",
   },
   {
-    title: "Data & APIs",
-    skills: ["REST APIs", "Axios", "WebSocket"],
+    title: "Data & Services",
+    skills: ["REST APIs", "Axios", "WebSocket", "Zod", "Clerk", "Convex"],
     tone: "coral",
   },
   {
-    title: "Services & Auth",
-    skills: ["Clerk", "Convex"],
-    tone: "blue",
-  },
-  {
-    title: "Localization",
-    skills: ["next-intl", "RTL/LTR Interfaces"],
-    tone: "mint",
-  },
-  {
-    title: "Design & Tools",
-    skills: ["Figma", "Git", "GitHub", "AI-assisted Workflows"],
+    title: "Workflow",
+    skills: ["Git", "GitHub", "Figma", "next-intl"],
     tone: "violet",
   },
 ] as const;
@@ -117,12 +102,9 @@ export interface PortfolioProject {
   readonly category: string;
   readonly title: string;
   readonly summary: string;
-  readonly problem: string;
-  readonly solution: string;
-  readonly role: string;
+  readonly context: string;
+  readonly contribution: string;
   readonly features: readonly string[];
-  readonly challenge: string;
-  readonly lesson: string;
   readonly tech: readonly string[];
   readonly image: string;
   readonly imageAlt: string;
@@ -141,27 +123,22 @@ export const projects = [
     title: "Rekar",
     summary:
       "A Persian RTL interface for a multi-tenant accounting and business operations platform.",
-    problem:
-      "Business users need one coherent interface for financial and operational work across companies, roles, and Persian-language workflows.",
-    solution:
-      "A tenant-aware frontend with permission checks, server-side session handling, and reusable modules for connected business workflows.",
-    role: "Frontend development and ongoing maintenance with the Rekar development team.",
+    context:
+      "Rekar brings accounting and day-to-day business operations into one Persian, multi-tenant product. Its frontend spans many modules, roles, and permission levels.",
+    contribution:
+      "I contribute to frontend development and ongoing maintenance as part of the Rekar development team.",
     features: [
       "Accounting, sales, purchasing, inventory, treasury, payroll, and manufacturing workflows",
       "Multi-tenant navigation with role- and permission-aware access",
       "Persian RTL reports, imports, and print views",
       "Offline-aware customer and field-visit workflows with queued synchronization",
     ],
-    challenge:
-      "Keeping navigation and workflows understandable across many business modules, tenants, roles, and permissions.",
-    lesson:
-      "Complex operational products benefit from reusable, permission-aware interface patterns and consistent navigation.",
     tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Zod", "Dexie"],
     image: "/images/projects/rekar.webp",
     imageAlt: "Rekar Persian accounting platform landing page",
     liveUrl: "https://rekar.ir",
     liveLabel: "View live site",
-    sourceNote: "Public repository unavailable",
+    sourceNote: "Source code isn’t public",
   },
   {
     id: "leksuu",
@@ -170,27 +147,22 @@ export const projects = [
     title: "Leksuu",
     summary:
       "A multilingual language-learning interface for Persian, Kurdish Sorani, and English experiences.",
-    problem:
-      "Persian and Kurdish learners need localized, direction-aware learning flows while studying English across different devices.",
-    solution:
-      "A frontend that centralizes locale routing, translations, design tokens, and reusable learning components across RTL and LTR layouts.",
-    role: "Frontend development as an active member of the core development team.",
+    context:
+      "Leksuu supports Persian and Kurdish learners studying English. The interface has to work naturally across Persian, Kurdish Sorani, and English in both RTL and LTR layouts.",
+    contribution:
+      "I work on the frontend as an active member of the core development team.",
     features: [
       "Persian, Kurdish Sorani, and English locale routing",
       "Interactive lessons, exercises, spaced review, and gamification",
       "Tutoring, group classes, homework, and learner progress flows",
       "Content administration and an installable PWA shell with an offline fallback",
     ],
-    challenge:
-      "Supporting Persian and Kurdish RTL experiences alongside English LTR flows without fragmenting the interface.",
-    lesson:
-      "Localization is more reliable when locale, text direction, and shared design tokens are architectural concerns.",
     tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "next-intl"],
     image: "/images/projects/leksuu.webp",
     imageAlt: "Leksuu Persian language-learning platform landing page",
     liveUrl: "https://leksuu.ir",
     liveLabel: "View live site",
-    sourceNote: "Public repository unavailable",
+    sourceNote: "Source code isn’t public",
   },
   {
     id: "dentia",
@@ -199,26 +171,21 @@ export const projects = [
     title: "Dentia",
     summary:
       "A Persian RTL dental-clinic interface connecting public booking, patient services, and staff operations.",
-    problem:
-      "Clinic staff and patients need connected workflows from public appointment requests through clinical care, billing, and follow-up.",
-    solution:
-      "A Next.js interface combining a public clinic site and patient portal with a role-aware staff application backed by typed API clients.",
-    role: "Frontend development during an eight-month project with the Rekar development team.",
+    context:
+      "Dentia connects a public clinic website and patient portal with the daily workflows used by clinic staff, from booking through treatment and billing.",
+    contribution:
+      "I contributed to frontend development during an eight-month project with the Rekar development team.",
     features: [
       "Public clinic content, appointment requests, and online booking",
       "Patient records, appointments, treatment workflows, and portal access",
       "Live clinic queue updates through a reconnecting WebSocket flow",
       "Billing, inventory, laboratory, reporting, and Persian date and currency handling",
     ],
-    challenge:
-      "Connecting booking, patient, clinical, billing, and live queue flows while preserving clear state and context.",
-    lesson:
-      "Real-time operational interfaces need explicit connection behavior, predictable recovery, and clear status feedback.",
     tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "WebSocket"],
     image: "/images/projects/dentia.webp",
     imageAlt: "Dentia Persian dental clinic platform landing page",
-    liveNote: "Public demo unavailable",
-    sourceNote: "Public repository unavailable",
+    liveNote: "No public demo",
+    sourceNote: "Source code isn’t public",
   },
 ] as const satisfies readonly PortfolioProject[];
 

@@ -1,21 +1,16 @@
 "use client";
 
-import { Menu, Search, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
-import { lazy, Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { navigation } from "@/data/portfolio";
 
-const LazyCommandMenu = lazy(async () => ({
-  default: (await import("@/components/command-menu")).CommandMenu,
-}));
-
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [commandMenuRequested, setCommandMenuRequested] = useState(false);
   const [activeHref, setActiveHref] = useState<string>();
 
   useEffect(() => {
@@ -33,18 +28,6 @@ export function Navbar() {
     document.addEventListener("keydown", closeOnEscape);
     return () => document.removeEventListener("keydown", closeOnEscape);
   }, [menuOpen]);
-
-  useEffect(() => {
-    if (commandMenuRequested) return;
-    const loadCommandMenu = (event: KeyboardEvent) => {
-      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
-        event.preventDefault();
-        setCommandMenuRequested(true);
-      }
-    };
-    document.addEventListener("keydown", loadCommandMenu);
-    return () => document.removeEventListener("keydown", loadCommandMenu);
-  }, [commandMenuRequested]);
 
   useEffect(() => {
     const sections = navigation
@@ -102,24 +85,6 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-2">
-          {commandMenuRequested ? (
-            <Suspense fallback={<span className="hidden h-10 min-w-36 lg:block" aria-hidden="true" />}>
-              <LazyCommandMenu defaultOpen />
-            </Suspense>
-          ) : (
-            <Button
-              variant="secondary"
-              className="hidden h-10 min-w-36 justify-between border-current/20 bg-current/5 px-3 text-current lg:inline-flex"
-              aria-label="Open quick navigation"
-              onClick={() => setCommandMenuRequested(true)}
-            >
-              <span className="flex items-center gap-2">
-                <Search aria-hidden="true" size={15} />
-                Quick find
-              </span>
-              <kbd className="font-mono text-[11px] text-current/55">Ctrl K</kbd>
-            </Button>
-          )}
           <ThemeToggle />
           <Button
             variant="icon"
@@ -135,25 +100,25 @@ export function Navbar() {
       </nav>
 
       {menuOpen ? (
-          <nav
-            id="mobile-navigation"
-            aria-label="Mobile navigation"
-            className="mobile-menu-enter mx-auto mt-2 max-w-7xl overflow-hidden rounded-lg border border-border bg-background p-2 shadow-xl md:hidden"
-          >
-            {navigation.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                aria-current={activeHref === item.href ? "location" : undefined}
-                data-active={activeHref === item.href}
-                onClick={() => setMenuOpen(false)}
-                className="nav-link block rounded-md px-4 py-3 text-sm text-muted transition-colors hover:bg-surface-raised hover:text-foreground"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        ) : null}
+        <nav
+          id="mobile-navigation"
+          aria-label="Mobile navigation"
+          className="mobile-menu-enter mx-auto mt-2 max-w-7xl overflow-hidden rounded-lg border border-border bg-background p-2 shadow-xl md:hidden"
+        >
+          {navigation.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              aria-current={activeHref === item.href ? "location" : undefined}
+              data-active={activeHref === item.href}
+              onClick={() => setMenuOpen(false)}
+              className="nav-link block rounded-md px-4 py-3 text-sm text-muted transition-colors hover:bg-surface-raised hover:text-foreground"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+      ) : null}
     </header>
   );
 }

@@ -4,27 +4,6 @@ import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
 import { languageItems } from "@/data/portfolio";
 
-const principles = [
-  {
-    index: "01",
-    title: "Think in systems",
-    description:
-      "Build reusable components and consistent patterns that make product interfaces easier to extend.",
-  },
-  {
-    index: "02",
-    title: "Design for context",
-    description:
-      "Account for responsive behavior, RTL and LTR layouts, permissions, and the task a user needs to finish.",
-  },
-  {
-    index: "03",
-    title: "Keep improving",
-    description:
-      "Strengthen frontend fundamentals through product work, focused study, and continuous iteration.",
-  },
-] as const;
-
 export function AboutSection() {
   return (
     <section
@@ -37,7 +16,7 @@ export function AboutSection() {
           <SectionHeading
             id="about-heading"
             index="01 / ABOUT"
-            title="Engineering with the user in view."
+            title="How I got into frontend."
           />
         </Reveal>
 
@@ -57,33 +36,20 @@ export function AboutSection() {
           <Reveal delay={0.08}>
             <div className="max-w-3xl space-y-6 text-lg leading-8 text-foreground/84 sm:text-xl sm:leading-9">
               <p>
-                I’m a Frontend Developer and Information Technology student. I entered
-                the field through a frontend internship at Rekar and moved into its
-                software development team after approximately four months.
+                I’m a Frontend Developer and Information Technology student. I started
+                with a frontend internship at Rekar and joined its software development
+                team after approximately four months.
               </p>
               <p className="text-muted">
-                I focus on turning multi-step product requirements into maintainable
-                interfaces. My work includes reusable React components, Next.js
-                applications, RTL and LTR experiences, and frontend flows shaped around
-                real operational tasks.
+                Most of my experience has come from ongoing product work rather than
+                isolated demos. I’ve worked on accounting, language-learning, and clinic
+                software, including Persian RTL interfaces and reusable React components.
               </p>
             </div>
           </Reveal>
         </div>
 
-        <div className="mt-16 grid border-l border-t border-border md:grid-cols-3">
-          {principles.map((principle, index) => (
-            <Reveal key={principle.title} className="h-full" delay={index * 0.06}>
-              <article className="h-full border-b border-r border-border p-6 sm:p-7">
-                <p className="font-mono text-[10px] text-accent">{principle.index}</p>
-                <h3 className="mt-8 text-lg font-semibold">{principle.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-muted">{principle.description}</p>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal className="mt-10">
+        <Reveal className="mt-16">
           <div>
             <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
               Languages

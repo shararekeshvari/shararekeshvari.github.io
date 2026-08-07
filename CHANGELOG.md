@@ -1,5 +1,21 @@
 # Changelog
 
+## Humanization pass — 2026-08-07
+
+- Replaced the agency-style hero with a direct first-person introduction and
+  named the product areas represented in the portfolio.
+- Removed the command palette and its Radix Dialog and cmdk dependencies; the
+  one-page site now uses straightforward section navigation.
+- Replaced the generic three-card About framework with a shorter account of how
+  Sharare started in frontend and the kinds of products she has worked on.
+- Consolidated eight skill categories into five practical groups and removed the
+  “AI-assisted workflows” item.
+- Simplified project stories from a repeated problem/solution/challenge/lesson
+  formula to product context, personal contribution, selected work, and stack.
+- Shortened section and contact copy to sound more direct and conversational.
+- Kept the previous implementation recoverable on the `main` branch at commit
+  `6313cb4`; this iteration was developed on `humanize-portfolio`.
+
 ## Portfolio improvement pass — 2026-08-07
 
 ### Positioning and copy
