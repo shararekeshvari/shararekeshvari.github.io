@@ -172,7 +172,7 @@ input {
   background-size: 72px 72px;
 }
 
-.hero-product-frame::before {
+.hero-summary-card::before {
   position: absolute;
   inset: -1.5rem;
   z-index: -1;
@@ -194,6 +194,18 @@ input {
   background: linear-gradient(90deg, transparent, var(--accent), transparent);
   content: "";
   opacity: 0.2;
+}
+
+.experience-timeline::before {
+  position: absolute;
+  inset: 2.5rem auto 2.5rem 0.21875rem;
+  width: 1px;
+  background: var(--border);
+  content: "";
+}
+
+.hero-summary-row {
+  transition: padding 220ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .skill-card,
@@ -243,6 +255,10 @@ input {
   .skill-card:hover,
   .experience-row:hover {
     background: color-mix(in srgb, var(--surface-raised) 78%, transparent);
+  }
+
+  .hero-summary-row:hover {
+    padding-inline: 0.25rem;
   }
 
   .theme-icon:hover {

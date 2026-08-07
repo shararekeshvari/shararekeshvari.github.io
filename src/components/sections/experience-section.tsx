@@ -22,13 +22,13 @@ export function ExperienceSection() {
           />
         </Reveal>
 
-        <div className="mt-14 border-t border-border">
+        <div className="experience-timeline relative mt-14 border-t border-border">
           {experiences.map((item, index) => (
             <Reveal key={`${item.company}-${item.startDate}`} delay={index * 0.04}>
               <article className="experience-row grid gap-7 border-b border-border py-8 md:grid-cols-[0.8fr_1.4fr] md:gap-12 md:py-10">
                 <div className="flex gap-4">
                   <span
-                    className="mt-2 size-2 shrink-0 rounded-full bg-accent ring-4 ring-accent/12"
+                    className="experience-dot relative z-10 mt-2 size-2 shrink-0 rounded-full bg-accent ring-4 ring-background"
                     aria-hidden="true"
                   />
                   <div>

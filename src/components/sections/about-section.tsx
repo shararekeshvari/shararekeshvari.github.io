@@ -7,19 +7,24 @@ import { languageItems } from "@/data/portfolio";
 
 const workingNotes = [
   {
-    title: "The work I’m drawn to",
+    title: "Start with the task",
     description:
-      "Products people return to often, especially when a clearer interface can make a complicated task easier to follow.",
+      "I look at what someone is trying to finish, the steps involved, and the states that could interrupt them before I think about components.",
   },
   {
-    title: "How I approach it",
+    title: "Build for change",
     description:
-      "I break a workflow into states and reusable patterns, then check the details across screen sizes and text directions.",
+      "I use reusable patterns to keep a product consistent as features grow, then test the details across screen sizes and text directions.",
   },
   {
-    title: "The team I’m looking for",
+    title: "Work in context",
     description:
-      "A product team where I can contribute to real work, learn from experienced engineers, and keep strengthening my frontend fundamentals.",
+      "I value the context that comes from working with a development team across delivery, maintenance, and product support.",
+  },
+  {
+    title: "Why frontend",
+    description:
+      "I enjoy the point where structure becomes something useful: clear feedback, predictable behavior, and an interface people can rely on.",
   },
 ] as const;
 
@@ -35,7 +40,7 @@ export function AboutSection() {
           <SectionHeading
             id="about-heading"
             index="04 / ABOUT"
-            title="A little more about how I work."
+            title="How I think about the work."
           />
         </Reveal>
 
@@ -55,21 +60,27 @@ export function AboutSection() {
           <Reveal delay={0.06}>
             <div className="max-w-3xl space-y-6 text-lg leading-8 text-foreground/84 sm:text-xl sm:leading-9">
               <p>
-                I’m a Frontend Developer and Information Technology student. I learned
-                the work inside a product team: first as an intern at Rekar, then as a
-                member of its software development team.
+                I’m a Frontend Developer and Information Technology student. I started
+                at Rekar as an intern and moved into the software development team,
+                where most of my learning has happened inside products people use for
+                day-to-day work.
               </p>
               <p className="text-muted">
-                Most of my experience has been with products that have a lot of moving
-                parts—roles, permissions, multi-step flows, and both RTL and LTR layouts.
-                I like finding a structure that makes those interfaces easier to use and
-                easier to maintain.
+                I tend to start with the workflow, not the component. I look at what the
+                user is trying to finish, what can go wrong along the way, and what must
+                stay clear when the screen gets smaller or the interface changes
+                direction.
+              </p>
+              <p className="text-muted">
+                I’m looking for a product team where I can contribute to real work,
+                learn from experienced engineers, and keep building stronger frontend
+                judgment.
               </p>
             </div>
           </Reveal>
         </div>
 
-        <div className="mt-16 grid border-l border-t border-border md:grid-cols-3">
+        <div className="mt-16 grid border-l border-t border-border sm:grid-cols-2 lg:grid-cols-4">
           {workingNotes.map((note, index) => (
             <Reveal key={note.title} className="h-full" delay={index * 0.05}>
               <article className="h-full border-b border-r border-border p-6 sm:p-7">

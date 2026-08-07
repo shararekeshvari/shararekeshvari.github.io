@@ -129,8 +129,8 @@ export function ProjectCard({
           <CaseStudySection id={`${project.id}-features`} label="Key features">
             <DetailList items={project.features} />
           </CaseStudySection>
-          <CaseStudySection id={`${project.id}-technical-highlights`} label="Technical highlights">
-            <DetailList items={project.technicalHighlights} />
+          <CaseStudySection id={`${project.id}-architecture`} label="Architecture">
+            <DetailList items={project.architecture} />
           </CaseStudySection>
         </div>
 
@@ -151,9 +151,9 @@ export function ProjectCard({
           </CaseStudySection>
         </div>
 
-        <div className="mt-8 flex flex-col gap-6 border-t border-border pt-7 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <p className="case-study-label">Stack</p>
+        <div className="mt-8 grid gap-6 border-t border-border pt-7 lg:grid-cols-[minmax(0,1.2fr)_minmax(18rem,0.8fr)]">
+          <section aria-labelledby={`${project.id}-tech-stack`}>
+            <h4 id={`${project.id}-tech-stack`} className="case-study-label">Tech stack</h4>
             <ul className="mt-3 flex flex-wrap gap-2" aria-label={`${project.title} technologies`}>
               {project.tech.map((item) => (
                 <li key={item} className="rounded-md border border-border bg-background/45 px-2.5 py-1 font-mono text-[11px] text-muted">
@@ -161,34 +161,44 @@ export function ProjectCard({
                 </li>
               ))}
             </ul>
-          </div>
+          </section>
 
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
-            {project.liveUrl && project.liveLabel ? (
-              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className={buttonVariants({ variant: "secondary" })}>
-                {project.liveLabel}
-                <ArrowUpRight aria-hidden="true" size={16} />
-                <span className="sr-only"> (opens in a new tab)</span>
-              </a>
-            ) : (
-              <span className="inline-flex items-center gap-2 text-xs text-muted">
-                <CircleSlash2 aria-hidden="true" size={14} />
-                {project.liveNote}
-              </span>
-            )}
+          <div className="grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+            <section aria-labelledby={`${project.id}-live-demo`} className="bg-surface-raised p-4">
+              <h4 id={`${project.id}-live-demo`} className="case-study-label">Live demo</h4>
+              <div className="mt-3">
+                {project.liveUrl && project.liveLabel ? (
+                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className={buttonVariants({ variant: "ghost" })}>
+                    {project.liveLabel}
+                    <ArrowUpRight aria-hidden="true" size={16} />
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                ) : (
+                  <span className="inline-flex items-center gap-2 text-xs text-muted">
+                    <CircleSlash2 aria-hidden="true" size={14} />
+                    {project.liveNote}
+                  </span>
+                )}
+              </div>
+            </section>
 
-            {project.sourceUrl ? (
-              <a href={project.sourceUrl} target="_blank" rel="noopener noreferrer" className={buttonVariants({ variant: "ghost" })}>
-                <Code2 aria-hidden="true" size={16} />
-                View source
-                <span className="sr-only"> (opens in a new tab)</span>
-              </a>
-            ) : (
-              <span className="inline-flex items-center gap-2 text-xs text-muted">
-                <Code2 aria-hidden="true" size={14} />
-                {project.sourceNote}
-              </span>
-            )}
+            <section aria-labelledby={`${project.id}-github`} className="bg-surface-raised p-4">
+              <h4 id={`${project.id}-github`} className="case-study-label">GitHub</h4>
+              <div className="mt-3">
+                {project.sourceUrl ? (
+                  <a href={project.sourceUrl} target="_blank" rel="noopener noreferrer" className={buttonVariants({ variant: "ghost" })}>
+                    <Code2 aria-hidden="true" size={16} />
+                    View source
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                ) : (
+                  <span className="inline-flex items-center gap-2 text-xs text-muted">
+                    <Code2 aria-hidden="true" size={14} />
+                    {project.sourceNote}
+                  </span>
+                )}
+              </div>
+            </section>
           </div>
         </div>
       </div>

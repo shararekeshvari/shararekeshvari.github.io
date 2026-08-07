@@ -16,7 +16,7 @@ export function SkillsSection() {
             id="skills-heading"
             index="03 / SKILLS"
             title="How I build frontend products."
-            description="Grouped by the work they help me do—not by a long list of logos."
+            description="Six areas that describe the work I can take on and the tools I use to do it."
           />
         </Reveal>
 
@@ -28,7 +28,7 @@ export function SkillsSection() {
                   <span className={`skill-dot skill-dot-${group.tone}`} aria-hidden="true" />
                   <h3 className="text-base font-semibold tracking-tight">{group.title}</h3>
                 </div>
-                <p className="mt-4 min-h-12 text-sm leading-6 text-muted">{group.description}</p>
+                <p className="mt-4 min-h-12 text-sm leading-6 text-muted">{group.capability}</p>
                 <ul className="mt-6 flex flex-wrap gap-2" aria-label={`${group.title} skills`}>
                   {group.skills.map((skill) => (
                     <li

@@ -1,5 +1,78 @@
 # Changelog
 
+## Recruiter-focused polish — 2026-08-07
+
+### Scope and truthfulness
+
+- Polished the existing dark editorial design, data model, section components,
+  motion system, and one-page App Router architecture without rebuilding the
+  portfolio or replacing its visual direction.
+- Used the user-confirmed total of four projects in the hero. Kept the three
+  projects with complete information as the only published case studies; the
+  future Nerkhin project remains unpublished until its details are available.
+- Added no companies, clients, dates, technologies, responsibilities, metrics,
+  achievements, public repositories, or demo links beyond confirmed content.
+
+### Hero and recruiter scan
+
+- Reworked the hero into the requested left-copy and right-summary composition.
+- Set the introduction to “I build product interfaces for everyday work” with a
+  deliberate desktop line break, a direct React, Next.js, and TypeScript
+  specialization, and clearer primary and secondary calls to action.
+- Replaced the repeated project preview with a semantic professional-summary
+  card covering remote availability, 4+ years of experience, four projects,
+  core stack, current Leksuu work, and open-to-work status.
+- Removed the hero image request, leaving the first viewport lighter and making
+  the introduction the clear largest-contentful element.
+
+### Projects
+
+- Made every published case study expose the same explicit sections: Overview,
+  Problem, Solution, Responsibilities, Key Features, Architecture, Challenges,
+  Lessons Learned, Tech Stack, Live Demo, and GitHub.
+- Renamed the internal `technicalHighlights` field to `architecture` so the
+  content model matches the information shown to recruiters.
+- Separated demo and repository availability into clearly labelled, semantic
+  blocks. Private source and missing-demo states remain visible instead of
+  being replaced with placeholder links.
+
+### Experience, skills, and About
+
+- Added a restrained visual timeline to Experience and reduced repeated action
+  verbs in the Narkhin entry without changing its role, duration, or scope.
+- Renamed skill-group descriptions to capabilities in the data model and
+  rewrote the section introduction so each group reads as work Sharare can take
+  on rather than a technology inventory.
+- Rewrote About in a direct first-person voice around workflow-first thinking,
+  reusable patterns, product-team context, frontend motivation, and the kind of
+  team Sharare wants to join.
+
+### Interface, motion, and accessibility
+
+- Refined hero proportions, type scale, CTA rhythm, summary-card spacing,
+  borders, contrast, and a small pointer-only row interaction.
+- Preserved the existing short reveal motion and disabled hidden reveal states,
+  smooth scrolling, and effective transition duration when reduced motion is
+  requested.
+- Used an accessible labelled `aside`, `dl`, `dt`, and `dd` for the professional
+  summary and labelled heading relationships for every project detail block.
+- Rechecked keyboard operation for the command menu and mobile navigation,
+  including input focus, Enter activation, Escape dismissal, and expanded state.
+
+### SEO, performance, and verification
+
+- Re-audited and retained the existing canonical URL, metadata, Open Graph and
+  Twitter images, Twitter card, robots directives, sitemap, and linked Person
+  and WebSite JSON-LD because they already describe the portfolio accurately.
+- Confirmed all routes remain statically generated and project imagery remains
+  local, responsive, and lazy-loaded outside the hero.
+- Verified one H1 and one main landmark, correct section order, no duplicate
+  IDs, unnamed controls, missing image alternatives, unsafe new-tab links, or
+  horizontal overflow at 390 px and desktop widths.
+- Verified zero layout shift in local desktop and mobile production checks,
+  visible reduced-motion content, and a clean lint, TypeScript, and production
+  build.
+
 ## Premium portfolio refinement — 2026-08-07
 
 ### Audit and information architecture

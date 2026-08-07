@@ -11,37 +11,37 @@ export const navigation = [
 export const skillGroups = [
   {
     title: "Languages & foundations",
-    description: "The browser fundamentals I rely on before reaching for a library.",
+    capability: "The browser fundamentals I rely on before reaching for a library.",
     skills: ["JavaScript", "TypeScript", "HTML5", "CSS3"],
     tone: "blue",
   },
   {
     title: "React applications",
-    description: "Reusable components and practical state handling for maintainable product UI.",
+    capability: "Reusable components and practical state handling for maintainable product UI.",
     skills: ["React", "Next.js", "React Query", "Reusable Components"],
     tone: "mint",
   },
   {
     title: "Interface engineering",
-    description: "Responsive UI and component primitives that work across RTL and LTR layouts.",
+    capability: "Responsive UI and component primitives that work across RTL and LTR layouts.",
     skills: ["Tailwind CSS", "Responsive Design", "Radix UI", "Shadcn UI", "RTL/LTR Interfaces"],
     tone: "amber",
   },
   {
     title: "Data & integration",
-    description: "Connecting screens to APIs, live updates, validation, and offline-aware data.",
+    capability: "Connecting screens to APIs, live updates, validation, and offline-aware data.",
     skills: ["REST APIs", "Axios", "WebSocket", "Zod", "Dexie"],
     tone: "coral",
   },
   {
     title: "Services & localization",
-    description: "Authentication, backend services, and locale-aware routing in product interfaces.",
+    capability: "Authentication, backend services, and locale-aware routing in product interfaces.",
     skills: ["Clerk", "Convex", "next-intl"],
     tone: "violet",
   },
   {
     title: "Design & collaboration",
-    description: "The tools I use to move from design context to reviewed, maintainable code.",
+    capability: "The tools I use to move from design context to reviewed, maintainable code.",
     skills: ["Figma", "Git", "GitHub"],
     tone: "blue",
   },
@@ -101,8 +101,8 @@ export const experiences = [
     startDate: "2024",
     description: "I worked on Narkhin’s frontend in a part-time role for one year.",
     responsibilities: [
-      "Built and maintained frontend areas of the product.",
-      "Collaborated with members of the Rekar development team during the engagement.",
+      "Maintained frontend areas of the product throughout the engagement.",
+      "Worked with members of the Rekar development team during the engagement.",
     ],
   },
 ] as const;
@@ -118,7 +118,7 @@ export interface PortfolioProject {
   readonly solution: string;
   readonly responsibilities: readonly string[];
   readonly features: readonly string[];
-  readonly technicalHighlights: readonly string[];
+  readonly architecture: readonly string[];
   readonly challenge: string;
   readonly lesson: string;
   readonly tech: readonly string[];
@@ -156,7 +156,7 @@ export const projects = [
       "Persian RTL reports, imports, and print views",
       "Offline-aware customer and field-visit workflows with queued synchronization",
     ],
-    technicalHighlights: [
+    architecture: [
       "Tenant- and permission-aware frontend structure",
       "Reusable modules across connected business workflows",
       "Persian RTL reporting and print interfaces",
@@ -197,7 +197,7 @@ export const projects = [
       "Tutoring, group classes, homework, and learner progress flows",
       "Content administration and an installable PWA shell with an offline fallback",
     ],
-    technicalHighlights: [
+    architecture: [
       "Locale-based routing for three languages",
       "Shared interface patterns across RTL and LTR layouts",
       "Translation handling with next-intl",
@@ -237,7 +237,7 @@ export const projects = [
       "Live clinic queue updates through a reconnecting WebSocket flow",
       "Billing, inventory, laboratory, reporting, and Persian date and currency handling",
     ],
-    technicalHighlights: [
+    architecture: [
       "Typed API client layer",
       "Role-aware staff workflows",
       "Reconnecting WebSocket updates for the clinic queue",
