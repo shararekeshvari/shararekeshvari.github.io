@@ -72,7 +72,12 @@ export function Navbar() {
   }, []);
 
   return (
-    <header className="navbar-enter fixed inset-x-0 top-0 z-40 px-4 pt-4 sm:px-6">
+    <header
+      className={cn(
+        "navbar-enter fixed inset-x-0 top-0 z-40 px-4 pt-4 transition-colors duration-300 sm:px-6",
+        scrolled && "bg-background",
+      )}
+    >
       <nav
         aria-label="Main navigation"
         className={`mx-auto flex h-14 max-w-7xl items-center justify-between rounded-lg border px-3 transition-all duration-300 sm:px-4 ${

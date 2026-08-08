@@ -10,7 +10,7 @@ export function ExperienceSection() {
     <section
       id="experience"
       aria-labelledby="experience-heading"
-      className="section-shell scroll-mt-24 border-b border-border py-24 sm:py-32"
+      className="section-shell border-b border-border py-24 sm:py-32"
     >
       <Container>
         <Reveal>

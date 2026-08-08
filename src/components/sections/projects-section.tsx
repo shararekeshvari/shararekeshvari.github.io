@@ -9,7 +9,7 @@ export function ProjectsSection() {
     <section
       id="projects"
       aria-labelledby="projects-heading"
-      className="section-shell scroll-mt-24 border-b border-border py-24 sm:py-32"
+      className="section-shell border-b border-border py-24 sm:py-32"
     >
       <Container>
         <Reveal>

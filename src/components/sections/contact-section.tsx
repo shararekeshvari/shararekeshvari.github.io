@@ -17,7 +17,7 @@ export function ContactSection() {
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className="contact-section scroll-mt-24 border-t border-border py-24 sm:py-32"
+      className="contact-section border-t border-border py-24 sm:py-32"
     >
       <Container>
         <Reveal>

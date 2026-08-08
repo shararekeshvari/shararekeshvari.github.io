@@ -8,7 +8,7 @@ export function SkillsSection() {
     <section
       id="skills"
       aria-labelledby="skills-heading"
-      className="section-shell scroll-mt-24 border-b border-border bg-surface py-24 sm:py-32"
+      className="section-shell border-b border-border bg-surface py-24 sm:py-32"
     >
       <Container>
         <Reveal>

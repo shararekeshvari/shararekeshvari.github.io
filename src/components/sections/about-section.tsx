@@ -33,7 +33,7 @@ export function AboutSection() {
     <section
       id="about"
       aria-labelledby="about-heading"
-      className="section-shell scroll-mt-24 border-b border-border py-24 sm:py-32"
+      className="section-shell border-b border-border py-24 sm:py-32"
     >
       <Container>
         <Reveal>
