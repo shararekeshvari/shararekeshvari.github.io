@@ -4,7 +4,7 @@ A responsive, accessible portfolio presenting verified frontend experience and
 product case studies. Built with Next.js, React, TypeScript, Tailwind CSS,
 Framer Motion, and a small set of reusable components.
 
-Production site: `https://shararekeshvari.github.io`
+Production site: `https://shararekeshvari.ir`
 
 ## Local development
 

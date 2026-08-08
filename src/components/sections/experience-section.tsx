@@ -39,7 +39,7 @@ export function ExperienceSection() {
                     <p className="mt-1 text-sm text-muted">{item.company}</p>
                   </div>
                 </div>
-                <div>
+                <div className="pl-7 md:pl-0">
                   <p className="mb-5 flex items-center gap-2 font-mono text-xs text-muted">
                     <CalendarDays aria-hidden="true" size={14} />
                     <time dateTime={item.startDate}>{item.period}</time>

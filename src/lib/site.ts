@@ -1,5 +1,5 @@
 const configuredSiteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://shararekeshvari.github.io";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://shararekeshvari.ir";
 
 export const SITE_URL = configuredSiteUrl.replace(/\/$/, "");
 
