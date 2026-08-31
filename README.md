@@ -1,12 +1,10 @@
-# Sharare Keshvari — Frontend Developer Portfolio
+# Sharare Keshvari Portfolio
 
-A responsive, accessible portfolio presenting verified frontend experience and
-product case studies. Built with Next.js, React, TypeScript, Tailwind CSS,
-Framer Motion, and a small set of reusable components.
+A responsive, dark-first personal portfolio built with Next.js, TypeScript, Tailwind CSS, Framer Motion, Radix UI, and Shadcn-style components.
 
-Production site: `https://shararekeshvari.ir`
+Production domain: `https://shararekeshvari.ir`
 
-## Local development
+## Development
 
 ```bash
 npm install
@@ -15,36 +13,27 @@ npm run dev
 
 Open `http://localhost:3000`.
 
-## Quality checks
+## Production checks
 
 ```bash
 npm run lint
-npm run typecheck
+npx tsc --noEmit
 npm run build
 ```
 
-Run all three with `npm run check`.
+## Static deployment
 
-The production build generates a fully static export in `out/`.
+The portfolio is exported to `out/` by `npm run build`. Upload the contents of
+`out/` to the web root of any static host, such as `public_html` on cPanel or
+DirectAdmin. No Node.js server is required.
 
-## Project structure
+For `shararekeshvari.ir`, configure the domain provider's DNS records or
+nameservers to point to the selected host before enabling HTTPS.
 
-- `src/app/` contains the App Router entry points and metadata routes.
-- `src/components/sections/` contains the portfolio’s major page sections.
-- `src/components/` contains shared interactive and presentation components.
-- `src/data/portfolio.ts` is the source of verified skills, experience, projects,
-  languages, and contact details.
-- `src/lib/site.ts` centralizes the production URL and site description.
+## Updating content
 
-The main navigation follows the page order, and the quick-navigation menu opens
-with `Ctrl+K` or `Command+K`.
+Verified skills, project content, contact links, experience, and education content live in `src/data/portfolio.ts` and `src/components/portfolio.tsx`.
 
-## Content and deployment
+Add new public links only when the URL is verified. Project buttons should appear only when real URLs are available.
 
-Keep unavailable personal details, metrics, and links omitted or clearly marked
-as unavailable. Do not add placeholders that could be mistaken for verified
-experience.
-
-`NEXT_PUBLIC_SITE_URL` controls canonical, Open Graph, sitemap, robots, and
-structured-data URLs. It defaults to the GitHub Pages production origin. The
-included GitHub Actions workflow publishes the static `out/` directory.
+`NEXT_PUBLIC_SITE_URL` defaults to `https://shararekeshvari.ir` so canonical and social metadata resolve to the production domain. Override it only for a different deployment origin.

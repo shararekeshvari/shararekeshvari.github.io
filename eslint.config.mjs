@@ -12,7 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     ".project-previews/**",
+    ".agents/**",
     "artifacts/**",
+    "shararekeshvari.github.io/**",
     "next-env.d.ts",
   ]),
 ]);

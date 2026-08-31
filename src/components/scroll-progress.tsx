@@ -1,45 +1,23 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { motion, useScroll, useSpring } from "framer-motion";
 
 export function ScrollProgress() {
-  const progressRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    let frame = 0;
-
-    const update = () => {
-      frame = 0;
-      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = scrollable > 0 ? window.scrollY / scrollable : 0;
-      if (progressRef.current) {
-        progressRef.current.style.transform = `scaleX(${Math.min(1, Math.max(0, progress))})`;
-      }
-    };
-
-    const requestUpdate = () => {
-      if (!frame) frame = window.requestAnimationFrame(update);
-    };
-
-    update();
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
-
-    return () => {
-      window.removeEventListener("scroll", requestUpdate);
-      window.removeEventListener("resize", requestUpdate);
-      if (frame) window.cancelAnimationFrame(frame);
-    };
-  }, []);
+  const { scrollYProgress } = useScroll();
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 160,
+    damping: 28,
+    restDelta: 0.001,
+  });
 
   return (
     <div
       aria-hidden="true"
-      className="fixed inset-x-0 top-0 z-[70] h-0.5 overflow-hidden bg-transparent"
+      className="fixed right-4 top-1/2 z-40 hidden h-24 w-px -translate-y-1/2 overflow-hidden bg-border lg:block"
     >
-      <div
-        ref={progressRef}
-        className="h-full w-full origin-left scale-x-0 bg-accent will-change-transform"
+      <motion.div
+        className="h-full w-full origin-top bg-accent"
+        style={{ scaleY }}
       />
     </div>
   );

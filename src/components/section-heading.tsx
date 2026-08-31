@@ -1,31 +1,34 @@
 import { cn } from "@/lib/utils";
 
 export function SectionHeading({
-  id,
   index,
   title,
   description,
   className,
+  align = "split",
 }: {
-  id?: string;
   index: string;
   title: string;
   description?: string;
   className?: string;
+  align?: "split" | "wide";
 }) {
   return (
-    <div className={cn("grid gap-5 md:grid-cols-[1fr_1.4fr] md:gap-12", className)}>
+    <div
+      className={cn(
+        "relative grid gap-6 border-t border-border pt-6",
+        align === "split" ? "md:grid-cols-[0.8fr_1.35fr] md:gap-12" : "max-w-5xl",
+        className,
+      )}
+    >
       <div>
-        <p className="mb-3 font-mono text-xs text-accent">{index}</p>
-        <h2
-          id={id}
-          className="text-3xl font-semibold tracking-[-0.035em] text-balance sm:text-5xl"
-        >
+        <p className="mb-4 font-mono text-[11px] uppercase text-accent">{index}</p>
+        <h2 className="font-display text-5xl leading-[0.95] text-balance sm:text-6xl lg:text-7xl">
           {title}
         </h2>
       </div>
       {description ? (
-        <p className="max-w-2xl self-end text-base leading-7 text-muted sm:text-lg">
+        <p className="max-w-2xl self-end text-base leading-7 text-muted sm:text-lg sm:leading-8">
           {description}
         </p>
       ) : null}
