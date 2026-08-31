@@ -1,41 +1,21 @@
-import { Portfolio } from "@/components/portfolio";
+import type { Metadata } from "next";
 
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Sharare Keshvari",
-  jobTitle: "Frontend Developer and Information Technology Student",
-  url: "https://shararekeshvari.ir",
-  email: "mailto:shararekeshvari77@gmail.com",
-  sameAs: ["https://github.com/shararekeshvari"],
-  address: {
-    "@type": "PostalAddress",
-    addressCountry: "Iran",
-  },
-  knowsAbout: [
-    "React",
-    "Next.js",
-    "TypeScript",
-    "JavaScript",
-    "Tailwind CSS",
-    "HTML",
-    "CSS",
-    "Git",
-    "Responsive Design",
-    "REST APIs",
-    "Figma",
-  ],
-  knowsLanguage: ["Persian", "English", "German"],
-};
+import { Portfolio } from "@/components/portfolio";
+import { defaultLocale } from "@/data/portfolio";
+import { createPortfolioMetadata, createStructuredData } from "@/lib/portfolio-seo";
+
+export const metadata: Metadata = createPortfolioMetadata(defaultLocale);
 
 export default function Home() {
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(createStructuredData(defaultLocale)).replace(/</g, "\\u003c"),
+        }}
       />
-      <Portfolio />
+      <Portfolio locale={defaultLocale} />
     </>
   );
 }

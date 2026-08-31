@@ -3,7 +3,7 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-export function InitialLoader() {
+export function InitialLoader({ label = "Loading portfolio" }: { label?: string }) {
   const [visible, setVisible] = useState(true);
   const reduceMotion = useReducedMotion();
 
@@ -39,6 +39,7 @@ export function InitialLoader() {
                 transition={{ duration: reduceMotion ? 0.05 : 0.65, ease: [0.22, 1, 0.36, 1] }}
               />
             </div>
+            <span className="sr-only">{label}</span>
           </div>
         </motion.div>
       ) : null}

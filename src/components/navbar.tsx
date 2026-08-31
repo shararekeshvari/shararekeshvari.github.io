@@ -6,12 +6,23 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { CommandMenu } from "@/components/command-menu";
+import { LanguageSwitcher } from "@/components/language-switcher";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
-import { navigation } from "@/data/portfolio";
+import type { Locale, LocaleOption, NavbarLabels, NavigationItem } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 
-export function Navbar() {
+export function Navbar({
+  currentLocale,
+  labels,
+  localeOptions,
+  navigation,
+}: {
+  currentLocale: Locale;
+  labels: NavbarLabels;
+  localeOptions: readonly LocaleOption[];
+  navigation: readonly NavigationItem[];
+}) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeHref, setActiveHref] = useState("");
@@ -46,7 +57,7 @@ export function Navbar() {
 
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
-  }, []);
+  }, [navigation]);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -73,12 +84,12 @@ export function Navbar() {
         <Link
           href="#top"
           className="flex items-center gap-3 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-          aria-label="SK, Sharare Keshvari, back to top"
+          aria-label={labels.brandAria}
         >
           <span className="grid size-9 place-items-center rounded-md border border-current/20 bg-current/[0.08] font-mono text-xs font-semibold">
             SK
           </span>
-          <span className="hidden text-sm font-semibold sm:inline">Sharare Keshvari</span>
+          <span className="hidden text-sm font-semibold sm:inline">{labels.brandName}</span>
         </Link>
 
         <div className="hidden items-center gap-0.5 rounded-md border border-current/[0.1] bg-current/5 p-1 md:flex">
@@ -98,12 +109,17 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-2">
-          <CommandMenu />
+          <CommandMenu labels={labels.command} navigation={navigation} />
+          <LanguageSwitcher
+            currentLocale={currentLocale}
+            label={labels.language}
+            options={localeOptions}
+          />
           <ThemeToggle />
           <Button
             variant="icon"
             className="md:hidden"
-            aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+            aria-label={menuOpen ? labels.closeNavigation : labels.openNavigation}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((current) => !current)}
           >
@@ -122,9 +138,9 @@ export function Navbar() {
             className="mx-auto mt-2 max-w-7xl overflow-hidden rounded-lg border border-border bg-background/96 p-2 shadow-2xl backdrop-blur-xl md:hidden"
           >
             <div className="border-b border-border px-3 py-3">
-              <p className="font-display text-3xl leading-none">Sharare Keshvari</p>
+              <p className="font-display text-3xl leading-none">{labels.brandName}</p>
               <p className="mt-1 font-mono text-[11px] uppercase text-muted">
-                Frontend Developer - IT Student
+                {labels.roleLine}
               </p>
             </div>
             {navigation.map((item) => (

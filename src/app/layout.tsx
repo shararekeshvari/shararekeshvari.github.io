@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 
 import { ThemeProvider } from "@/components/theme-provider";
+import { languageAlternates } from "@/data/portfolio";
 
 import "./globals.css";
 
@@ -45,7 +46,10 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Sharare Keshvari" }],
   creator: "Sharare Keshvari",
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: "/",
+    languages: languageAlternates,
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -92,9 +96,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable}`}
     >
       <body>
-        <a className="skip-link" href="#main-content">
-          Skip to content
-        </a>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

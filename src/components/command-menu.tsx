@@ -15,7 +15,7 @@ import {
 import { useCallback, useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import { navigation } from "@/data/portfolio";
+import type { CommandMenuLabels, NavigationItem } from "@/data/portfolio";
 
 const destinationIcons = {
   "#projects": FolderKanban,
@@ -25,7 +25,13 @@ const destinationIcons = {
   "#contact": Mail,
 } as const;
 
-export function CommandMenu() {
+export function CommandMenu({
+  labels,
+  navigation,
+}: {
+  labels: CommandMenuLabels;
+  navigation: readonly NavigationItem[];
+}) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -43,7 +49,10 @@ export function CommandMenu() {
   const goTo = useCallback((href: string) => {
     setOpen(false);
     window.setTimeout(() => {
-      document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      document.querySelector(href)?.scrollIntoView({
+        behavior: reduceMotion ? "auto" : "smooth",
+      });
       window.history.replaceState(null, "", href);
     }, 80);
   }, []);
@@ -54,13 +63,13 @@ export function CommandMenu() {
         <Button
           variant="secondary"
           className="hidden min-h-11 min-w-36 justify-between px-3 text-muted lg:inline-flex"
-          aria-label="Open command menu"
+          aria-label={labels.title}
         >
           <span className="flex items-center gap-2">
             <Search aria-hidden="true" size={15} />
-            Navigate
+            {labels.trigger}
           </span>
-          <kbd className="font-mono text-[11px] text-muted">Ctrl K</kbd>
+          <kbd className="font-mono text-[11px] text-muted">{labels.shortcut}</kbd>
         </Button>
       </Dialog.Trigger>
       <Dialog.Portal>
@@ -69,29 +78,29 @@ export function CommandMenu() {
           className="fixed left-1/2 top-[16vh] z-50 w-[calc(100%-2rem)] max-w-xl -translate-x-1/2 overflow-hidden rounded-lg border border-border bg-background/96 shadow-[0_2rem_7rem_rgba(0,0,0,0.42)] backdrop-blur-xl"
           aria-describedby="command-description"
         >
-          <Dialog.Title className="sr-only">Navigate this portfolio</Dialog.Title>
+          <Dialog.Title className="sr-only">{labels.title}</Dialog.Title>
           <Dialog.Description id="command-description" className="sr-only">
-            Choose a section to navigate to.
+            {labels.description}
           </Dialog.Description>
-          <Command label="Portfolio navigation">
+          <Command label={labels.title}>
             <div className="flex h-16 items-center gap-3 border-b border-border px-4">
               <Search aria-hidden="true" className="text-muted" size={18} />
               <Command.Input
                 autoFocus
-                placeholder="Go to a section..."
+                placeholder={labels.placeholder}
                 className="h-full min-w-0 flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted"
               />
               <Dialog.Close asChild>
-                <Button variant="ghost" className="size-9 p-0" aria-label="Close command menu">
+                <Button variant="ghost" className="size-9 p-0" aria-label={labels.close}>
                   <X aria-hidden="true" size={16} />
                 </Button>
               </Dialog.Close>
             </div>
             <Command.List className="max-h-80 overflow-y-auto p-2">
               <Command.Empty className="px-3 py-8 text-center text-sm text-muted">
-                No section found.
+                {labels.empty}
               </Command.Empty>
-              <Command.Group heading="Sections" className="command-group">
+              <Command.Group heading={labels.group} className="command-group">
                 {navigation.map((item, index) => {
                   const Icon = destinationIcons[item.href];
 

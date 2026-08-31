@@ -25,26 +25,36 @@ import { ScrollProgress } from "@/components/scroll-progress";
 import { SectionHeading } from "@/components/section-heading";
 import { buttonVariants } from "@/components/ui/button";
 import {
-  careerGoals,
-  contactItems,
-  educationItems,
-  experience,
-  languageItems,
-  projects,
-  skillGroups,
+  defaultLocale,
+  getPortfolioContent,
+  localeConfig,
+  localeOptions,
+  type Locale,
 } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 
 const contactIcons = [Mail, Globe2, GitBranch];
-const heroProjects = ["Leksuu", "Rekar"]
-  .map((title) => projects.find((project) => project.title === title))
-  .filter((project): project is (typeof projects)[number] => Boolean(project));
 
-export function Portfolio() {
+export function Portfolio({ locale = defaultLocale }: { locale?: Locale }) {
+  const content = getPortfolioContent(locale);
+  const currentLocale = localeConfig[locale];
+  const leksuuProject =
+    content.projects.find((project) => project.title === "Leksuu") ?? content.projects[0];
+  const rekarProject =
+    content.projects.find((project) => project.title === "Rekar") ?? content.projects[1];
+
   return (
-    <>
-      <InitialLoader />
-      <Navbar />
+    <div lang={currentLocale.htmlLang} dir={currentLocale.direction}>
+      <a className="skip-link" href="#main-content">
+        {content.ui.skipToContent}
+      </a>
+      <InitialLoader label={content.ui.loadingPortfolio} />
+      <Navbar
+        currentLocale={locale}
+        labels={content.navbar}
+        localeOptions={localeOptions}
+        navigation={content.navigation}
+      />
       <ScrollProgress />
 
       <main id="main-content">
@@ -75,23 +85,21 @@ export function Portfolio() {
                 <Reveal>
                   <p className="mb-5 flex items-center gap-3 font-mono text-[11px] uppercase text-white/68">
                     <span className="h-px w-10 bg-accent" aria-hidden="true" />
-                    Frontend Developer - IT Student
+                    {content.hero.eyebrow}
                   </p>
                   <h1
                     id="hero-heading"
                     className="text-edge font-display text-7xl leading-[0.84] text-balance sm:text-8xl lg:text-[10rem] xl:text-[11.5rem]"
                   >
-                    Sharare
+                    {content.hero.nameLines[0]}
                     <br />
-                    Keshvari
+                    {content.hero.nameLines[1]}
                   </h1>
                 </Reveal>
 
                 <Reveal delay={0.1}>
                   <p className="mt-7 max-w-2xl text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
-                    I build responsive, user-friendly web interfaces with React, Next.js, and
-                    TypeScript, with a focus on clean implementation and thoughtful user
-                    experience.
+                    {content.hero.summary}
                   </p>
                 </Reveal>
 
@@ -100,7 +108,7 @@ export function Portfolio() {
                     href="#projects"
                     className={cn(buttonVariants({ variant: "primary" }), "border-accent bg-accent text-ink")}
                   >
-                    View projects
+                    {content.hero.primaryAction}
                     <ArrowDown aria-hidden="true" size={16} />
                   </Link>
                   <Link
@@ -110,7 +118,7 @@ export function Portfolio() {
                       "border-white/18 bg-white/8 text-white hover:border-white/38 hover:bg-white/12",
                     )}
                   >
-                    Contact me
+                    {content.hero.secondaryAction}
                     <ArrowUpRight aria-hidden="true" size={16} />
                   </Link>
                   <a
@@ -122,7 +130,7 @@ export function Portfolio() {
                       "border-white/18 bg-white/8 text-white hover:border-white/38 hover:bg-white/12",
                     )}
                   >
-                    GitHub
+                    {content.hero.githubAction}
                     <GitBranch aria-hidden="true" size={16} />
                   </a>
                 </Reveal>
@@ -135,12 +143,12 @@ export function Portfolio() {
                     aria-hidden="true"
                   >
                     <Image
-                      src="/images/sharare-fragment.jpeg"
+                      src="/images/hero-structure.png"
                       alt=""
                       fill
                       loading="eager"
                       sizes="(min-width: 1024px) 28vw, 62vw"
-                      className="object-cover object-[42%_center] opacity-45 mix-blend-luminosity"
+                      className="object-cover object-[34%_center] opacity-[0.42] mix-blend-luminosity"
                     />
                     <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,10,15,0.12),rgba(8,10,15,0.72)),linear-gradient(180deg,transparent,rgba(8,10,15,0.82))]" />
                   </div>
@@ -148,13 +156,13 @@ export function Portfolio() {
                   <div className="hero-fragment hero-proof-panel absolute right-0 top-9 w-[82%] max-w-[36rem] overflow-hidden rounded-lg border border-white/16 bg-white/[0.08] shadow-[0_2rem_6rem_rgba(0,0,0,0.52)] backdrop-blur-md sm:w-[78%] lg:top-10">
                     <div className="flex h-9 items-center justify-between border-b border-white/12 px-3">
                       <span className="font-mono text-[10px] uppercase text-white/60">
-                        {heroProjects[0].title.toLowerCase()}.live
+                        {leksuuProject.title.toLowerCase()}.live
                       </span>
                       <MonitorSmartphone aria-hidden="true" size={14} className="text-accent" />
                     </div>
                     <div className="relative aspect-[16/9]">
                       <Image
-                        src={heroProjects[0].image}
+                        src={leksuuProject.image}
                         alt=""
                         fill
                         loading="eager"
@@ -169,7 +177,7 @@ export function Portfolio() {
                   <div className="hero-fragment absolute bottom-12 right-4 hidden w-[48%] max-w-[20rem] overflow-hidden rounded-lg border border-white/14 bg-white/[0.08] shadow-[0_1.5rem_4rem_rgba(0,0,0,0.42)] backdrop-blur-md sm:block lg:right-8">
                     <div className="relative aspect-[16/10]">
                       <Image
-                        src={heroProjects[1].image}
+                        src={rekarProject.image}
                         alt=""
                         fill
                         loading="eager"
@@ -184,19 +192,19 @@ export function Portfolio() {
                     className="hero-stack-panel absolute bottom-0 left-0 w-[72%] max-w-[24rem] rounded-lg border border-white/12 bg-ink/76 p-4 text-xs leading-5 text-white/72 shadow-[0_1.25rem_4rem_rgba(0,0,0,0.4)] backdrop-blur-xl sm:p-5"
                     aria-hidden="true"
                   >
-                    <p className="font-mono text-[10px] uppercase text-accent">frontend stack</p>
+                    <p className="font-mono text-[10px] uppercase text-accent">
+                      {content.hero.stackLabel}
+                    </p>
                     <div className="mt-4 grid gap-2">
-                      {["React interfaces", "Next.js delivery", "TypeScript components"].map(
-                        (item) => (
-                          <span
-                            key={item}
-                            className="flex items-center justify-between gap-4 border-t border-white/10 pt-2"
-                          >
-                            {item}
-                            <span className="size-1.5 rounded-full bg-accent" />
-                          </span>
-                        ),
-                      )}
+                      {content.hero.stackItems.map((item) => (
+                        <span
+                          key={item}
+                          className="flex items-center justify-between gap-4 border-t border-white/10 pt-2"
+                        >
+                          {item}
+                          <span className="size-1.5 rounded-full bg-accent" />
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -204,9 +212,9 @@ export function Portfolio() {
             </div>
 
             <div className="mt-10 grid gap-3 border-t border-white/14 pt-4 font-mono text-[11px] uppercase text-white/48 sm:grid-cols-3">
-              <span>Iran - Open to remote junior roles</span>
-              <span className="sm:text-center">Persian - English - German</span>
-              <span className="sm:text-right">Selected work below</span>
+              <span>{content.hero.meta[0]}</span>
+              <span className="sm:text-center">{content.hero.meta[1]}</span>
+              <span className="sm:text-right">{content.hero.meta[2]}</span>
             </div>
           </div>
         </section>
@@ -215,16 +223,20 @@ export function Portfolio() {
           <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
             <Reveal>
               <SectionHeading
-                index="WORK / PROJECTS"
-                title="Interfaces with real product weight."
-                description="Selected frontend projects across business operations, language learning, market discovery, and clinic management, with concise scope and verified screenshots where live pages are available."
+                index={content.projectsSection.index}
+                title={content.projectsSection.title}
+                description={content.projectsSection.description}
               />
             </Reveal>
 
             <div className="mt-14 grid gap-7 lg:gap-10">
-              {projects.map((project, index) => (
+              {content.projects.map((project, index) => (
                 <Reveal key={project.title} delay={index * 0.06}>
-                  <ProjectCard {...project} index={index} />
+                  <ProjectCard
+                    {...project}
+                    index={index}
+                    labels={content.projectsSection.cardLabels}
+                  />
                 </Reveal>
               ))}
             </div>
@@ -235,26 +247,44 @@ export function Portfolio() {
           <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
             <Reveal>
               <SectionHeading
-                index="ABOUT / PROFILE"
-                title="Clear interfaces, built with care."
+                index={content.about.index}
+                title={content.about.title}
                 align="wide"
               />
             </Reveal>
 
             <div className="mt-14 grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:gap-16">
               <Reveal>
-                <aside className="border-l border-accent pl-5">
+                <aside
+                  className={cn(
+                    "border-accent",
+                    currentLocale.direction === "rtl" ? "border-r pr-5" : "border-l pl-5",
+                  )}
+                >
+                  <div
+                    className="relative mb-8 aspect-[4/5] max-w-[18rem] overflow-hidden rounded-lg border border-border bg-surface-raised shadow-[0_1.25rem_4rem_rgba(0,0,0,0.16)] dark:shadow-[0_1.25rem_4rem_rgba(0,0,0,0.38)]"
+                    aria-hidden="true"
+                  >
+                    <Image
+                      src="/images/sharare-fragment.jpeg"
+                      alt=""
+                      fill
+                      sizes="(min-width: 1024px) 18rem, 72vw"
+                      className="object-cover object-[42%_center] opacity-70 grayscale mix-blend-luminosity"
+                    />
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_0%,rgba(3,5,10,0.26)_76%,rgba(3,5,10,0.5)_100%)]" />
+                  </div>
                   <p className="font-display text-4xl leading-tight text-balance sm:text-5xl">
-                    I care about the moment where an interface starts to feel obvious.
+                    {content.about.statement}
                   </p>
                   <div className="mt-8 grid gap-4 text-sm text-muted">
                     <div className="flex items-center gap-3">
                       <MapPin aria-hidden="true" size={16} className="text-accent" />
-                      <span>Iran - Open to internships and junior roles</span>
+                      <span>{content.about.facts.location}</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <Languages aria-hidden="true" size={16} className="text-accent" />
-                      <span>Persian - English - German</span>
+                      <span>{content.about.facts.languages}</span>
                     </div>
                   </div>
                 </aside>
@@ -262,20 +292,11 @@ export function Portfolio() {
 
               <Reveal delay={0.08}>
                 <div className="max-w-3xl space-y-6 text-lg leading-8 text-foreground/85 sm:text-xl sm:leading-9">
-                  <p>
-                    I am a Frontend Developer and Information Technology student focused on
-                    building modern, responsive, and user-friendly web applications.
-                  </p>
-                  <p className="text-muted">
-                    I work primarily with React, Next.js, TypeScript, and modern UI tools. I
-                    value clear code, reusable components, thoughtful user experience, and
-                    interfaces that adapt across screen sizes.
-                  </p>
-                  <p className="text-muted">
-                    I am seeking remote internships and junior frontend roles where I can
-                    contribute to real-world products, continue developing my skills, and
-                    collaborate with international teams.
-                  </p>
+                  {content.about.paragraphs.map((paragraph, index) => (
+                    <p key={paragraph} className={index === 0 ? undefined : "text-muted"}>
+                      {paragraph}
+                    </p>
+                  ))}
                 </div>
               </Reveal>
             </div>
@@ -283,7 +304,7 @@ export function Portfolio() {
             <div className="mt-16 grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:gap-14">
               <Reveal>
                 <div className="grid gap-3">
-                  {languageItems.map((item) => (
+                  {content.languageItems.map((item) => (
                     <div
                       key={item.language}
                       className="flex items-baseline justify-between gap-5 border-b border-border py-3"
@@ -297,7 +318,7 @@ export function Portfolio() {
 
               <Reveal delay={0.08}>
                 <div className="grid gap-4 sm:grid-cols-2">
-                  {careerGoals.map((goal) => (
+                  {content.careerGoals.map((goal) => (
                     <div
                       key={goal}
                       className="flex items-start gap-3 border-t border-border pt-4 text-sm leading-6 text-muted"
@@ -316,23 +337,21 @@ export function Portfolio() {
           <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
             <Reveal>
               <SectionHeading
-                index="SKILLS / TOOLKIT"
-                title="A practical frontend toolkit."
-                description="A scannable map of the tools I currently use across interface development, data handling, design systems, and AI-assisted workflows."
+                index={content.skills.index}
+                title={content.skills.title}
+                description={content.skills.description}
               />
             </Reveal>
 
             <div className="mt-14 grid auto-rows-fr gap-4 md:grid-cols-4">
-              {skillGroups.map((group, index) => {
-                const featured = index === 0 || index === 1 || group.title === "UI & Design";
-
+              {content.skillGroups.map((group, index) => {
                 return (
                   <Reveal key={group.title} delay={index * 0.035}>
                     <div
                       className={cn(
                         "skill-module h-full rounded-lg border border-border p-5 transition-[border-color,transform] duration-300 hover:-translate-y-1 hover:border-accent/45",
-                        featured && "md:col-span-2",
-                        group.title === "Frontend Fundamentals" && "md:row-span-2",
+                        group.featured && "md:col-span-2",
+                        group.tall && "md:row-span-2",
                       )}
                     >
                       <div className="mb-8 flex items-start justify-between gap-4">
@@ -343,13 +362,13 @@ export function Portfolio() {
                           <h3
                             className={cn(
                               "font-display leading-none",
-                              featured ? "text-5xl sm:text-6xl" : "text-3xl",
+                              group.featured ? "text-5xl sm:text-6xl" : "text-3xl",
                             )}
                           >
                             {group.skills[0]}
                           </h3>
                         </div>
-                        {featured ? (
+                        {group.featured ? (
                           <Layers3 aria-hidden="true" className="text-accent" size={22} />
                         ) : (
                           <Code2 aria-hidden="true" className="text-muted" size={18} />
@@ -377,39 +396,39 @@ export function Portfolio() {
           <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
             <Reveal>
               <SectionHeading
-                index="EXPERIENCE / REMOTE"
-                title="Professional practice in React teams."
-                description="Remote frontend work focused on responsive interfaces, reusable React components, and TypeScript implementation."
+                index={content.experience.index}
+                title={content.experience.title}
+                description={content.experience.description}
               />
             </Reveal>
 
             <Reveal className="mt-14">
               <article className="relative overflow-hidden rounded-lg border border-border bg-surface-raised p-5 sm:p-8 lg:p-10">
                 <div className="absolute right-8 top-8 hidden font-display text-9xl leading-none text-foreground/[0.04] lg:block">
-                  Work
+                  {content.experience.watermark}
                 </div>
                 <div className="relative grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:gap-14">
                   <div>
                     <div className="mb-6 flex items-center gap-3 font-mono text-[11px] uppercase text-accent">
                       <BriefcaseBusiness aria-hidden="true" size={16} />
-                      {experience.employmentType}
+                      {content.experience.employmentType}
                     </div>
                     <h3 className="font-display text-5xl leading-none sm:text-6xl">
-                      {experience.role}
+                      {content.experience.role}
                     </h3>
-                    <p className="mt-4 text-lg font-medium">{experience.company}</p>
+                    <p className="mt-4 text-lg font-medium">{content.experience.company}</p>
                     <p className="mt-6 flex items-center gap-2 text-sm text-muted">
                       <CalendarDays aria-hidden="true" size={15} />
-                      Started {experience.startDate}
+                      {content.experience.startedLabel} {content.experience.startDate}
                     </p>
                   </div>
 
                   <div>
                     <p className="max-w-2xl text-base leading-7 text-muted sm:text-lg sm:leading-8">
-                      {experience.description}
+                      {content.experience.description}
                     </p>
                     <ul className="mt-7 grid gap-x-8 gap-y-3 sm:grid-cols-2">
-                      {experience.responsibilities.map((responsibility) => (
+                      {content.experience.responsibilities.map((responsibility) => (
                         <li
                           key={responsibility}
                           className="flex items-start gap-3 text-sm leading-6 text-foreground/82"
@@ -424,7 +443,7 @@ export function Portfolio() {
                       ))}
                     </ul>
                     <div className="mt-8 flex flex-wrap gap-2 border-t border-border pt-5">
-                      {experience.tech.map((item) => (
+                      {content.experience.tech.map((item) => (
                         <span
                           key={item}
                           className="rounded border border-border bg-background/45 px-2.5 py-1.5 font-mono text-[11px] text-muted"
@@ -446,11 +465,15 @@ export function Portfolio() {
               <div id="education" className="scroll-mt-24">
                 <div className="mb-8 flex items-center gap-3">
                   <GraduationCap aria-hidden="true" className="text-accent" size={20} />
-                  <p className="font-mono text-[11px] uppercase text-muted">Education</p>
+                  <p className="font-mono text-[11px] uppercase text-muted">
+                    {content.education.label}
+                  </p>
                 </div>
-                <h2 className="font-display text-5xl leading-none sm:text-6xl">Learning path</h2>
+                <h2 className="font-display text-5xl leading-none sm:text-6xl">
+                  {content.education.title}
+                </h2>
                 <div className="mt-8 grid gap-4 md:grid-cols-2">
-                  {educationItems.map((item) => (
+                  {content.education.items.map((item) => (
                     <article
                       key={item.degree}
                       className="rounded-lg border border-border bg-background/55 p-5"
@@ -474,28 +497,27 @@ export function Portfolio() {
           <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
             <Reveal>
               <p className="mb-6 font-mono text-[11px] uppercase text-accent">
-                Contact / Next step
+                {content.contact.eyebrow}
               </p>
               <div className="grid gap-10 lg:grid-cols-[1.22fr_0.78fr] lg:gap-16">
                 <div>
                   <h2 className="contact-statement font-display text-6xl leading-[0.9] sm:text-8xl lg:text-[9.5rem]">
-                    Let&apos;s build something clear and useful.
+                    {content.contact.title}
                   </h2>
                   <p className="mt-8 max-w-2xl text-base leading-7 text-muted sm:text-lg sm:leading-8">
-                    I am open to remote internships, junior frontend roles, and opportunities
-                    to collaborate with international teams. Email is the best way to reach me.
+                    {content.contact.description}
                   </p>
                   <Link
                     href="mailto:shararekeshvari77@gmail.com"
                     className={cn(buttonVariants({ variant: "primary" }), "mt-8")}
                   >
-                    Email Sharare
+                    {content.contact.emailAction}
                     <Mail aria-hidden="true" size={16} />
                   </Link>
                 </div>
 
                 <div className="self-end border-t border-border">
-                  {contactItems.map((item, index) => {
+                  {content.contactItems.map((item, index) => {
                     const Icon = contactIcons[index];
 
                     return (
@@ -509,7 +531,9 @@ export function Portfolio() {
                         <Icon aria-hidden="true" className="text-accent" size={18} />
                         <div className="min-w-0 flex-1">
                           <p className="text-xs text-muted">{item.label}</p>
-                          <p className="mt-1 break-words text-sm font-medium">{item.value}</p>
+                          <p className="contact-value mt-1 break-words text-sm font-medium">
+                            {item.value}
+                          </p>
                         </div>
                         <ArrowUpRight aria-hidden="true" className="text-muted/60" size={17} />
                       </a>
@@ -524,10 +548,10 @@ export function Portfolio() {
 
       <footer className="border-t border-border py-7">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 text-xs text-muted sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-10">
-          <p>Sharare Keshvari - Frontend Developer - Information Technology Student</p>
-          <p>React - Next.js - TypeScript</p>
+          <p>{content.footer.identity}</p>
+          <p>{content.footer.stack}</p>
         </div>
       </footer>
-    </>
+    </div>
   );
 }

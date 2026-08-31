@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Check, ExternalLink } from "lucide-react";
 import Image from "next/image";
 
+import type { ProjectCardLabels } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 
 const toneClassByTitle: Record<string, string> = {
@@ -24,6 +25,7 @@ export function ProjectCard({
   imageAlt,
   liveUrl,
   index = 0,
+  labels,
 }: {
   slot: string;
   category: string;
@@ -35,6 +37,7 @@ export function ProjectCard({
   imageAlt: string;
   liveUrl?: string;
   index?: number;
+  labels: ProjectCardLabels;
 }) {
   const reduceMotion = useReducedMotion();
   const reversed = index % 2 === 1;
@@ -70,7 +73,7 @@ export function ProjectCard({
               aria-hidden="true"
             />
             <p className="font-mono text-[11px] uppercase text-[color:var(--project-accent)]">
-              Project {slot} / {category}
+              {labels.project} {slot} / {category}
             </p>
           </div>
 
@@ -117,7 +120,7 @@ export function ProjectCard({
                 className="inline-flex min-h-11 items-center gap-2 rounded border border-[color:var(--project-accent)] bg-[var(--project-accent)] px-3 text-sm font-medium text-ink transition-colors hover:bg-[var(--project-accent-hover)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 <ExternalLink aria-hidden="true" size={15} />
-                Visit live site
+                {labels.visitLiveSite}
               </a>
             </div>
           ) : null}
@@ -132,7 +135,7 @@ export function ProjectCard({
                 <span className="size-2.5 rounded-full bg-signal-mint" />
               </div>
               <p className="font-mono text-[10px] uppercase text-muted">
-                {title.toLowerCase()}.interface
+                {title.toLowerCase()}.{labels.interfaceLabel}
               </p>
             </div>
             <div className="relative aspect-[16/10] bg-project sm:aspect-[16/9]">
@@ -154,7 +157,7 @@ export function ProjectCard({
             )}
             aria-hidden="true"
           >
-            responsive surface
+            {labels.responsiveSurface}
           </div>
         </div>
       </div>
