@@ -167,11 +167,11 @@ export const projects = [
     lesson:
       "Complex operational products benefit from reusable, permission-aware interface patterns and consistent navigation.",
     tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Zod", "Dexie"],
-    image: "/images/projects/rekar.webp",
+    image: "/images/projects/rekar.png",
     imageAlt: "Rekar Persian accounting platform landing page",
     liveUrl: "https://rekar.ir",
     liveLabel: "Visit Rekar",
-    sourceNote: "Source code isn’t public",
+    sourceNote: "Source code is not public",
   },
   {
     id: "leksuu",
@@ -208,15 +208,55 @@ export const projects = [
     lesson:
       "Localization is more reliable when locale, text direction, and shared design tokens are architectural concerns.",
     tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "next-intl"],
-    image: "/images/projects/leksuu.webp",
-    imageAlt: "Leksuu Persian language-learning platform landing page",
-    liveUrl: "https://leksuu.ir",
+    image: "/images/projects/leksuu.png",
+    imageAlt: "Leksuu English language-learning platform landing page",
+    liveUrl: "https://leksuu.ir/en",
     liveLabel: "Visit Leksuu",
-    sourceNote: "Source code isn’t public",
+    sourceNote: "Source code is not public",
+  },
+  {
+    id: "nerkhin",
+    slot: "03",
+    category: "Market platform",
+    title: "Nerkhin",
+    summary:
+      "A Persian RTL marketplace and price-discovery platform for the home-appliance trade.",
+    overview:
+      "Nerkhin connects wholesalers and retailers with product search, comparison, offers, account flows, and admin operations in a Persian RTL interface.",
+    problem:
+      "Appliance-market users need a clearer way to discover prices, compare products, and manage trade workflows without jumping between fragmented tools.",
+    solution:
+      "A marketplace frontend that brings product discovery, comparison, account flows, chat, notifications, and admin tools into one RTL product experience.",
+    responsibilities: [
+      "Part-time frontend development",
+      "Maintenance of existing product interface areas",
+      "Collaboration with members of the Rekar development team",
+    ],
+    features: [
+      "Wholesale and retail marketplace flows",
+      "Product search, filtering, comparison, and offer discovery",
+      "Account, chat, notification, and administrative workflows",
+      "Persian RTL layouts for mobile and desktop users",
+    ],
+    architecture: [
+      "Next.js frontend structure",
+      "Reusable marketplace UI patterns",
+      "Persian RTL layout system",
+      "Authentication-aware account flows",
+    ],
+    challenge:
+      "Keeping search, comparison, communication, and admin tasks understandable inside one marketplace surface.",
+    lesson:
+      "Marketplace interfaces need tight information hierarchy so users can compare, decide, and act without losing context.",
+    tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "NextAuth"],
+    image: "/images/projects/nerkhin.svg",
+    imageAlt: "Nerkhin mobile marketplace interface preview",
+    liveNote: "No public demo",
+    sourceNote: "Source code is not public",
   },
   {
     id: "dentia",
-    slot: "03",
+    slot: "04",
     category: "Clinic operations",
     title: "Dentia",
     summary:
@@ -251,7 +291,7 @@ export const projects = [
     image: "/images/projects/dentia.webp",
     imageAlt: "Dentia Persian dental clinic platform landing page",
     liveNote: "No public demo",
-    sourceNote: "Source code isn’t public",
+    sourceNote: "Source code is not public",
   },
 ] as const satisfies readonly PortfolioProject[];
 

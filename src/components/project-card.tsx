@@ -31,7 +31,11 @@ function DetailList({ items }: { items: readonly string[] }) {
     <ul className="mt-4 space-y-3">
       {items.map((item) => (
         <li key={item} className="flex items-start gap-2.5 text-sm leading-6 text-foreground/78">
-          <Check aria-hidden="true" className="mt-1 shrink-0 text-accent" size={14} />
+          <Check
+            aria-hidden="true"
+            className="mt-1 shrink-0 text-[color:var(--project-accent-readable)]"
+            size={14}
+          />
           <span>{item}</span>
         </li>
       ))}
@@ -51,7 +55,10 @@ export function ProjectCard({
   return (
     <article
       aria-labelledby={headingId}
-      className="project-card group overflow-hidden rounded-2xl border border-border bg-surface-raised shadow-[0_24px_80px_-58px_rgba(0,0,0,0.85)] transition-[border-color,box-shadow,transform] duration-300 motion-safe:hover:-translate-y-0.5 hover:border-foreground/20 hover:shadow-[0_30px_90px_-56px_rgba(0,0,0,0.85)]"
+      className={cn(
+        "project-card group overflow-hidden rounded-2xl border border-border bg-surface-raised shadow-[0_24px_80px_-58px_rgba(0,0,0,0.85)] transition-[border-color,box-shadow,transform] duration-300 motion-safe:hover:-translate-y-0.5 hover:border-foreground/20 hover:shadow-[0_30px_90px_-56px_rgba(0,0,0,0.85)]",
+        `project-card-${project.id}`,
+      )}
     >
       <div className="grid lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
         <div
@@ -84,7 +91,7 @@ export function ProjectCard({
         <div className="flex flex-col p-6 sm:p-8 lg:p-10">
           <header className="flex items-start justify-between gap-5">
             <div>
-              <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
+              <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-[color:var(--project-accent-readable)]">
                 {project.category}
               </p>
               <h3 id={headingId} className="text-3xl font-semibold tracking-[-0.035em] sm:text-4xl">
@@ -117,7 +124,7 @@ export function ProjectCard({
           <CaseStudySection
             id={`${project.id}-responsibilities`}
             label="Responsibilities"
-            className="mt-7 rounded-xl border border-accent/20 bg-accent/[0.04] p-5"
+            className="mt-7 rounded-xl border border-[color:var(--project-accent)] bg-[var(--project-accent-soft)] p-5"
           >
             <DetailList items={project.responsibilities} />
           </CaseStudySection>
@@ -168,7 +175,15 @@ export function ProjectCard({
               <h4 id={`${project.id}-live-demo`} className="case-study-label">Live demo</h4>
               <div className="mt-3">
                 {project.liveUrl && project.liveLabel ? (
-                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className={buttonVariants({ variant: "ghost" })}>
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn(
+                      buttonVariants({ variant: "ghost" }),
+                      "border-[color:var(--project-accent)] bg-[var(--project-accent)] text-black hover:bg-[var(--project-accent-hover)] hover:text-black",
+                    )}
+                  >
                     {project.liveLabel}
                     <ArrowUpRight aria-hidden="true" size={16} />
                     <span className="sr-only"> (opens in a new tab)</span>

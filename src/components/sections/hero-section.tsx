@@ -1,15 +1,17 @@
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowUpRight, GitBranch } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 import { Reveal } from "@/components/reveal";
 import { buttonVariants } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import { GITHUB_URL } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 const professionalSummary = [
   { label: "Experience", value: "4+ Years" },
   { label: "Projects", value: "4" },
-  { label: "Stack", value: "React · Next.js" },
+  { label: "Stack", value: "React / Next.js" },
   { label: "Current", value: "Building Leksuu" },
 ] as const;
 
@@ -33,7 +35,7 @@ export function HeroSection() {
                 className="size-1.5 rounded-full bg-[#86e4bf] shadow-[0_0_0_4px_rgba(134,228,191,0.1)]"
                 aria-hidden="true"
               />
-              Sharare Keshvari <span aria-hidden="true">·</span> Frontend Developer
+              Sharare Keshvari <span aria-hidden="true">/</span> Frontend Developer
             </p>
             <h1
               id="hero-heading"
@@ -71,45 +73,72 @@ export function HeroSection() {
               Contact Me
               <ArrowUpRight aria-hidden="true" size={16} />
             </Link>
+            <a
+              href={GITHUB_URL}
+              target="_blank"
+              rel="noreferrer"
+              className={cn(
+                buttonVariants({ variant: "secondary" }),
+                "border-white/20 bg-white/[0.04] text-white hover:border-white/40 hover:bg-white/[0.08]",
+              )}
+            >
+              GitHub
+              <GitBranch aria-hidden="true" size={16} />
+            </a>
           </Reveal>
         </div>
 
         <Reveal initiallyVisible className="relative w-full max-w-xl xl:justify-self-end">
           <aside
             aria-label="Professional summary"
-            className="hero-summary-card relative rounded-2xl border border-white/14 bg-white/[0.045] p-5 shadow-[0_40px_120px_-55px_rgba(0,0,0,0.95)] backdrop-blur-sm sm:p-7"
+            className="hero-summary-card relative overflow-hidden rounded-2xl border border-white/14 bg-white/[0.045] p-5 shadow-[0_40px_120px_-55px_rgba(0,0,0,0.95)] backdrop-blur-sm sm:p-7"
           >
-            <div className="border-b border-white/12 pb-5">
-              <p className="text-sm font-medium tracking-[-0.01em] text-white">
-                Available for Remote Work
-              </p>
-            </div>
+            <Image
+              src="/images/sharare-fragment.jpeg"
+              alt=""
+              fill
+              sizes="(min-width: 1280px) 28rem, 100vw"
+              className="object-cover object-[44%_38%] opacity-[0.16] grayscale contrast-125 mix-blend-luminosity"
+              aria-hidden="true"
+            />
+            <div
+              className="absolute inset-0 bg-[linear-gradient(135deg,rgba(8,9,8,0.9),rgba(8,9,8,0.5)_54%,rgba(8,9,8,0.86))]"
+              aria-hidden="true"
+            />
 
-            <dl className="divide-y divide-white/10">
-              {professionalSummary.map((item) => (
-                <div
-                  key={item.label}
-                  className="hero-summary-row grid grid-cols-[minmax(6rem,0.72fr)_minmax(0,1fr)] items-baseline gap-4 py-4"
-                >
-                  <dt className="font-mono text-[10px] uppercase tracking-[0.12em] text-white/46">
-                    {item.label}
-                  </dt>
-                  <dd className="text-right text-sm font-medium text-white/84">{item.value}</dd>
-                </div>
-              ))}
-            </dl>
+            <div className="relative">
+              <div className="border-b border-white/12 pb-5">
+                <p className="text-sm font-medium tracking-[-0.01em] text-white">
+                  Available for Remote Work
+                </p>
+              </div>
 
-            <div className="flex items-center justify-between gap-4 border-t border-white/12 pt-5">
-              <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-white/46">
-                Status
-              </span>
-              <span className="inline-flex items-center gap-2 text-sm font-medium text-white">
-                <span
-                  className="size-2 rounded-full bg-[#86e4bf] shadow-[0_0_0_4px_rgba(134,228,191,0.1)]"
-                  aria-hidden="true"
-                />
-                Open to Work
-              </span>
+              <dl className="divide-y divide-white/10">
+                {professionalSummary.map((item) => (
+                  <div
+                    key={item.label}
+                    className="hero-summary-row grid grid-cols-[minmax(6rem,0.72fr)_minmax(0,1fr)] items-baseline gap-4 py-4"
+                  >
+                    <dt className="font-mono text-[10px] uppercase tracking-[0.12em] text-white/46">
+                      {item.label}
+                    </dt>
+                    <dd className="text-right text-sm font-medium text-white/84">{item.value}</dd>
+                  </div>
+                ))}
+              </dl>
+
+              <div className="flex items-center justify-between gap-4 border-t border-white/12 pt-5">
+                <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-white/46">
+                  Status
+                </span>
+                <span className="inline-flex items-center gap-2 text-sm font-medium text-white">
+                  <span
+                    className="size-2 rounded-full bg-[#86e4bf] shadow-[0_0_0_4px_rgba(134,228,191,0.1)]"
+                    aria-hidden="true"
+                  />
+                  Open to Work
+                </span>
+              </div>
             </div>
           </aside>
         </Reveal>
