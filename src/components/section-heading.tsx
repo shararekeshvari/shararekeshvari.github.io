@@ -23,7 +23,7 @@ export function SectionHeading({
     >
       <div>
         <p className="mb-4 font-mono text-[11px] uppercase text-accent">{index}</p>
-        <h2 className="font-display text-5xl leading-[0.95] text-balance sm:text-6xl lg:text-7xl">
+        <h2 className="section-title font-display text-5xl leading-[0.95] text-balance sm:text-6xl lg:text-7xl">
           {title}
         </h2>
       </div>

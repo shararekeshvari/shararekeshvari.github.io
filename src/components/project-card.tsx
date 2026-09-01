@@ -77,7 +77,7 @@ export function ProjectCard({
             </p>
           </div>
 
-          <h3 className="font-display text-6xl leading-none text-balance sm:text-7xl lg:text-8xl">
+          <h3 className="project-title font-display text-6xl leading-none text-balance sm:text-7xl lg:text-8xl">
             {title}
           </h3>
           <p className="mt-6 max-w-xl text-base leading-7 text-muted sm:text-lg sm:leading-8">

@@ -158,6 +158,81 @@ select {
   font-weight: 700;
 }
 
+:where([lang="fa"], [lang="ku"], [lang="ar"]) :where(.hero-title, .section-title, .project-title, .profile-statement, .skill-title, .experience-title, .education-title, .contact-statement) {
+  overflow-wrap: anywhere;
+}
+
+:where([lang="fa"], [lang="ku"], [lang="ar"]) .hero-title {
+  font-size: clamp(4.5rem, 10vw, 8.75rem);
+  line-height: 0.98;
+}
+
+:where([lang="fa"], [lang="ku"], [lang="ar"]) .section-title {
+  font-size: clamp(2.5rem, 4.7vw, 3.65rem);
+  line-height: 1.12;
+}
+
+:where([lang="fa"], [lang="ku"], [lang="ar"]) .project-title {
+  font-size: clamp(3.25rem, 6vw, 4.85rem);
+  line-height: 1.02;
+}
+
+:where([lang="fa"], [lang="ku"], [lang="ar"]) .profile-statement {
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  line-height: 1.28;
+}
+
+:where([lang="fa"], [lang="ku"], [lang="ar"]) .skill-title.text-5xl {
+  font-size: clamp(2.6rem, 4.2vw, 3.2rem);
+  line-height: 1.12;
+}
+
+:where([lang="fa"], [lang="ku"], [lang="ar"]) .experience-title,
+:where([lang="fa"], [lang="ku"], [lang="ar"]) .education-title {
+  font-size: clamp(2.35rem, 4.4vw, 3.2rem);
+  line-height: 1.12;
+}
+
+:where([lang="fa"], [lang="ku"], [lang="ar"]) .contact-statement {
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 1.08;
+}
+
+@media (max-width: 639px) {
+  :where([lang="fa"], [lang="ku"], [lang="ar"]) .hero-title {
+    font-size: clamp(3.75rem, 15vw, 4.25rem);
+    line-height: 0.96;
+  }
+
+  :where([lang="fa"], [lang="ku"], [lang="ar"]) .section-title {
+    font-size: clamp(2.35rem, 10.5vw, 2.75rem);
+    line-height: 1.16;
+  }
+
+  :where([lang="fa"], [lang="ku"], [lang="ar"]) .project-title {
+    font-size: clamp(2.75rem, 11.5vw, 3.25rem);
+    line-height: 1.05;
+  }
+
+  :where([lang="fa"], [lang="ku"], [lang="ar"]) .profile-statement {
+    font-size: clamp(2rem, 9vw, 2.5rem);
+  }
+
+  :where([lang="fa"], [lang="ku"], [lang="ar"]) .skill-title.text-5xl {
+    font-size: clamp(2.35rem, 10vw, 2.85rem);
+  }
+
+  :where([lang="fa"], [lang="ku"], [lang="ar"]) .experience-title,
+  :where([lang="fa"], [lang="ku"], [lang="ar"]) .education-title {
+    font-size: clamp(2.2rem, 9.5vw, 2.7rem);
+  }
+
+  :where([lang="fa"], [lang="ku"], [lang="ar"]) .contact-statement {
+    font-size: clamp(2.5rem, 11.5vw, 3rem);
+    line-height: 1.16;
+  }
+}
+
 .text-edge {
   text-shadow: 0 1.25rem 4rem color-mix(in srgb, var(--ink) 42%, transparent);
 }

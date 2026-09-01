@@ -12,6 +12,7 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     ".project-previews/**",
+    ".tmp-*/**",
     ".agents/**",
     "artifacts/**",
     "shararekeshvari.github.io/**",

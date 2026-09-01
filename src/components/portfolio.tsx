@@ -89,7 +89,7 @@ export function Portfolio({ locale = defaultLocale }: { locale?: Locale }) {
                   </p>
                   <h1
                     id="hero-heading"
-                    className="text-edge font-display text-7xl leading-[0.84] text-balance sm:text-8xl lg:text-[10rem] xl:text-[11.5rem]"
+                    className="hero-title text-edge font-display text-7xl leading-[0.84] text-balance sm:text-8xl lg:text-[10rem] xl:text-[11.5rem]"
                   >
                     {content.hero.nameLines[0]}
                     <br />
@@ -274,7 +274,7 @@ export function Portfolio({ locale = defaultLocale }: { locale?: Locale }) {
                     />
                     <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_0%,rgba(3,5,10,0.26)_76%,rgba(3,5,10,0.5)_100%)]" />
                   </div>
-                  <p className="font-display text-4xl leading-tight text-balance sm:text-5xl">
+                  <p className="profile-statement font-display text-4xl leading-tight text-balance sm:text-5xl">
                     {content.about.statement}
                   </p>
                   <div className="mt-8 grid gap-4 text-sm text-muted">
@@ -361,7 +361,7 @@ export function Portfolio({ locale = defaultLocale }: { locale?: Locale }) {
                           </p>
                           <h3
                             className={cn(
-                              "font-display leading-none",
+                              "skill-title font-display leading-none",
                               group.featured ? "text-5xl sm:text-6xl" : "text-3xl",
                             )}
                           >
@@ -413,7 +413,7 @@ export function Portfolio({ locale = defaultLocale }: { locale?: Locale }) {
                       <BriefcaseBusiness aria-hidden="true" size={16} />
                       {content.experience.employmentType}
                     </div>
-                    <h3 className="font-display text-5xl leading-none sm:text-6xl">
+                    <h3 className="experience-title font-display text-5xl leading-none sm:text-6xl">
                       {content.experience.role}
                     </h3>
                     <p className="mt-4 text-lg font-medium">{content.experience.company}</p>
@@ -469,7 +469,7 @@ export function Portfolio({ locale = defaultLocale }: { locale?: Locale }) {
                     {content.education.label}
                   </p>
                 </div>
-                <h2 className="font-display text-5xl leading-none sm:text-6xl">
+                <h2 className="education-title font-display text-5xl leading-none sm:text-6xl">
                   {content.education.title}
                 </h2>
                 <div className="mt-8 grid gap-4 md:grid-cols-2">
