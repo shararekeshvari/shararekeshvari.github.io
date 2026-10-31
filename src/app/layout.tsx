@@ -25,7 +25,7 @@ const anton = Anton({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://shararekeshvari.github.io";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://shararekeshvari.ir";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

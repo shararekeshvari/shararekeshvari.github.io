@@ -1,4 +1,4 @@
-name: Deploy portfolio to GitHub Pages
+name: Deploy portfolio
 
 on:
   push:
@@ -37,7 +37,15 @@ jobs:
       - name: Build static site
         run: npm run build
         env:
-          NEXT_PUBLIC_SITE_URL: https://shararekeshvari.github.io
+          NEXT_PUBLIC_SITE_URL: https://shararekeshvari.ir
+
+      - name: Upload server release
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-static
+          path: ./out
+          if-no-files-found: error
+          retention-days: 7
 
       - name: Upload static site
         uses: actions/upload-pages-artifact@v4
@@ -54,3 +62,34 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  deploy-server:
+    name: Deploy to shararekeshvari.ir
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: production
+      url: https://shararekeshvari.ir
+    steps:
+      - name: Check out deployment script
+        uses: actions/checkout@v6
+
+      - name: Download static release
+        uses: actions/download-artifact@v5
+        with:
+          name: portfolio-static
+          path: ./out
+
+      - name: Configure deployment SSH key
+        env:
+          PORTFOLIO_DEPLOY_KEY: ${{ secrets.PORTFOLIO_DEPLOY_KEY }}
+        run: |
+          test -n "$PORTFOLIO_DEPLOY_KEY"
+          install -m 700 -d "$HOME/.ssh"
+          printf '%s\n' "$PORTFOLIO_DEPLOY_KEY" > "$HOME/.ssh/id_ed25519_portfolio"
+          chmod 600 "$HOME/.ssh/id_ed25519_portfolio"
+          cp deploy/known_hosts "$HOME/.ssh/known_hosts"
+          chmod 600 "$HOME/.ssh/known_hosts"
+
+      - name: Publish release to server
+        run: bash deploy/publish.sh

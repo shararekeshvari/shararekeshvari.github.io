@@ -1,0 +1,13 @@
+https://shararekeshvari.ir {
+    encode zstd gzip
+    reverse_proxy sharare-portfolio-web:80
+}
+
+http://shararekeshvari.ir {
+    encode zstd gzip
+    reverse_proxy sharare-portfolio-web:80
+}
+
+https://www.shararekeshvari.ir, http://www.shararekeshvari.ir {
+    redir https://shararekeshvari.ir{uri} permanent
+}

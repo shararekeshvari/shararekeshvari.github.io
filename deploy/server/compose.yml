@@ -1,0 +1,20 @@
+services:
+  web:
+    image: caddy:2-alpine
+    container_name: sharare-portfolio-web
+    restart: unless-stopped
+    command: ["caddy", "file-server", "--root", "/srv/portfolio/current", "--listen", ":80"]
+    volumes:
+      - /srv/sharare-portfolio:/srv/portfolio:ro
+    networks:
+      - selin
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1/"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  selin:
+    external: true
+    name: selin_default
