@@ -7,7 +7,7 @@ import {
   type Locale,
 } from "@/data/portfolio";
 
-const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://shararekeshvari.ir").replace(
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://shararekeshvari.github.io").replace(
   /\/$/,
   "",
 );

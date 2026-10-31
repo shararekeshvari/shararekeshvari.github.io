@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Anton, Geist, Geist_Mono } from "next/font/google";
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { languageAlternates } from "@/data/portfolio";
@@ -18,28 +18,27 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument-serif",
+const anton = Anton({
+  variable: "--font-anton",
   subsets: ["latin"],
   weight: "400",
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://shararekeshvari.ir";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://shararekeshvari.github.io";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Sharare Keshvari - Frontend Developer & IT Student",
+    default: "Sharare Keshvari | Frontend Developer",
     template: "%s - Sharare Keshvari",
   },
   description:
-    "Frontend Developer and Information Technology student focused on responsive web interfaces built with React, Next.js, and TypeScript.",
+    "Sharare Keshvari builds responsive web experiences with React, Next.js and TypeScript. Explore selected projects and get in touch.",
   keywords: [
     "Sharare Keshvari",
     "Frontend Developer",
-    "Information Technology Student",
-    "Junior Frontend Developer",
+    "Web Developer",
     "React Developer",
     "Next.js Developer",
     "TypeScript",
@@ -54,9 +53,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "/",
-    title: "Sharare Keshvari - Frontend Developer & IT Student",
+    title: "Sharare Keshvari | Frontend Developer",
     description:
-      "Frontend Developer and Information Technology student focused on responsive web interfaces built with React, Next.js, and TypeScript.",
+      "Sharare Keshvari builds responsive web experiences with React, Next.js and TypeScript. Explore selected projects and get in touch.",
     siteName: "Sharare Keshvari Portfolio",
     images: [
       {
@@ -69,9 +68,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sharare Keshvari - Frontend Developer & IT Student",
+    title: "Sharare Keshvari | Frontend Developer",
     description:
-      "Frontend Developer and IT student focused on responsive interfaces built with React, Next.js, and TypeScript.",
+      "Sharare Keshvari builds responsive web experiences with React, Next.js and TypeScript. Explore selected projects and get in touch.",
     images: ["/images/hero-structure.png"],
   },
   robots: {
@@ -83,8 +82,8 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   colorScheme: "dark light",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f7f8fa" },
-    { media: "(prefers-color-scheme: dark)", color: "#080a0f" },
+    { media: "(prefers-color-scheme: light)", color: "#f0eee5" },
+    { media: "(prefers-color-scheme: dark)", color: "#252724" },
   ],
 };
 
@@ -93,7 +92,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable}`}
+      className={`${geistSans.variable} ${geistMono.variable} ${anton.variable}`}
     >
       <body>
         <ThemeProvider>{children}</ThemeProvider>

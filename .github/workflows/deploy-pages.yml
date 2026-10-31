@@ -37,7 +37,7 @@ jobs:
       - name: Build static site
         run: npm run build
         env:
-          NEXT_PUBLIC_SITE_URL: https://shararekeshvari.ir
+          NEXT_PUBLIC_SITE_URL: https://shararekeshvari.github.io
 
       - name: Upload static site
         uses: actions/upload-pages-artifact@v4

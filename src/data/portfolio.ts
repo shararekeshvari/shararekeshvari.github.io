@@ -1,3 +1,6 @@
+import { featuredProjects, featuredProjectDescriptions } from "@/data/featured-projects";
+import { editorialCopy } from "@/data/editorial-copy";
+
 export const locales = ["en", "de", "fr", "tr", "fa", "ku", "ar"] as const;
 
 export type Locale = (typeof locales)[number];
@@ -129,6 +132,8 @@ export type ProjectItem = {
   image: string;
   imageAlt: string;
   liveUrl?: string;
+  siteUrl?: string;
+  previewNote?: string;
 };
 
 export type ContactItem = {
@@ -303,14 +308,13 @@ export const portfolioContent = {
   en: {
     locale: "en",
     metadata: {
-      title: "Sharare Keshvari - Frontend Developer & IT Student",
-      description:
-        "Frontend Developer and Information Technology student focused on responsive web interfaces built with React, Next.js, and TypeScript.",
+      title: editorialCopy.en.title,
+      description: editorialCopy.en.description,
       ogLocale: "en_US",
       imageAlt: "Dimensional structure used in Sharare Keshvari's frontend portfolio",
     },
     structuredData: {
-      jobTitle: "Frontend Developer and Information Technology Student",
+      jobTitle: editorialCopy.en.role,
       addressCountry: "Iran",
       knowsLanguage: ["Persian", "English", "German"],
     },
@@ -321,7 +325,7 @@ export const portfolioContent = {
     navbar: {
       brandAria: "SK, Sharare Keshvari, back to top",
       brandName: "Sharare Keshvari",
-      roleLine: "Frontend Developer - IT Student",
+      roleLine: editorialCopy.en.role,
       openNavigation: "Open navigation",
       closeNavigation: "Close navigation",
       language: "Language",
@@ -344,7 +348,7 @@ export const portfolioContent = {
       { label: "Contact", href: "#contact" },
     ],
     hero: {
-      eyebrow: "Frontend Developer - IT Student",
+      eyebrow: editorialCopy.en.role,
       nameLines: ["Sharare", "Keshvari"],
       summary:
         "I build responsive, user-friendly web interfaces with React, Next.js, and TypeScript, with a focus on clean implementation and thoughtful user experience.",
@@ -380,7 +384,7 @@ export const portfolioContent = {
         languages: "Persian - English - German",
       },
       paragraphs: [
-        "I am a Frontend Developer and Information Technology student focused on building modern, responsive, and user-friendly web applications.",
+        editorialCopy.en.aboutParagraphs[0],
         "I work primarily with React, Next.js, TypeScript, and modern UI tools. I value clear code, reusable components, thoughtful user experience, and interfaces that adapt across screen sizes.",
         "I am seeking remote internships and junior frontend roles where I can contribute to real-world products, continue developing my skills, and collaborate with international teams.",
       ],
@@ -416,11 +420,6 @@ export const portfolioContent = {
       title: "Learning path",
       items: [
         {
-          degree: "Bachelor of Information Technology Engineering",
-          status: "In progress",
-          date: "Expected graduation: 2027",
-        },
-        {
           degree: "Associate Degree in Software Engineering",
           status: "Previous degree",
         },
@@ -434,7 +433,7 @@ export const portfolioContent = {
       emailAction: "Email Sharare",
     },
     footer: {
-      identity: "Sharare Keshvari - Frontend Developer - Information Technology Student",
+      identity: editorialCopy.en.role,
       stack: "React - Next.js - TypeScript",
     },
     skillGroups: [
@@ -550,14 +549,13 @@ export const portfolioContent = {
   de: {
     locale: "de",
     metadata: {
-      title: "Sharare Keshvari - Frontend-Entwicklerin & IT-Studentin",
-      description:
-        "Frontend-Entwicklerin und IT-Studentin mit Fokus auf responsive Weboberflächen mit React, Next.js und TypeScript.",
+      title: editorialCopy.de.title,
+      description: editorialCopy.de.description,
       ogLocale: "de_DE",
       imageAlt: "Räumliche Struktur im Frontend-Portfolio von Sharare Keshvari",
     },
     structuredData: {
-      jobTitle: "Frontend-Entwicklerin und IT-Studentin",
+      jobTitle: editorialCopy.de.role,
       addressCountry: "Iran",
       knowsLanguage: ["Persisch", "Englisch", "Deutsch"],
     },
@@ -568,7 +566,7 @@ export const portfolioContent = {
     navbar: {
       brandAria: "SK, Sharare Keshvari, zurück nach oben",
       brandName: "Sharare Keshvari",
-      roleLine: "Frontend-Entwicklerin - IT-Studentin",
+      roleLine: editorialCopy.de.role,
       openNavigation: "Navigation öffnen",
       closeNavigation: "Navigation schließen",
       language: "Sprache",
@@ -591,7 +589,7 @@ export const portfolioContent = {
       { label: "Kontakt", href: "#contact" },
     ],
     hero: {
-      eyebrow: "Frontend-Entwicklerin - IT-Studentin",
+      eyebrow: editorialCopy.de.role,
       nameLines: ["Sharare", "Keshvari"],
       summary:
         "Ich entwickle responsive, nutzerfreundliche Weboberflächen mit React, Next.js und TypeScript, mit Fokus auf saubere Umsetzung und durchdachte Nutzererfahrung.",
@@ -627,7 +625,7 @@ export const portfolioContent = {
         languages: "Persisch - Englisch - Deutsch",
       },
       paragraphs: [
-        "Ich bin Frontend-Entwicklerin und IT-Studentin mit Fokus auf moderne, responsive und nutzerfreundliche Webanwendungen.",
+        editorialCopy.de.aboutParagraphs[0],
         "Ich arbeite vor allem mit React, Next.js, TypeScript und modernen UI-Tools. Wichtig sind mir klarer Code, wiederverwendbare Komponenten, gute Nutzererfahrung und Interfaces, die auf verschiedenen Bildschirmgrößen funktionieren.",
         "Ich suche Remote-Praktika und Junior-Frontend-Rollen, in denen ich zu realen Produkten beitragen, meine Fähigkeiten weiterentwickeln und mit internationalen Teams zusammenarbeiten kann.",
       ],
@@ -663,11 +661,6 @@ export const portfolioContent = {
       title: "Lernweg",
       items: [
         {
-          degree: "Bachelor in Information Technology Engineering",
-          status: "In Arbeit",
-          date: "Voraussichtlicher Abschluss: 2027",
-        },
-        {
           degree: "Associate Degree in Software Engineering",
           status: "Vorheriger Abschluss",
         },
@@ -681,7 +674,7 @@ export const portfolioContent = {
       emailAction: "E-Mail an Sharare",
     },
     footer: {
-      identity: "Sharare Keshvari - Frontend-Entwicklerin - IT-Studentin",
+      identity: editorialCopy.de.role,
       stack: "React - Next.js - TypeScript",
     },
     skillGroups: [
@@ -797,14 +790,13 @@ export const portfolioContent = {
   fr: {
     locale: "fr",
     metadata: {
-      title: "Sharare Keshvari - Développeuse frontend & étudiante en IT",
-      description:
-        "Développeuse frontend et étudiante en technologie de l'information, spécialisée dans les interfaces web responsives avec React, Next.js et TypeScript.",
+      title: editorialCopy.fr.title,
+      description: editorialCopy.fr.description,
       ogLocale: "fr_FR",
       imageAlt: "Structure visuelle utilisée dans le portfolio frontend de Sharare Keshvari",
     },
     structuredData: {
-      jobTitle: "Développeuse frontend et étudiante en technologie de l'information",
+      jobTitle: editorialCopy.fr.role,
       addressCountry: "Iran",
       knowsLanguage: ["persan", "anglais", "allemand"],
     },
@@ -815,7 +807,7 @@ export const portfolioContent = {
     navbar: {
       brandAria: "SK, Sharare Keshvari, retour en haut",
       brandName: "Sharare Keshvari",
-      roleLine: "Développeuse frontend - étudiante en IT",
+      roleLine: editorialCopy.fr.role,
       openNavigation: "Ouvrir la navigation",
       closeNavigation: "Fermer la navigation",
       language: "Langue",
@@ -838,7 +830,7 @@ export const portfolioContent = {
       { label: "Contact", href: "#contact" },
     ],
     hero: {
-      eyebrow: "Développeuse frontend - étudiante en IT",
+      eyebrow: editorialCopy.fr.role,
       nameLines: ["Sharare", "Keshvari"],
       summary:
         "Je crée des interfaces web responsives et faciles à utiliser avec React, Next.js et TypeScript, avec une attention particulière à une implémentation propre et à une expérience utilisateur réfléchie.",
@@ -874,7 +866,7 @@ export const portfolioContent = {
         languages: "Persan - anglais - allemand",
       },
       paragraphs: [
-        "Je suis développeuse frontend et étudiante en technologie de l'information, avec un focus sur des applications web modernes, responsives et faciles à utiliser.",
+        editorialCopy.fr.aboutParagraphs[0],
         "Je travaille surtout avec React, Next.js, TypeScript et des outils UI modernes. J'accorde de l'importance au code clair, aux composants réutilisables, à l'expérience utilisateur et aux interfaces qui s'adaptent aux différents écrans.",
         "Je recherche des stages à distance et des postes junior frontend où je peux contribuer à de vrais produits, développer mes compétences et collaborer avec des équipes internationales.",
       ],
@@ -910,11 +902,6 @@ export const portfolioContent = {
       title: "Parcours d'apprentissage",
       items: [
         {
-          degree: "Bachelor en ingénierie des technologies de l'information",
-          status: "En cours",
-          date: "Diplôme prévu : 2027",
-        },
-        {
           degree: "Associate Degree en génie logiciel",
           status: "Diplôme précédent",
         },
@@ -928,7 +915,7 @@ export const portfolioContent = {
       emailAction: "Écrire à Sharare",
     },
     footer: {
-      identity: "Sharare Keshvari - Développeuse frontend - étudiante en IT",
+      identity: editorialCopy.fr.role,
       stack: "React - Next.js - TypeScript",
     },
     skillGroups: [
@@ -1044,14 +1031,13 @@ export const portfolioContent = {
   tr: {
     locale: "tr",
     metadata: {
-      title: "Sharare Keshvari - Frontend Geliştirici & IT Öğrencisi",
-      description:
-        "React, Next.js ve TypeScript ile responsive web arayüzleri geliştiren frontend geliştirici ve bilgi teknolojileri öğrencisi.",
+      title: editorialCopy.tr.title,
+      description: editorialCopy.tr.description,
       ogLocale: "tr_TR",
       imageAlt: "Sharare Keshvari'nin frontend portfolyosunda kullanılan görsel yapı",
     },
     structuredData: {
-      jobTitle: "Frontend geliştirici ve bilgi teknolojileri öğrencisi",
+      jobTitle: editorialCopy.tr.role,
       addressCountry: "İran",
       knowsLanguage: ["Farsça", "İngilizce", "Almanca"],
     },
@@ -1062,7 +1048,7 @@ export const portfolioContent = {
     navbar: {
       brandAria: "SK, Sharare Keshvari, başa dön",
       brandName: "Sharare Keshvari",
-      roleLine: "Frontend Geliştirici - IT Öğrencisi",
+      roleLine: editorialCopy.tr.role,
       openNavigation: "Navigasyonu aç",
       closeNavigation: "Navigasyonu kapat",
       language: "Dil",
@@ -1085,7 +1071,7 @@ export const portfolioContent = {
       { label: "İletişim", href: "#contact" },
     ],
     hero: {
-      eyebrow: "Frontend Geliştirici - IT Öğrencisi",
+      eyebrow: editorialCopy.tr.role,
       nameLines: ["Sharare", "Keshvari"],
       summary:
         "React, Next.js ve TypeScript ile responsive, kullanıcı dostu web arayüzleri geliştiriyorum; temiz uygulama ve düşünülmüş kullanıcı deneyimine odaklanıyorum.",
@@ -1121,7 +1107,7 @@ export const portfolioContent = {
         languages: "Farsça - İngilizce - Almanca",
       },
       paragraphs: [
-        "Modern, responsive ve kullanıcı dostu web uygulamaları geliştirmeye odaklanan bir frontend geliştirici ve bilgi teknolojileri öğrencisiyim.",
+        editorialCopy.tr.aboutParagraphs[0],
         "Çoğunlukla React, Next.js, TypeScript ve modern UI araçlarıyla çalışıyorum. Net kodu, yeniden kullanılabilir bileşenleri, düşünülmüş kullanıcı deneyimini ve farklı ekran boyutlarına uyum sağlayan arayüzleri önemsiyorum.",
         "Gerçek ürünlere katkı verebileceğim, yeteneklerimi geliştirebileceğim ve uluslararası ekiplerle çalışabileceğim remote stajlar ve junior frontend rolleri arıyorum.",
       ],
@@ -1157,11 +1143,6 @@ export const portfolioContent = {
       title: "Öğrenme yolu",
       items: [
         {
-          degree: "Bilgi Teknolojileri Mühendisliği Lisans Programı",
-          status: "Devam ediyor",
-          date: "Beklenen mezuniyet: 2027",
-        },
-        {
           degree: "Yazılım Mühendisliği Ön Lisans Programı",
           status: "Önceki derece",
         },
@@ -1175,7 +1156,7 @@ export const portfolioContent = {
       emailAction: "Sharare'ye e-posta gönder",
     },
     footer: {
-      identity: "Sharare Keshvari - Frontend Geliştirici - IT Öğrencisi",
+      identity: editorialCopy.tr.role,
       stack: "React - Next.js - TypeScript",
     },
     skillGroups: [
@@ -1291,14 +1272,13 @@ export const portfolioContent = {
   fa: {
     locale: "fa",
     metadata: {
-      title: "شراره کشوری - توسعه‌دهنده فرانت‌اند و دانشجوی IT",
-      description:
-        "توسعه‌دهنده فرانت‌اند و دانشجوی فناوری اطلاعات با تمرکز بر رابط‌های وب ریسپانسیو با React، Next.js و TypeScript.",
+      title: editorialCopy.fa.title,
+      description: editorialCopy.fa.description,
       ogLocale: "fa_IR",
       imageAlt: "ساختار تصویری استفاده‌شده در پورتفولیوی فرانت‌اند شراره کشوری",
     },
     structuredData: {
-      jobTitle: "توسعه‌دهنده فرانت‌اند و دانشجوی فناوری اطلاعات",
+      jobTitle: editorialCopy.fa.role,
       addressCountry: "ایران",
       knowsLanguage: ["فارسی", "انگلیسی", "آلمانی"],
     },
@@ -1309,7 +1289,7 @@ export const portfolioContent = {
     navbar: {
       brandAria: "شراره کشوری، بازگشت به ابتدای صفحه",
       brandName: "شراره کشوری",
-      roleLine: "توسعه‌دهنده فرانت‌اند - دانشجوی IT",
+      roleLine: editorialCopy.fa.role,
       openNavigation: "باز کردن منو",
       closeNavigation: "بستن منو",
       language: "زبان",
@@ -1332,7 +1312,7 @@ export const portfolioContent = {
       { label: "تماس", href: "#contact" },
     ],
     hero: {
-      eyebrow: "توسعه‌دهنده فرانت‌اند - دانشجوی IT",
+      eyebrow: editorialCopy.fa.role,
       nameLines: ["شراره", "کشوری"],
       summary:
         "رابط‌های وب ریسپانسیو و کاربرپسند با React، Next.js و TypeScript می‌سازم؛ با تمرکز بر پیاده‌سازی تمیز و تجربه کاربری فکرشده.",
@@ -1368,7 +1348,7 @@ export const portfolioContent = {
         languages: "فارسی - انگلیسی - آلمانی",
       },
       paragraphs: [
-        "من توسعه‌دهنده فرانت‌اند و دانشجوی فناوری اطلاعات هستم و روی ساخت وب‌اپلیکیشن‌های مدرن، ریسپانسیو و کاربرپسند تمرکز دارم.",
+        editorialCopy.fa.aboutParagraphs[0],
         "بیشتر با React، Next.js، TypeScript و ابزارهای مدرن UI کار می‌کنم. کد روشن، کامپوننت‌های قابل استفاده مجدد، تجربه کاربری فکرشده و رابط‌هایی که در اندازه‌های مختلف صفحه درست کار کنند برایم مهم است.",
         "به دنبال کارآموزی‌های ریموت و نقش‌های جونیور فرانت‌اند هستم تا در محصولات واقعی مشارکت کنم، مهارت‌هایم را توسعه بدهم و با تیم‌های بین‌المللی همکاری داشته باشم.",
       ],
@@ -1404,11 +1384,6 @@ export const portfolioContent = {
       title: "مسیر یادگیری",
       items: [
         {
-          degree: "کارشناسی مهندسی فناوری اطلاعات",
-          status: "در حال تحصیل",
-          date: "زمان مورد انتظار فارغ‌التحصیلی: 2027",
-        },
-        {
           degree: "کاردانی مهندسی نرم‌افزار",
           status: "مدرک قبلی",
         },
@@ -1422,7 +1397,7 @@ export const portfolioContent = {
       emailAction: "ایمیل به شراره",
     },
     footer: {
-      identity: "شراره کشوری - توسعه‌دهنده فرانت‌اند - دانشجوی فناوری اطلاعات",
+      identity: editorialCopy.fa.role,
       stack: "React - Next.js - TypeScript",
     },
     skillGroups: [
@@ -1538,14 +1513,13 @@ export const portfolioContent = {
   ku: {
     locale: "ku",
     metadata: {
-      title: "شارارە کەشوەری - پەرەپێدەری فرۆنت‌ئێند و خوێندکاری IT",
-      description:
-        "پەرەپێدەری فرۆنت‌ئێند و خوێندکاری تەکنەلۆژیای زانیاری، بە تیشک خستنەسەر ڕووکاری وێبی وەڵامدەرەوە بە React، Next.js و TypeScript.",
+      title: editorialCopy.ku.title,
+      description: editorialCopy.ku.description,
       ogLocale: "ku",
       imageAlt: "پێکهاتەی وێنەیی لە پۆرتفۆلیۆی فرۆنت‌ئێندی شارارە کەشوەری",
     },
     structuredData: {
-      jobTitle: "پەرەپێدەری فرۆنت‌ئێند و خوێندکاری تەکنەلۆژیای زانیاری",
+      jobTitle: editorialCopy.ku.role,
       addressCountry: "ئێران",
       knowsLanguage: ["فارسی", "ئینگلیزی", "ئەڵمانی"],
     },
@@ -1556,7 +1530,7 @@ export const portfolioContent = {
     navbar: {
       brandAria: "شارارە کەشوەری، گەڕانەوە بۆ سەرەتا",
       brandName: "شارارە کەشوەری",
-      roleLine: "پەرەپێدەری فرۆنت‌ئێند - خوێندکاری IT",
+      roleLine: editorialCopy.ku.role,
       openNavigation: "کردنەوەی ناوبەری",
       closeNavigation: "داخستنی ناوبەری",
       language: "زمان",
@@ -1579,7 +1553,7 @@ export const portfolioContent = {
       { label: "پەیوەندی", href: "#contact" },
     ],
     hero: {
-      eyebrow: "پەرەپێدەری فرۆنت‌ئێند - خوێندکاری IT",
+      eyebrow: editorialCopy.ku.role,
       nameLines: ["شارارە", "کەشوەری"],
       summary:
         "ڕووکاری وێبی وەڵامدەرەوە و بەکارهێنەردۆست بە React، Next.js و TypeScript دروست دەکەم؛ بە تیشک خستنەسەر جێبەجێکردنی پاک و ئەزموونی بەکارهێنەری بیرکراو.",
@@ -1615,7 +1589,7 @@ export const portfolioContent = {
         languages: "فارسی - ئینگلیزی - ئەڵمانی",
       },
       paragraphs: [
-        "من پەرەپێدەری فرۆنت‌ئێند و خوێندکاری تەکنەلۆژیای زانیاریم و سەرنج دەدەمە دروستکردنی وێب ئەپلیکەیشنی مۆدێرن، وەڵامدەرەوە و بەکارهێنەردۆست.",
+        editorialCopy.ku.aboutParagraphs[0],
         "زۆرجار بە React، Next.js، TypeScript و ئامرازە مۆدێرنەکانی UI کار دەکەم. کۆدی ڕوون، کۆمپیۆنێنتی دووبارەبەکارهێنراو، ئەزموونی بەکارهێنەری بیرکراو و ڕووکارێک کە لە قەبارە جیاوازەکانی شاشەدا باش کار بکات بۆم گرنگە.",
         "بەدوای ستاژی ڕیمۆت و ڕۆڵی جونیۆری فرۆنت‌ئێنددا دەگەڕێم کە بتوانم بەشداری بەرهەمی ڕاستەقینە بکەم، کارامەییەکانم پەرە پێبدەم و لەگەڵ تیمی نێودەوڵەتی کار بکەم.",
       ],
@@ -1651,11 +1625,6 @@ export const portfolioContent = {
       title: "ڕێڕەوی فێربوون",
       items: [
         {
-          degree: "بەکالۆریۆس لە ئەندازیاری تەکنەلۆژیای زانیاری",
-          status: "لە بەردەوامیدایە",
-          date: "چاوەڕوانکراوی دەرچوون: 2027",
-        },
-        {
           degree: "دیپلۆمی هاوتا لە ئەندازیاری نەرمەکاڵا",
           status: "بڕوانامەی پێشوو",
         },
@@ -1669,7 +1638,7 @@ export const portfolioContent = {
       emailAction: "ئیمەیڵ بۆ شارارە",
     },
     footer: {
-      identity: "شارارە کەشوەری - پەرەپێدەری فرۆنت‌ئێند - خوێندکاری IT",
+      identity: editorialCopy.ku.role,
       stack: "React - Next.js - TypeScript",
     },
     skillGroups: [
@@ -1785,14 +1754,13 @@ export const portfolioContent = {
   ar: {
     locale: "ar",
     metadata: {
-      title: "شراره كشوري - مطورة واجهات أمامية وطالبة تقنية معلومات",
-      description:
-        "مطورة واجهات أمامية وطالبة تقنية معلومات تركز على واجهات ويب متجاوبة مبنية باستخدام React وNext.js وTypeScript.",
+      title: editorialCopy.ar.title,
+      description: editorialCopy.ar.description,
       ogLocale: "ar",
       imageAlt: "بنية بصرية مستخدمة في معرض أعمال شراره كشوري للواجهات الأمامية",
     },
     structuredData: {
-      jobTitle: "مطورة واجهات أمامية وطالبة تقنية معلومات",
+      jobTitle: editorialCopy.ar.role,
       addressCountry: "إيران",
       knowsLanguage: ["الفارسية", "الإنجليزية", "الألمانية"],
     },
@@ -1803,7 +1771,7 @@ export const portfolioContent = {
     navbar: {
       brandAria: "شراره كشوري، العودة إلى أعلى الصفحة",
       brandName: "شراره كشوري",
-      roleLine: "مطورة واجهات أمامية - طالبة IT",
+      roleLine: editorialCopy.ar.role,
       openNavigation: "فتح التنقل",
       closeNavigation: "إغلاق التنقل",
       language: "اللغة",
@@ -1826,7 +1794,7 @@ export const portfolioContent = {
       { label: "التواصل", href: "#contact" },
     ],
     hero: {
-      eyebrow: "مطورة واجهات أمامية - طالبة IT",
+      eyebrow: editorialCopy.ar.role,
       nameLines: ["شراره", "كشوري"],
       summary:
         "أبني واجهات ويب متجاوبة وسهلة الاستخدام باستخدام React وNext.js وTypeScript، مع التركيز على التنفيذ النظيف وتجربة المستخدم المدروسة.",
@@ -1862,7 +1830,7 @@ export const portfolioContent = {
         languages: "الفارسية - الإنجليزية - الألمانية",
       },
       paragraphs: [
-        "أنا مطورة واجهات أمامية وطالبة تقنية معلومات أركز على بناء تطبيقات ويب حديثة ومتجاوبة وسهلة الاستخدام.",
+        editorialCopy.ar.aboutParagraphs[0],
         "أعمل أساسا مع React وNext.js وTypeScript وأدوات UI الحديثة. أهتم بالكود الواضح، والمكونات القابلة لإعادة الاستخدام، وتجربة المستخدم المدروسة، والواجهات التي تتكيف مع أحجام الشاشات المختلفة.",
         "أبحث عن تدريب عن بعد وأدوار جونيور في الواجهات الأمامية حيث يمكنني المساهمة في منتجات حقيقية، وتطوير مهاراتي، والتعاون مع فرق دولية.",
       ],
@@ -1898,11 +1866,6 @@ export const portfolioContent = {
       title: "مسار التعلم",
       items: [
         {
-          degree: "بكالوريوس هندسة تقنية المعلومات",
-          status: "قيد الدراسة",
-          date: "التخرج المتوقع: 2027",
-        },
-        {
           degree: "دبلوم مشارك في هندسة البرمجيات",
           status: "درجة سابقة",
         },
@@ -1916,7 +1879,7 @@ export const portfolioContent = {
       emailAction: "راسل شراره",
     },
     footer: {
-      identity: "شراره كشوري - مطورة واجهات أمامية - طالبة تقنية معلومات",
+      identity: editorialCopy.ar.role,
       stack: "React - Next.js - TypeScript",
     },
     skillGroups: [
@@ -2032,7 +1995,39 @@ export const portfolioContent = {
 } as const satisfies Record<Locale, PortfolioContent>;
 
 export function getPortfolioContent(locale: Locale): PortfolioContent {
-  return portfolioContent[locale];
+  const content = portfolioContent[locale];
+  const copy = editorialCopy[locale];
+  return {
+    ...content,
+    metadata: { ...content.metadata, title: copy.title, description: copy.description },
+    structuredData: { ...content.structuredData, jobTitle: copy.role },
+    navbar: { ...content.navbar, roleLine: copy.role },
+    hero: { ...content.hero, eyebrow: copy.role, summary: copy.heroSummary, meta: [copy.location, content.hero.meta[1], content.hero.meta[2]] },
+    about: { ...content.about, statement: copy.aboutStatement, facts: { ...content.about.facts, location: copy.location }, paragraphs: copy.aboutParagraphs },
+    skills: { ...content.skills, title: copy.skillsTitle, description: copy.skillsDescription },
+    experience: { ...content.experience, title: copy.experienceTitle, description: copy.experienceDescription },
+    education: { ...content.education, title: copy.educationTitle, items: [{ degree: copy.completedDegree, status: content.education.label }] },
+    contact: { ...content.contact, description: copy.contactDescription },
+    footer: { ...content.footer, identity: `${content.navbar.brandName} · ${copy.role}` },
+    projects: getUpdatedProjects(locale, content.projects),
+    projectsSection: { ...content.projectsSection, title: copy.projectsTitle, description: featuredProjectDescriptions[locale] },
+  };
+}
+
+function getUpdatedProjects(locale: Locale, originalProjects: readonly ProjectItem[]): readonly ProjectItem[] {
+  const updates = featuredProjects[locale];
+  const rekar = updates.find(project => project.title === "Rekar");
+  const dentia = updates.find(project => project.title === "Dentia");
+  const existing = originalProjects.map(project => {
+    if (project.title === "Rekar" && rekar) {
+      return { ...project, image: rekar.image, imageAlt: rekar.imageAlt, liveUrl: rekar.liveUrl, siteUrl: rekar.siteUrl };
+    }
+    if (project.title === "Dentia" && dentia) {
+      return dentia;
+    }
+    return project;
+  });
+  return [...existing, ...updates.filter(project => !originalProjects.some(original => original.title === project.title))];
 }
 
 export const navigation = portfolioContent.en.navigation;
@@ -2040,6 +2035,6 @@ export const skillGroups = portfolioContent.en.skillGroups;
 export const languageItems = portfolioContent.en.languageItems;
 export const careerGoals = portfolioContent.en.careerGoals;
 export const experience = portfolioContent.en.experience;
-export const educationItems = portfolioContent.en.education.items;
-export const projects = portfolioContent.en.projects;
+export const educationItems = getPortfolioContent("en").education.items;
+export const projects = getUpdatedProjects("en", portfolioContent.en.projects);
 export const contactItems = portfolioContent.en.contactItems;

@@ -5,11 +5,14 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
+import { interfaceLabels } from "@/data/editorial-copy";
+import type { Locale } from "@/data/portfolio";
 
-export function ThemeToggle() {
+export function ThemeToggle({ locale }: { locale: Locale }) {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const isDark = mounted ? resolvedTheme !== "light" : true;
+  const isDark = mounted ? resolvedTheme === "dark" : false;
+  const labels = interfaceLabels[locale];
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => setMounted(true));
@@ -21,10 +24,10 @@ export function ThemeToggle() {
       type="button"
       variant="icon"
       aria-label={
-        mounted ? (isDark ? "Switch to light theme" : "Switch to dark theme") : "Toggle theme"
+        mounted ? (isDark ? labels.lightTheme : labels.darkTheme) : labels.toggleTheme
       }
       title={
-        mounted ? (isDark ? "Switch to light theme" : "Switch to dark theme") : "Toggle theme"
+        mounted ? (isDark ? labels.lightTheme : labels.darkTheme) : labels.toggleTheme
       }
       onClick={() => setTheme(isDark ? "light" : "dark")}
       disabled={!mounted}
