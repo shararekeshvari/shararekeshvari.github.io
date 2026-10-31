@@ -29,10 +29,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://shararekeshvari.git
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: {
-    default: "Sharare Keshvari | Frontend Developer",
-    template: "%s - Sharare Keshvari",
-  },
+  title: "Sharare Keshvari | Frontend Developer",
   description:
     "Sharare Keshvari builds responsive web experiences with React, Next.js and TypeScript. Explore selected projects and get in touch.",
   keywords: [
